@@ -81,7 +81,7 @@ class Dispatcher:
     def choose(self, req: int, servers: list[Server]) -> Server:
         servers_info = [{"id": s.id, "pendings": s.pendings(), "age": s.current_age()} for s in servers]
 
-        chosen = self.choose(req, servers)
+        chosen = self.dispatch(req, servers)
 
         log_json(source="dispatcher", request_id=req, servers=servers_info, chosen=chosen.id)
 
@@ -93,7 +93,7 @@ class Dispatcher:
 
 class Random(Dispatcher):
     def __init__(self):
-        pass
+        super().__init__()
     
     def dispatch(self, req: int, servers: list[Server]) -> Server:
         id = random.randint(0, len(servers) - 1)
