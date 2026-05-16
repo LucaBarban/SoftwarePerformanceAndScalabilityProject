@@ -29,10 +29,11 @@ class Server(Process):
 
             process_request(request_id)
 
+            log_json(source="server", server_id=self.id, request_id=request_id, event="end", timing=time.time() - self.timing.value)
+
             self.output.put(request_id)
             self.timing.value = 0.0
 
-            log_json(source="server", server_id=self.id, request_id=request_id, event="end")
 
 
 class Handle:
@@ -75,14 +76,29 @@ def process_request(x, alpha=1.3, base_work=20_000):
     return acc
 
 
-def dispatch(req, servers):
-    servers_info = [{"id": s.id, "pendings": s.pendings(), "age": s.current_age()} for s in servers]
 
-    i = req % len(servers)
+class Dispatcher:
+    def choose(self, req: int, servers: list[Server]) -> Server:
+        servers_info = [{"id": s.id, "pendings": s.pendings(), "age": s.current_age()} for s in servers]
 
-    log_json(source="dispatcher", request_id=req, servers=servers_info, chosen=servers[i].id)
+        chosen = self.choose(req, servers)
 
-    return servers[i]
+        log_json(source="dispatcher", request_id=req, servers=servers_info, chosen=chosen.id)
+
+        return chosen
+
+    def dispatch(self, req: int, servers: list[Server]) -> Server:
+        raise Exception("NotImplementedException")
+
+
+class Random(Dispatcher):
+    def __init__(self):
+        pass
+    
+    def dispatch(self, req: int, servers: list[Server]) -> Server:
+        id = random.randint(0, len(servers) - 1)
+        return servers[id]
+
 
 
 if __name__ == "__main__":
@@ -90,13 +106,14 @@ if __name__ == "__main__":
     REQUESTS = 100
 
     output = Queue()
+    dispatcher = Random()
 
     servers = [Handle(i + 1, output) for i in range(SERVERS)]
 
     # need to randomly generate `request` instead of 1..REQUESTS
     for request in range(REQUESTS):
         time.sleep(.2) # will replace with lambda-wait
-        server = dispatch(request, servers)
+        server = dispatcher.choose(request, servers)
         server.dispatch(request)
 
     for _ in range(REQUESTS):
