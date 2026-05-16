@@ -9,7 +9,7 @@ def log_json(**kwargs):
     print(json.dumps(kwargs))
 
 
-class Child(Process):
+class Server(Process):
     def __init__(self, id: int, queue: Queue, output: Queue, timing):
         super().__init__()
 
@@ -35,14 +35,14 @@ class Child(Process):
             log_json(source="server", server_id=self.id, request_id=request_id, event="end")
 
 
-class Server:
+class Handle:
     def __init__(self, id: int, output: Queue):
         self.queue = Queue()
         self.id = id
         self.timing = Value('d', 0.0)
        
-        self.child = Child(id, self.queue, output, self.timing)
-        self.child.start()
+        self.server = Server(id, self.queue, output, self.timing)
+        self.server.start()
 
     def dispatch(self, request_id):
         self.queue.put(request_id)
@@ -91,7 +91,7 @@ if __name__ == "__main__":
 
     output = Queue()
 
-    servers = [Server(i + 1, output) for i in range(SERVERS)]
+    servers = [Handle(i + 1, output) for i in range(SERVERS)]
 
     # need to randomly generate `request` instead of 1..REQUESTS
     for request in range(REQUESTS):
@@ -102,6 +102,6 @@ if __name__ == "__main__":
     for _ in range(REQUESTS):
         output.get()
 
-    for server in servers:
-        server.child.terminate()
+    for handle in servers:
+        handle.server.terminate()
 
