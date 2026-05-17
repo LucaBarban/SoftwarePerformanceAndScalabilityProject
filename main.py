@@ -18,30 +18,37 @@ class Server(Process):
         self.output = output
         self.timing = timing
 
-
     def run(self):
         while True:
             request_id = self.queue.get()
 
             self.timing.value = time.time()
 
-            log_json(source="server", server_id=self.id, request_id=request_id, event="start")
+            log_json(
+                source="server", server_id=self.id, request_id=request_id, event="start"
+            )
 
             process_request(request_id)
 
-            log_json(source="server", server_id=self.id, request_id=request_id, event="end", timing=time.time() - self.timing.value)
+            log_json(
+                source="server",
+                server_id=self.id,
+                request_id=request_id,
+                event="end",
+                resp_time=time.time() - self.timing.value,
+                start_time=self.timing.value,
+            )
 
             self.output.put(request_id)
             self.timing.value = 0.0
-
 
 
 class Handle:
     def __init__(self, id: int, output: Queue):
         self.queue = Queue()
         self.id = id
-        self.timing = Value('d', 0.0)
-       
+        self.timing = Value("d", 0.0)
+
         self.server = Server(id, self.queue, output, self.timing)
         self.server.start()
 
@@ -76,14 +83,22 @@ def process_request(x, alpha=1.3, base_work=20_000):
     return acc
 
 
-
 class Dispatcher:
     def choose(self, req: int, servers: list[Server]) -> Server:
-        servers_info = [{"id": s.id, "pendings": s.pendings(), "age": s.current_age()} for s in servers]
+        servers_info = [
+            {"id": s.id, "pendings": s.pendings(), "age": s.current_age()}
+            for s in servers
+        ]
 
         chosen = self.dispatch(req, servers)
 
-        log_json(source="dispatcher", request_id=req, servers=servers_info, chosen=chosen.id)
+        log_json(
+            source="dispatcher",
+            request_id=req,
+            servers=servers_info,
+            chosen=chosen.id,
+            decision_time=time.time(),
+        )
 
         return chosen
 
@@ -94,11 +109,10 @@ class Dispatcher:
 class Random(Dispatcher):
     def __init__(self):
         super().__init__()
-    
+
     def dispatch(self, req: int, servers: list[Server]) -> Server:
         id = random.randint(0, len(servers) - 1)
         return servers[id]
-
 
 
 if __name__ == "__main__":
@@ -112,7 +126,7 @@ if __name__ == "__main__":
 
     # need to randomly generate `request` instead of 1..REQUESTS
     for request in range(REQUESTS):
-        time.sleep(.2) # will replace with lambda-wait
+        time.sleep(0.2)  # will replace with lambda-wait
         server = dispatcher.choose(request, servers)
         server.dispatch(request)
 
@@ -121,4 +135,3 @@ if __name__ == "__main__":
 
     for handle in servers:
         handle.server.terminate()
-
