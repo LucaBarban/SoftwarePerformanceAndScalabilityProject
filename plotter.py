@@ -209,12 +209,3 @@ def plot(file_path: str = "simulations/output.txt", bins:int = 20, window_size: 
 
 
 plot()
-
-
-# plot carico medio server per tot secondi passati per ogni punto
-# raccolta response time (media + discretizzazione per conteggio numero)
-
-
-# plottare le seguenti cose:
-# - distribuzione response time (discretizzazione richiesta) + media (del testo in alto a dx per esempio?)
-# - plot carico sui server (discretizzare nel tempo anche qua, plot calcolato come response time accumulato / tempo al momento * 100)
