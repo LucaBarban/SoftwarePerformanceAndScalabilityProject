@@ -1,3 +1,4 @@
+from typing import Optional
 from multiprocessing import Process, Queue, Value
 import json
 import math
@@ -6,8 +7,38 @@ import time
 import os
 
 
-def log_json(**kwargs):
-    print(json.dumps(kwargs))
+class Logger:
+    def __init__(self, filename: Optional[str] = None):
+        self.buf = []
+
+        self.f = None
+        if filename is not None:
+            self.f = open(filename, 'w')
+
+    def format(self, **kwargs):
+        return json.dumps(kwargs)
+
+    def print(self, **kwargs):
+        print(self.format(**kwargs))
+
+    def buffer(self, **kwargs):
+        self.buf.append(kwargs)
+        
+    def file(self, **kwargs):
+        if self.f is None:
+            raise Exception("Missing file")
+        else:
+           self.f.write(self.format(**kwargs)) 
+
+    def close(self):
+        if self.f is None:
+            raise Exception("Missing file")
+        else:
+            self.f.close()
+   
+
+log = Logger()
+
 
 class Job:
     def __init__(self, id: int, size: int):
@@ -33,11 +64,11 @@ class Server(Process):
 
             self.timing.value = time.time()
 
-            log_json(source="server", event="start", server_id=self.id, job_id=job.id)
+            log.print(source="server", event="start", server_id=self.id, job_id=job.id)
 
             process_job(job)
 
-            log_json(
+            log.print(
                 source="server",
                 event="end",
                 server_id=self.id,
@@ -99,7 +130,7 @@ class Dispatcher:
 
         chosen = self.dispatch(job, servers)
 
-        log_json(
+        log.print(
             source="dispatcher",
             event="dispatching",
             job_id=job.id,
@@ -147,7 +178,7 @@ if __name__ == "__main__":
 
     SERVERS = 3
     JOBS = 100
-    LOAD = 0.2
+    LOAD = 0.9
 
     output = Queue()
     servers = [Handle(i + 1, output) for i in range(SERVERS)]
@@ -168,8 +199,9 @@ if __name__ == "__main__":
 
     diff = time.time() - start
 
-    log_json(source="dispatcher", event="summary", processing=diff)
+    log.print(source="dispatcher", event="summary", processing=diff)
 
     for handle in servers:
-        log_json(source="server", event="summary", server_id=handle.id, processing=handle.processing_time.value)
+        log.print(source="server", event="summary", server_id=handle.id, processing=handle.processing_time.value)
         handle.server.terminate()
+
