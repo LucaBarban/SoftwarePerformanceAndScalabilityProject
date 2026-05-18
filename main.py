@@ -8,6 +8,14 @@ import time
 def log_json(**kwargs):
     print(json.dumps(kwargs))
 
+class Job:
+    id: int
+    size: int
+
+    def Job(self, id: int, size: int):
+        self.id = id
+        self.size = size
+
 
 class Server(Process):
     def __init__(self, id: int, queue: Queue, output: Queue, timing):
@@ -20,26 +28,24 @@ class Server(Process):
 
     def run(self):
         while True:
-            request_id = self.queue.get()
+            job = self.queue.get()
 
             self.timing.value = time.time()
 
-            log_json(
-                source="server", server_id=self.id, request_id=request_id, event="start"
-            )
+            log_json(source="server", server_id=self.id, job_id=job.id, event="start")
 
-            process_request(request_id)
+            process_job(job)
 
             log_json(
                 source="server",
                 server_id=self.id,
-                request_id=request_id,
+                job_id=job.id,
                 event="end",
                 resp_time=time.time() - self.timing.value,
                 start_time=self.timing.value,
             )
 
-            self.output.put(request_id)
+            self.output.put(job)
             self.timing.value = 0.0
 
 
@@ -52,8 +58,8 @@ class Handle:
         self.server = Server(id, self.queue, output, self.timing)
         self.server.start()
 
-    def dispatch(self, request_id):
-        self.queue.put(request_id)
+    def dispatch(self, job: Job):
+        self.queue.put(job)
 
     def pendings(self):
         return self.queue.qsize()
@@ -65,10 +71,10 @@ class Handle:
         return time.time() - self.timing.value
 
 
-def process_request(x, alpha=1.3, base_work=20_000):
+def process_job(x, alpha=1.3, base_work=20_000):
     """
-    Simulates a CPU-bound request with heavy-tailed processing time.
-    x: request size / difficulty
+    Simulates a CPU-bound job with heavy-tailed processing time.
+    x: job size / difficulty
     """
     # Heavy-tailed amplification
     multiplier = random.paretovariate(alpha)
@@ -84,17 +90,14 @@ def process_request(x, alpha=1.3, base_work=20_000):
 
 
 class Dispatcher:
-    def choose(self, req: int, servers: list[Server]) -> Server:
-        servers_info = [
-            {"id": s.id, "pendings": s.pendings(), "age": s.current_age()}
-            for s in servers
-        ]
+    def choose(self, job: Job, servers: list[Server]) -> Server:
+        servers_info = [{"id": s.id, "pendings": s.pendings(), "age": s.current_age()} for s in servers]
 
-        chosen = self.dispatch(req, servers)
+        chosen = self.dispatch(job, servers)
 
         log_json(
             source="dispatcher",
-            request_id=req,
+            job_id=job.id,
             servers=servers_info,
             chosen=chosen.id,
             decision_time=time.time(),
@@ -102,7 +105,7 @@ class Dispatcher:
 
         return chosen
 
-    def dispatch(self, req: int, servers: list[Server]) -> Server:
+    def dispatch(self, job: Job, servers: list[Server]) -> Server:
         raise Exception("NotImplementedException")
 
 
@@ -110,27 +113,29 @@ class Random(Dispatcher):
     def __init__(self):
         super().__init__()
 
-    def dispatch(self, req: int, servers: list[Server]) -> Server:
+    def dispatch(self, job: Job, servers: list[Server]) -> Server:
         id = random.randint(0, len(servers) - 1)
         return servers[id]
 
 
 if __name__ == "__main__":
     SERVERS = 3
-    REQUESTS = 100
+    JOBS = 100
 
     output = Queue()
     dispatcher = Random()
 
     servers = [Handle(i + 1, output) for i in range(SERVERS)]
 
-    # need to randomly generate `request` instead of 1..REQUESTS
-    for request in range(REQUESTS):
-        time.sleep(0.2)  # will replace with lambda-wait
-        server = dispatcher.choose(request, servers)
-        server.dispatch(request)
+    # TODO: need to randomly generate `job` instead of 1..JOBS
+    for x in range(JOBS):
+        time.sleep(.2) # TODO: will replace with lambda-wait
 
-    for _ in range(REQUESTS):
+        req = Job(x, x) # TODO: change into extraction from Pareto
+        server = dispatcher.choose(req, servers)
+        server.dispatch(req)
+
+    for _ in range(JOBS):
         output.get()
 
     for handle in servers:
