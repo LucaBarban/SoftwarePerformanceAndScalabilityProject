@@ -115,13 +115,32 @@ class Random(Dispatcher):
         return servers[id]
 
 
+class JIQ(Dispatcher):
+    def __init__(self):
+        super().__init__()
+
+    def dispatch(self, job: Job, servers: list[Server]) -> Server:
+        # Find the less value of pending
+        min_pendings = min(s.pendings() for s in servers)
+
+        # server with less pending
+        idle_servers = []
+        for s in servers:
+            if s.pendings() == min_pendings:
+                idle_servers.append(s)
+
+        # choose at random a server
+        chosen = random.choice(idle_servers)
+
+        return chosen
+
 if __name__ == "__main__":
     SERVERS = 3
     JOBS = 100
 
     output = Queue()
     dispatcher = Random()
-
+    dispatcher2 = JIQ()
     servers = [Handle(i + 1, output) for i in range(SERVERS)]
 
     # TODO: need to randomly generate `job` instead of 1..JOBS
@@ -131,6 +150,8 @@ if __name__ == "__main__":
         req = Job(x, x) # TODO: change into extraction from Pareto
         server = dispatcher.choose(req, servers)
         server.dispatch(req)
+        server2 = dispatcher2.choose(req, servers)
+        server2.dispatch(req)
 
     for _ in range(JOBS):
         output.get()
