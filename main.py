@@ -3,6 +3,7 @@ import json
 import math
 import random
 import time
+import os
 
 
 def log_json(**kwargs):
@@ -10,13 +11,16 @@ def log_json(**kwargs):
 
 
 class Server(Process):
-    def __init__(self, id: int, queue: Queue, output: Queue, timing):
+    def __init__(self, id: int, queue: Queue, output: Queue, timing, processing):
         super().__init__()
 
+        os.sched_setaffinity(0, {id})
+        
         self.id = id
         self.queue = queue
         self.output = output
         self.timing = timing
+        self.processing = processing
 
 
     def run(self):
@@ -25,13 +29,14 @@ class Server(Process):
 
             self.timing.value = time.time()
 
-            log_json(source="server", server_id=self.id, request_id=request_id, event="start")
+            log_json(source="server", event="start", server_id=self.id, request_id=request_id)
 
             process_request(request_id)
 
-            log_json(source="server", server_id=self.id, request_id=request_id, event="end", timing=time.time() - self.timing.value)
+            log_json(source="server", event="end", server_id=self.id, request_id=request_id, timing=time.time() - self.timing.value)
 
             self.output.put(request_id)
+            self.processing.value += time.time() - self.timing.value
             self.timing.value = 0.0
 
 
@@ -41,8 +46,9 @@ class Handle:
         self.queue = Queue()
         self.id = id
         self.timing = Value('d', 0.0)
+        self.processing_time = Value('d', 0.0)
        
-        self.server = Server(id, self.queue, output, self.timing)
+        self.server = Server(id, self.queue, output, self.timing, self.processing_time)
         self.server.start()
 
     def dispatch(self, request_id):
@@ -78,16 +84,16 @@ def process_request(x, alpha=1.3, base_work=20_000):
 
 
 class Dispatcher:
-    def choose(self, req: int, servers: list[Server]) -> Server:
+    def choose(self, req: int, servers: list[Handle]) -> Handle:
         servers_info = [{"id": s.id, "pendings": s.pendings(), "age": s.current_age()} for s in servers]
 
         chosen = self.dispatch(req, servers)
 
-        log_json(source="dispatcher", request_id=req, servers=servers_info, chosen=chosen.id)
+        log_json(source="dispatcher", event="dispatching", request_id=req, servers=servers_info, chosen=chosen.id)
 
         return chosen
 
-    def dispatch(self, req: int, servers: list[Server]) -> Server:
+    def dispatch(self, req: int, servers: list[Handle]) -> Handle:
         raise Exception("NotImplementedException")
 
 
@@ -95,30 +101,40 @@ class Random(Dispatcher):
     def __init__(self):
         super().__init__()
     
-    def dispatch(self, req: int, servers: list[Server]) -> Server:
+    def dispatch(self, req: int, servers: list[Handle]) -> Handle:
         id = random.randint(0, len(servers) - 1)
         return servers[id]
 
 
 
 if __name__ == "__main__":
+    os.sched_setaffinity(0, {0})
+
     SERVERS = 3
     REQUESTS = 100
+    LOAD = 0.9
 
     output = Queue()
     dispatcher = Random()
 
     servers = [Handle(i + 1, output) for i in range(SERVERS)]
 
+    start = time.time()
+
     # need to randomly generate `request` instead of 1..REQUESTS
     for request in range(REQUESTS):
-        time.sleep(.2) # will replace with lambda-wait
-        server = dispatcher.choose(request, servers)
+        time.sleep(random.expovariate(LOAD) / 10)
+        server = dispatcher.choose(20, servers)
         server.dispatch(request)
 
     for _ in range(REQUESTS):
         output.get()
 
+    diff = time.time() - start
+
+    log_json(source="dispatcher", event="summary", processing=diff)
+
     for handle in servers:
+        log_json(source="server", event="summary", server_id=handle.id, processing=handle.processing_time.value)
         handle.server.terminate()
 
