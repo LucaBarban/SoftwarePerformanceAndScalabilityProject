@@ -9,6 +9,11 @@ import os
 def log_json(**kwargs):
     print(json.dumps(kwargs))
 
+class Job:
+    def __init__(self, id: int, size: int):
+        self.id = id
+        self.size = size
+
 
 class Server(Process):
     def __init__(self, id: int, queue: Queue, output: Queue, timing, processing):
@@ -22,23 +27,29 @@ class Server(Process):
         self.timing = timing
         self.processing = processing
 
-
     def run(self):
         while True:
-            request_id = self.queue.get()
+            job = self.queue.get()
 
             self.timing.value = time.time()
 
-            log_json(source="server", event="start", server_id=self.id, request_id=request_id)
+            log_json(source="server", event="start", server_id=self.id, job_id=job.id)
 
-            process_request(request_id)
+            process_job(job)
 
-            log_json(source="server", event="end", server_id=self.id, request_id=request_id, timing=time.time() - self.timing.value)
+            log_json(
+                source="server",
+                event="end",
+                server_id=self.id,
+                job_id=job.id,
+                start_time=self.timing.value,
+                resp_time=time.time() - self.timing.value,
+            )
 
-            self.output.put(request_id)
+            self.output.put(job)
             self.processing.value += time.time() - self.timing.value
-            self.timing.value = 0.0
 
+            self.timing.value = 0.0
 
 
 class Handle:
@@ -47,12 +58,12 @@ class Handle:
         self.id = id
         self.timing = Value('d', 0.0)
         self.processing_time = Value('d', 0.0)
-       
+      
         self.server = Server(id, self.queue, output, self.timing, self.processing_time)
         self.server.start()
 
-    def dispatch(self, request_id):
-        self.queue.put(request_id)
+    def dispatch(self, job: Job):
+        self.queue.put(job)
 
     def pendings(self):
         return self.queue.qsize()
@@ -64,16 +75,16 @@ class Handle:
         return time.time() - self.timing.value
 
 
-def process_request(x, alpha=1.3, base_work=20_000):
+def process_job(job: Job, alpha=1.3, base_work=20_000):
     """
-    Simulates a CPU-bound request with heavy-tailed processing time.
-    x: request size / difficulty
+    Simulates a CPU-bound job with heavy-tailed processing time.
+    job: job
     """
     # Heavy-tailed amplification
     multiplier = random.paretovariate(alpha)
 
     # Total CPU work
-    n = int(base_work * x * multiplier)
+    n = int(base_work * job.size * multiplier)
     acc = 0.0
 
     for i in range(n):
@@ -82,18 +93,24 @@ def process_request(x, alpha=1.3, base_work=20_000):
     return acc
 
 
-
 class Dispatcher:
-    def choose(self, req: int, servers: list[Handle]) -> Handle:
+    def choose(self, job: Job, servers: list[Handle]) -> Handle:
         servers_info = [{"id": s.id, "pendings": s.pendings(), "age": s.current_age()} for s in servers]
 
-        chosen = self.dispatch(req, servers)
+        chosen = self.dispatch(job, servers)
 
-        log_json(source="dispatcher", event="dispatching", request_id=req, servers=servers_info, chosen=chosen.id)
+        log_json(
+            source="dispatcher",
+            event="dispatching",
+            job_id=job.id,
+            servers=servers_info,
+            chosen=chosen.id,
+            decision_time=time.time(),
+        )
 
         return chosen
 
-    def dispatch(self, req: int, servers: list[Handle]) -> Handle:
+    def dispatch(self, job: Job, servers: list[Handle]) -> Handle:
         raise Exception("NotImplementedException")
 
 
@@ -101,33 +118,52 @@ class Random(Dispatcher):
     def __init__(self):
         super().__init__()
     
-    def dispatch(self, req: int, servers: list[Handle]) -> Handle:
+    def dispatch(self, job: Job, servers: list[Handle]) -> Handle:
         id = random.randint(0, len(servers) - 1)
         return servers[id]
 
 
+class JIQ(Dispatcher):
+    def __init__(self):
+        super().__init__()
+
+    def dispatch(self, job: Job, servers: list[Handle]) -> Handle:
+        # Find the less value of pending
+        min_pendings = min(s.pendings() for s in servers)
+
+        # server with less pending
+        idle_servers = []
+        for s in servers:
+            if s.pendings() == min_pendings:
+                idle_servers.append(s)
+
+        # choose at random a server
+        chosen = random.choice(idle_servers)
+
+        return chosen
 
 if __name__ == "__main__":
     os.sched_setaffinity(0, {0})
 
     SERVERS = 3
-    REQUESTS = 100
-    LOAD = 0.9
+    JOBS = 100
+    LOAD = 0.2
 
     output = Queue()
-    dispatcher = Random()
-
     servers = [Handle(i + 1, output) for i in range(SERVERS)]
+    dispatcher = JIQ()
 
     start = time.time()
 
-    # need to randomly generate `request` instead of 1..REQUESTS
-    for request in range(REQUESTS):
+    for x in range(JOBS):
         time.sleep(random.expovariate(LOAD) / 10)
-        server = dispatcher.choose(20, servers)
-        server.dispatch(request)
+        req = Job(x, x) # TODO: change into extraction from Pareto
 
-    for _ in range(REQUESTS):
+        server = dispatcher.choose(req, servers)
+        server.dispatch(req)
+
+
+    for _ in range(JOBS):
         output.get()
 
     diff = time.time() - start
@@ -137,4 +173,3 @@ if __name__ == "__main__":
     for handle in servers:
         log_json(source="server", event="summary", server_id=handle.id, processing=handle.processing_time.value)
         handle.server.terminate()
-
