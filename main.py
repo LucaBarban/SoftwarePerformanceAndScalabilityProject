@@ -9,9 +9,6 @@ def log_json(**kwargs):
     print(json.dumps(kwargs))
 
 class Job:
-    id: int
-    size: int
-
     def Job(self, id: int, size: int):
         self.id = id
         self.size = size
