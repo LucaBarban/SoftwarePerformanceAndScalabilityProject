@@ -91,7 +91,7 @@ class Dispatcher:
 
         chosen = self.dispatch(job, servers)
 
-        log_json(source="dispatcher", job_id=job, servers=servers_info, chosen=chosen.id)
+        log_json(source="dispatcher", job_id=job.id, servers=servers_info, chosen=chosen.id)
 
         return chosen
 
