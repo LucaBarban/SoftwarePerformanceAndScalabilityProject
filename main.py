@@ -9,7 +9,7 @@ def log_json(**kwargs):
     print(json.dumps(kwargs))
 
 class Job:
-    def Job(self, id: int, size: int):
+    def __init__(self, id: int, size: int):
         self.id = id
         self.size = size
 
@@ -68,16 +68,16 @@ class Handle:
         return time.time() - self.timing.value
 
 
-def process_job(x, alpha=1.3, base_work=20_000):
+def process_job(job: Job, alpha=1.3, base_work=20_000):
     """
     Simulates a CPU-bound job with heavy-tailed processing time.
-    x: job size / difficulty
+    job: job
     """
     # Heavy-tailed amplification
     multiplier = random.paretovariate(alpha)
 
     # Total CPU work
-    n = int(base_work * x * multiplier)
+    n = int(base_work * job.size * multiplier)
     acc = 0.0
 
     for i in range(n):
