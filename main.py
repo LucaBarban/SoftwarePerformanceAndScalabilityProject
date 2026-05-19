@@ -1,5 +1,4 @@
-from typing import Optional
-from multiprocessing import Process, Queue, Value
+from multiprocessing import Process, Queue, Value, Lock
 import json
 import math
 import random
@@ -8,37 +7,26 @@ import os
 
 
 class Logger:
-    def __init__(self, filename: Optional[str] = None):
-        self.buf = []
+    file_lock = Lock()
 
-        self.f = None
-        if filename is not None:
-            self.print(source="logger", message=f"Opening file {filename} in writing mode")
-            self.f = open(filename, 'w')
+    def __init__(self, filename: str):
+        self.filename = filename
 
-    def format(self, **kwargs):
-        return json.dumps(kwargs)
+        with open(filename, "w") as f:
+            pass
 
-    def print(self, **kwargs):
-        line = self.format(**kwargs)
 
+    def log(self, **kwargs):
+        line = json.dumps(kwargs)
         print(line)
-        if self.f is not None:
-           self.f.write(self.format(**kwargs) + "\n") 
 
-    def buffer(self, **kwargs):
-        self.buf.append(kwargs)
-        
-        
+        with Logger.file_lock:
+            with open(self.filename, "a") as f:
+                f.write(line + "\n")
+                f.flush()
 
-    def close(self):
-        if self.f is None:
-            raise Exception("Missing file")
-        else:
-            self.f.close()
-   
 
-log = Logger(filename="simulations/output.txt")
+logger = Logger("simulations/output.txt")
 
 
 class Job:
@@ -65,11 +53,11 @@ class Server(Process):
 
             self.timing.value = time.time()
 
-            log.print(source="server", event="start", server_id=self.id, job_id=job.id)
+            logger.log(source="server", event="start", server_id=self.id, job_id=job.id)
 
             process_job(job)
 
-            log.print(
+            logger.log(
                 source="server",
                 event="end",
                 server_id=self.id,
@@ -131,7 +119,7 @@ class Dispatcher:
 
         chosen = self.dispatch(job, servers)
 
-        log.print(
+        logger.log(
             source="dispatcher",
             event="dispatching",
             job_id=job.id,
@@ -188,9 +176,12 @@ if __name__ == "__main__":
 
     start = time.time()
 
-    for x in range(JOBS):
+    for id in range(JOBS):
         time.sleep(random.expovariate(LOAD) / 10)
-        req = Job(id=x, size=random.paretovariate(ALPHA)) # TODO: change into extraction from Pareto
+        # req = Job(id=id, size=random.paretovariate(ALPHA)) # TODO: change into extraction from Pareto
+        req = Job(id, 40)
+        # `exp(LOAD) / 10` e `Job(size=40)` sembra diano valori gestibili
+        # possiamo ricalibrarli in caso
 
         server = dispatcher.choose(req, servers)
         server.dispatch(req)
@@ -201,11 +192,9 @@ if __name__ == "__main__":
 
     diff = time.time() - start
 
-    log.print(source="dispatcher", event="summary", processing=diff)
+    logger.log(source="dispatcher", event="summary", processing=diff)
 
     for handle in servers:
-        log.print(source="server", event="summary", server_id=handle.id, processing=handle.processing_time.value)
+        logger.log(source="server", event="summary", server_id=handle.id, processing=handle.processing_time.value)
         handle.server.terminate()
-
-    log.close()
 
