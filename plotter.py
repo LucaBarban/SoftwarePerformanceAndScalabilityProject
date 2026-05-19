@@ -39,6 +39,9 @@ def deg_queued_jobs_number(points: List[Dict]) -> List[Dict]:
     for p in points:
         match p["source"]:
             case "dispatcher":
+                if p["event"] != "dispatching": # consider only dispatches (e.g. not summary)
+                    continue
+
                 queued_jobs.append({"time": float(p["decision_time"])})
                 for server in p["servers"]:
                     n_jobs = 0
