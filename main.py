@@ -23,7 +23,8 @@ class LoggerProxy:
         self.queue.put(None)
 
 
-def _logger_listener_worker(queue: Queue, filename: Optional[str]):
+def _logger_listener_worker(queue: Queue, filename: Optional[str], target_core: int):
+    os.sched_setaffinity(0, {target_core})
     f = None
     if filename is not None:
         os.makedirs(os.path.dirname(filename), exist_ok=True)
@@ -33,7 +34,7 @@ def _logger_listener_worker(queue: Queue, filename: Optional[str]):
     try:
         while True:
             record = queue.get()
-            if record is None:
+            if record is None: # stopping condition
                 break
             
             line = json.dumps(record)
@@ -43,6 +44,7 @@ def _logger_listener_worker(queue: Queue, filename: Optional[str]):
                 f.flush()
     finally:
         if f is not None:
+            f.flush()
             f.close()
 
 
@@ -52,11 +54,11 @@ def setup_child_logger(queue: Queue):
         log = LoggerProxy(queue)
 
 
-def init_global_logger(filename: Optional[str] = None):
+def init_global_logger(target_core: int, filename: Optional[str] = None):
     global log
     log_queue = Queue()
     
-    listener = Process(target=_logger_listener_worker, args=(log_queue, filename))
+    listener = Process(target=_logger_listener_worker, args=(log_queue, filename, target_core))
     listener.start()
     
     log = LoggerProxy(log_queue)
@@ -201,7 +203,7 @@ if __name__ == "__main__":
     LOAD = 0.9
     ALPHA = 0.7 # Alpha parameter for job size extraction
 
-    logger_process, log_queue = init_global_logger(filename="simulations/output.txt")
+    logger_process, log_queue = init_global_logger(filename="simulations/output.txt", target_core=SERVERS+2) # dispatcher/main + servers + logger
 
     output = Queue()
     servers = [Handle(i + 1, output, log_queue) for i in range(1, SERVERS+1)]
