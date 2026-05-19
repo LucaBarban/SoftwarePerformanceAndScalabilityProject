@@ -199,12 +199,12 @@ if __name__ == "__main__":
     SERVERS = 3
     JOBS = 100
     LOAD = 0.9
-    ALPHA = 1.0 # Alpha parameter for job size extraction
+    ALPHA = 0.7 # Alpha parameter for job size extraction
 
     logger_process, log_queue = init_global_logger(filename="simulations/output.txt")
 
     output = Queue()
-    servers = [Handle(i + 1, output, log_queue) for i in range(SERVERS)]
+    servers = [Handle(i + 1, output, log_queue) for i in range(1, SERVERS+1)]
     dispatcher = JIQ()
 
     start = time.time()
