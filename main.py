@@ -6,40 +6,64 @@ import random
 import time
 import os
 
+log: Optional["LoggerProxy"] = None
 
-class Logger:
-    def __init__(self, filename: Optional[str] = None):
+class LoggerProxy:
+    def __init__(self, queue: Queue):
+        self.queue = queue
         self.buf = []
 
-        self.f = None
-        if filename is not None:
-            self.print(source="logger", message=f"Opening file {filename} in writing mode")
-            self.f = open(filename, 'w')
-
-    def format(self, **kwargs):
-        return json.dumps(kwargs)
-
     def print(self, **kwargs):
-        line = self.format(**kwargs)
-
-        print(line)
-        if self.f is not None:
-           self.f.write(self.format(**kwargs) + "\n") 
+        self.queue.put(kwargs)
 
     def buffer(self, **kwargs):
         self.buf.append(kwargs)
-        
-        
 
     def close(self):
-        if self.f is None:
-            raise Exception("Missing file")
-        else:
-            self.f.close()
-   
+        self.queue.put(None)
 
-log = Logger(filename="simulations/output.txt")
 
+def _logger_listener_worker(queue: Queue, filename: Optional[str]):
+    f = None
+    if filename is not None:
+        os.makedirs(os.path.dirname(filename), exist_ok=True)
+        print(json.dumps({"source": "logger", "message": f"Opening file {filename} in writing mode"}))
+        f = open(filename, 'w')
+
+    try:
+        while True:
+            record = queue.get()
+            if record is None:
+                break
+            
+            line = json.dumps(record)
+            print(line)
+            if f is not None:
+                f.write(line + "\n")
+                f.flush()
+    finally:
+        if f is not None:
+            f.close()
+
+
+def setup_child_logger(queue: Queue):
+    global log
+    if log is None:
+        log = LoggerProxy(queue)
+
+
+def init_global_logger(filename: Optional[str] = None):
+    global log
+    log_queue = Queue()
+    
+    listener = Process(target=_logger_listener_worker, args=(log_queue, filename))
+    listener.start()
+    
+    log = LoggerProxy(log_queue)
+    return listener, log_queue
+
+
+# --- 2. CLEAN INTERFACES ---
 
 class Job:
     def __init__(self, id: int, size: int):
@@ -48,21 +72,21 @@ class Job:
 
 
 class Server(Process):
-    def __init__(self, id: int, queue: Queue, output: Queue, timing, processing):
+    def __init__(self, id: int, queue: Queue, output: Queue, timing, processing, log_queue: Queue):
         super().__init__()
-
-        os.sched_setaffinity(0, {id})
-        
         self.id = id
         self.queue = queue
         self.output = output
         self.timing = timing
         self.processing = processing
+        self.log_queue = log_queue
 
     def run(self):
+        setup_child_logger(self.log_queue)
+        os.sched_setaffinity(0, {self.id})
+
         while True:
             job = self.queue.get()
-
             self.timing.value = time.time()
 
             log.print(source="server", event="start", server_id=self.id, job_id=job.id)
@@ -80,18 +104,17 @@ class Server(Process):
 
             self.output.put(job)
             self.processing.value += time.time() - self.timing.value
-
             self.timing.value = 0.0
 
 
 class Handle:
-    def __init__(self, id: int, output: Queue):
+    def __init__(self, id: int, output: Queue, log_queue: Queue):
         self.queue = Queue()
         self.id = id
         self.timing = Value('d', 0.0)
         self.processing_time = Value('d', 0.0)
       
-        self.server = Server(id, self.queue, output, self.timing, self.processing_time)
+        self.server = Server(id, self.queue, output, self.timing, self.processing_time, log_queue)
         self.server.start()
 
     def dispatch(self, job: Job):
@@ -103,7 +126,6 @@ class Handle:
     def current_age(self):
         if self.timing.value == 0.0:
             return 0.0
-
         return time.time() - self.timing.value
 
 
@@ -143,13 +165,10 @@ class Dispatcher:
         return chosen
 
     def dispatch(self, job: Job, servers: list[Handle]) -> Handle:
-        raise Exception("NotImplementedException")
+        raise NotImplementedError()
 
 
 class Random(Dispatcher):
-    def __init__(self):
-        super().__init__()
-    
     def dispatch(self, job: Job, servers: list[Handle]) -> Handle:
         id = random.randint(0, len(servers) - 1)
         return servers[id]
@@ -182,8 +201,10 @@ if __name__ == "__main__":
     LOAD = 0.9
     ALPHA = 1.0 # Alpha parameter for job size extraction
 
+    logger_process, log_queue = init_global_logger(filename="simulations/output.txt")
+
     output = Queue()
-    servers = [Handle(i + 1, output) for i in range(SERVERS)]
+    servers = [Handle(i + 1, output, log_queue) for i in range(SERVERS)]
     dispatcher = JIQ()
 
     start = time.time()
@@ -207,5 +228,6 @@ if __name__ == "__main__":
         log.print(source="server", event="summary", server_id=handle.id, processing=handle.processing_time.value)
         handle.server.terminate()
 
+    # Tear down the background process cleanly
     log.close()
-
+    logger_process.join()
