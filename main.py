@@ -13,22 +13,23 @@ class Logger:
 
         self.f = None
         if filename is not None:
+            self.print(source="logger", message=f"Opening file {filename} in writing mode")
             self.f = open(filename, 'w')
 
     def format(self, **kwargs):
         return json.dumps(kwargs)
 
     def print(self, **kwargs):
-        print(self.format(**kwargs))
+        line = self.format(**kwargs)
+
+        print(line)
+        if self.f is not None:
+           self.f.write(self.format(**kwargs) + "\n") 
 
     def buffer(self, **kwargs):
         self.buf.append(kwargs)
         
-    def file(self, **kwargs):
-        if self.f is None:
-            raise Exception("Missing file")
-        else:
-           self.f.write(self.format(**kwargs)) 
+        
 
     def close(self):
         if self.f is None:
@@ -37,7 +38,7 @@ class Logger:
             self.f.close()
    
 
-log = Logger()
+log = Logger(filename="simulations/output.txt")
 
 
 class Job:
@@ -179,6 +180,7 @@ if __name__ == "__main__":
     SERVERS = 3
     JOBS = 100
     LOAD = 0.9
+    ALPHA = 1.0 # Alpha parameter for job size extraction
 
     output = Queue()
     servers = [Handle(i + 1, output) for i in range(SERVERS)]
@@ -188,7 +190,7 @@ if __name__ == "__main__":
 
     for x in range(JOBS):
         time.sleep(random.expovariate(LOAD) / 10)
-        req = Job(x, x) # TODO: change into extraction from Pareto
+        req = Job(id=x, size=random.paretovariate(ALPHA)) # TODO: change into extraction from Pareto
 
         server = dispatcher.choose(req, servers)
         server.dispatch(req)
@@ -204,4 +206,6 @@ if __name__ == "__main__":
     for handle in servers:
         log.print(source="server", event="summary", server_id=handle.id, processing=handle.processing_time.value)
         handle.server.terminate()
+
+    log.close()
 
