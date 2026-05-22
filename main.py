@@ -5,30 +5,6 @@ import random
 import time
 import os
 
-
-class Logger:
-    file_lock = Lock()
-
-    def __init__(self, filename: str):
-        self.filename = filename
-
-        with open(filename, "w") as f:
-            pass
-
-
-    def log(self, **kwargs):
-        line = json.dumps(kwargs)
-        print(line)
-
-        with Logger.file_lock:
-            with open(self.filename, "a") as f:
-                f.write(line + "\n")
-                f.flush()
-
-
-logger = Logger("simulations/output.txt")
-
-
 class Job:
     def __init__(self, id: int, size: int):
         self.id = id
@@ -53,20 +29,19 @@ class Server(Process):
 
             self.timing.value = time.time()
 
-            logger.log(source="server", event="start", server_id=self.id, job_id=job.id)
+            self.output.put({"source": "server", "event": "start", "server_id": self.id, "job_id": job.id})
 
             process_job(job)
 
-            logger.log(
-                source="server",
-                event="end",
-                server_id=self.id,
-                job_id=job.id,
-                start_time=self.timing.value,
-                resp_time=time.time() - self.timing.value,
-            )
+            self.output.put({
+                "source": "server",
+                "event": "end",
+                "server_id": self.id,
+                "job_id": job.id,
+                "start_time": self.timing.value,
+                "resp_time": time.time() - self.timing.value,
+            })
 
-            self.output.put(job)
             self.processing.value += time.time() - self.timing.value
 
             self.timing.value = 0.0
@@ -114,19 +89,22 @@ def process_job(job: Job, alpha=1.3, base_work=20_000):
 
 
 class Dispatcher:
+    def __init__(self, output: Queue):
+        self.output = output
+
     def choose(self, job: Job, servers: list[Handle]) -> Handle:
         servers_info = [{"id": s.id, "pendings": s.pendings(), "age": s.current_age()} for s in servers]
 
         chosen = self.dispatch(job, servers)
 
-        logger.log(
-            source="dispatcher",
-            event="dispatching",
-            job_id=job.id,
-            servers=servers_info,
-            chosen=chosen.id,
-            decision_time=time.time(),
-        )
+        self.output.put({
+            "source": "dispatcher",
+            "event": "dispatching",
+            "job_id": job.id,
+            "servers": servers_info,
+            "chosen": chosen.id,
+            "decision_time": time.time(),
+        })
 
         return chosen
 
@@ -135,8 +113,8 @@ class Dispatcher:
 
 
 class Random(Dispatcher):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, output: Queue):
+        super().__init__(output)
     
     def dispatch(self, job: Job, servers: list[Handle]) -> Handle:
         id = random.randint(0, len(servers) - 1)
@@ -144,27 +122,37 @@ class Random(Dispatcher):
 
 
 class JIQ(Dispatcher):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, output: Queue):
+        super().__init__(output)
 
     def dispatch(self, job: Job, servers: list[Handle]) -> Handle:
         # Find the less value of pending
-        min_pendings = min(s.pendings() for s in servers)
+        pendings= [s.pendings() for s in servers]
+        min_pending = min(pendings)
 
-        # server with less pending
-        idle_servers = []
-        for s in servers:
-            if s.pendings() == min_pendings:
-                idle_servers.append(s)
+        # server with least pending
+        idle_servers = [
+            s
+            for (i, s) in enumerate(servers)
+            if pendings[i] == min_pending
+        ]
 
         # choose at random a server
         chosen = random.choice(idle_servers)
 
         return chosen
 
+def log(f, event):
+    line = json.dumps(event)
+
+    print(line)
+    f.write(line + "\n")
+
+
 if __name__ == "__main__":
     os.sched_setaffinity(0, {0})
 
+    LOGFILE = "simulations/output.txt"
     SERVERS = 3
     JOBS = 100
     LOAD = 0.9
@@ -172,7 +160,7 @@ if __name__ == "__main__":
 
     output = Queue()
     servers = [Handle(i + 1, output) for i in range(SERVERS)]
-    dispatcher = JIQ()
+    dispatcher = JIQ(output)
 
     start = time.time()
 
@@ -187,14 +175,14 @@ if __name__ == "__main__":
         server.dispatch(req)
 
 
-    for _ in range(JOBS):
-        output.get()
+    with open(LOGFILE, "w") as f:
+        for _ in range(3 * JOBS):
+            log(f, output.get())
 
-    diff = time.time() - start
+        diff = time.time() - start
 
-    logger.log(source="dispatcher", event="summary", processing=diff)
+        log(f, {"source": "dispatcher", "event": "summary", "processing": diff})
 
-    for handle in servers:
-        logger.log(source="server", event="summary", server_id=handle.id, processing=handle.processing_time.value)
-        handle.server.terminate()
-
+        for handle in servers:
+            log(f, {"source": "server", "event": "summary", "server_id": handle.id, "processing": handle.processing_time.value})
+            handle.server.terminate()
