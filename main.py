@@ -1,4 +1,7 @@
 from multiprocessing import Process, Queue, Value, Lock
+from typing import Optional
+from multiprocessing import Process, Queue, Value
+from scipy.stats import pareto
 import json
 import math
 import random
@@ -119,9 +122,9 @@ class Random(Dispatcher):
         return servers[id]
 
 
-class JIQ(Dispatcher):
+class JIQ(Dispatcher): # TODO: dovrebbe prendere il primo server libero, poi passare a random se non ne ha
     def __init__(self, output: Queue):
-        super().__init__(output)
+        super().__init__()
 
     def dispatch(self, job: Job, servers: list[Handle]) -> Handle:
         # Find the less value of pending
@@ -139,6 +142,49 @@ class JIQ(Dispatcher):
         chosen = random.choice(idle_servers)
 
         return chosen
+    
+class Silly(Dispatcher):
+    def __init__(self):
+        super().__init__()
+    
+    def dispatch(self, job, servers):
+        return servers[0]
+    
+class CheapLAS(Dispatcher): # Assumes we actually know the distribution
+    def __init__(self, dist):
+        super().__init__()
+        self.dist = dist
+
+    def hazardRatePenalty(self, age):
+        # calculate the hazard rate and use it as a penalty for long running jobs
+        # h(t) = f(t) / S(t)
+        #  low hazard rate -> large penalty (job won't finish soon)
+        # high hazard rate -> small penalty (job will finish soon)
+
+        pdf = self.dist.pdf(age) # probability density function
+        sf = self.dist.sf(age)   # survival function (1-cumulative distribution function)
+        
+        hazardRate = 1e5 if sf <= 1e-5 else pdf / sf
+        return 1.0 / hazardRate if hazardRate != 0 else float("inf")
+    
+    def dispatch(self, job, servers):
+        minServer = servers[0]
+        minRemainingTime = float("inf")
+        for s in servers:
+            currJobAge = s.current_age()
+            time = s.pendings() * (self.dist.mean() if self.dist.mean() != float("inf") else self.dist.median()) # use median if mean is infinite
+            time += self.hazardRatePenalty(currJobAge) # + currJobAge (removed, given that it double counts)
+            if minRemainingTime > time:
+                minServer = s
+                minRemainingTime = time
+
+        if minRemainingTime == float("inf"): # fallback in case no prediction could be done
+            minServer = servers[random.randint(0, len(servers) - 1)]
+
+        return minServer
+
+        
+
 
 def log(f, event):
     line = json.dumps(event)
@@ -151,16 +197,19 @@ if __name__ == "__main__":
     os.sched_setaffinity(0, {0})
 
     LOGFILE = "simulations/output.txt"
-    SERVERS = 3
-    JOBS = 100
-    LOAD = 0.9
-    ALPHA = 0.7 # Alpha parameter for job size extraction
+    SERVERS = 8
+    JOBS = 5000
+    LOAD = 10.0
+    ALPHA = 0.9 # Alpha parameter for job size extraction
+    XM = 1      # x_m parameter for Pareto distribution
 
     logger_process, log_queue = init_global_logger(filename="simulations/output.txt", target_core=SERVERS+2) # dispatcher/main + servers + logger
+    dist = pareto(b=ALPHA, scale=XM)
 
     output = Queue()
     servers = [Handle(i + 1, output) for i in range(SERVERS)]
     dispatcher = JIQ(output)
+    # dispatcher = CheapLAS(dist)
 
     start = time.time()
 
