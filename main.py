@@ -1,7 +1,6 @@
 from multiprocessing import Process, Queue, Value, Lock
 from typing import Optional
-from multiprocessing import Process, Queue, Value
-from scipy.stats import pareto
+from scipy.stats import pareto, randint
 import json
 import math
 import random
@@ -15,21 +14,21 @@ class Job:
 
 
 class Server(Process):
-    def __init__(self, id: int, queue: Queue, output: Queue, timing, processing, log_queue: Queue):
+    def __init__(self, id: int, queue: Queue, output: Queue, timing, processing):
         super().__init__()
+
+        os.sched_setaffinity(0, {id})
+        
         self.id = id
         self.queue = queue
         self.output = output
         self.timing = timing
         self.processing = processing
-        self.log_queue = log_queue
 
     def run(self):
-        setup_child_logger(self.log_queue)
-        os.sched_setaffinity(0, {self.id})
-
         while True:
             job = self.queue.get()
+
             self.timing.value = time.time()
 
             self.output.put({"source": "server", "event": "start", "server_id": self.id, "job_id": job.id})
@@ -46,17 +45,18 @@ class Server(Process):
             })
 
             self.processing.value += time.time() - self.timing.value
+
             self.timing.value = 0.0
 
 
 class Handle:
-    def __init__(self, id: int, output: Queue, log_queue: Queue):
+    def __init__(self, id: int, output: Queue):
         self.queue = Queue()
         self.id = id
         self.timing = Value('d', 0.0)
         self.processing_time = Value('d', 0.0)
       
-        self.server = Server(id, self.queue, output, self.timing, self.processing_time, log_queue)
+        self.server = Server(id, self.queue, output, self.timing, self.processing_time)
         self.server.start()
 
     def dispatch(self, job: Job):
@@ -68,6 +68,7 @@ class Handle:
     def current_age(self):
         if self.timing.value == 0.0:
             return 0.0
+
         return time.time() - self.timing.value
 
 
@@ -110,7 +111,7 @@ class Dispatcher:
         return chosen
 
     def dispatch(self, job: Job, servers: list[Handle]) -> Handle:
-        raise NotImplementedError()
+        raise Exception("NotImplementedException")
 
 
 class Random(Dispatcher):
@@ -124,7 +125,7 @@ class Random(Dispatcher):
 
 class JIQ(Dispatcher): # TODO: dovrebbe prendere il primo server libero, poi passare a random se non ne ha
     def __init__(self, output: Queue):
-        super().__init__()
+        super().__init__(output)
 
     def dispatch(self, job: Job, servers: list[Handle]) -> Handle:
         # Find the less value of pending
@@ -197,14 +198,15 @@ if __name__ == "__main__":
     os.sched_setaffinity(0, {0})
 
     LOGFILE = "simulations/output.txt"
-    SERVERS = 8
-    JOBS = 5000
-    LOAD = 10.0
-    ALPHA = 0.9 # Alpha parameter for job size extraction
+    SERVERS = 3
+    JOBS = 100
+    LOAD = 0.9
+    ALPHA = 1.0 # Alpha parameter for job size extraction
     XM = 1      # x_m parameter for Pareto distribution
 
-    logger_process, log_queue = init_global_logger(filename="simulations/output.txt", target_core=SERVERS+2) # dispatcher/main + servers + logger
-    dist = pareto(b=ALPHA, scale=XM)
+    # dist = pareto(b=ALPHA, scale=XM)
+    dist = randint(low=40, high=41) # keep aligned with the fixed size set for the jobs
+
 
     output = Queue()
     servers = [Handle(i + 1, output) for i in range(SERVERS)]
@@ -215,7 +217,9 @@ if __name__ == "__main__":
 
     for id in range(JOBS):
         time.sleep(random.expovariate(LOAD) / 10)
-        # req = Job(id=id, size=random.paretovariate(ALPHA)) # TODO: change into extraction from Pareto
+        
+        # req = Job(id=id, size=random.expovariate(ALPHA))
+        # req = Job(id=id, size=random.paretovariate(ALPHA) * XM)
         req = Job(id, 40)
         # `exp(LOAD) / 10` e `Job(size=40)` sembra diano valori gestibili
         # possiamo ricalibrarli in caso
