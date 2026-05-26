@@ -25,7 +25,7 @@ class Server(Process):
 
     def run(self):
         os.sched_setaffinity(0, {self.id})
-        
+
         while True:
             job = self.queue.get()
 
@@ -137,9 +137,7 @@ class Random(Dispatcher):
         return servers[id]
 
 
-class JIQ(
-    Dispatcher
-):  # TODO: dovrebbe prendere il primo server libero, poi passare a random se non ne ha
+class SQF(Dispatcher): # shortest queue first
     def __init__(self, output: Queue):
         super().__init__(output)
 
@@ -157,7 +155,17 @@ class JIQ(
         chosen = random.choice(idle_servers)
 
         return chosen
+    
+class JIQ(Dispatcher):
+    def __init__(self, output: Queue):
+        super().__init__(output)
 
+    def dispatch(self, job: Job, servers: list[Handle]) -> Handle:
+        for s in servers:
+            if s.pendings() == 0:
+                return s
+        
+        return servers[random.randint(0, len(servers) - 1)]
 
 class Silly(Dispatcher):
     def __init__(self):
