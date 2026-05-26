@@ -17,9 +17,6 @@ class Job:
 class Server(Process):
     def __init__(self, id: int, queue: Queue, output: Queue, timing, processing):
         super().__init__()
-
-        os.sched_setaffinity(0, {id})
-
         self.id = id
         self.queue = queue
         self.output = output
@@ -27,6 +24,8 @@ class Server(Process):
         self.processing = processing
 
     def run(self):
+        os.sched_setaffinity(0, {self.id})
+        
         while True:
             job = self.queue.get()
 
