@@ -177,7 +177,14 @@ class Silly(Dispatcher):
         return servers[0]
 
 
-class CheapLAS(Dispatcher):  # Assumes we actually know the distribution
+class CheapLAS(Dispatcher):  
+    # By assuming to actually know the distribution of the service time, 
+    # we can exploit this fact to calculate the mean amount of time the 
+    # jobs in line will take to finish + the residual time that the job
+    # in services needs. This last part is not directly calculated, but it's
+    # "derived" by using the reciprocal of the hazard rate, which is basically
+    # a penalty for jobs that have heavy tailed distributions, while others like
+    # the exponential will have a smaller amount of time added
     def __init__(self, output: Queue, dist):
         super().__init__(output)
         self.dist = dist
