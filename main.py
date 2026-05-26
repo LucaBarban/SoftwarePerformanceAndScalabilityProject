@@ -137,7 +137,7 @@ class Random(Dispatcher):
         return servers[id]
 
 
-class SQF(Dispatcher): # shortest queue first
+class SQF(Dispatcher):  # shortest queue first
     def __init__(self, output: Queue):
         super().__init__(output)
 
@@ -155,7 +155,8 @@ class SQF(Dispatcher): # shortest queue first
         chosen = random.choice(idle_servers)
 
         return chosen
-    
+
+
 class JIQ(Dispatcher):
     def __init__(self, output: Queue):
         super().__init__(output)
@@ -164,20 +165,21 @@ class JIQ(Dispatcher):
         for s in servers:
             if s.pendings() == 0:
                 return s
-        
+
         return servers[random.randint(0, len(servers) - 1)]
 
+
 class Silly(Dispatcher):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, output: Queue, dist):
+        super().__init__(output)
 
     def dispatch(self, job, servers):
         return servers[0]
 
 
 class CheapLAS(Dispatcher):  # Assumes we actually know the distribution
-    def __init__(self, dist):
-        super().__init__()
+    def __init__(self, output: Queue, dist):
+        super().__init__(output)
         self.dist = dist
 
     def hazardRatePenalty(self, age):
@@ -186,7 +188,11 @@ class CheapLAS(Dispatcher):  # Assumes we actually know the distribution
         #  low hazard rate -> large penalty (job won't finish soon)
         # high hazard rate -> small penalty (job will finish soon)
 
-        pdf = self.dist.pdf(age)  # probability density function
+        if hasattr(self.dist, 'pdf'): # use PDF for continuous, PMF for discrete distributions
+            pdf = self.dist.pdf(age)  # probability density function
+        else:
+            pdf = self.dist.pmf(age)  # probability mass function
+
         sf = self.dist.sf(age)  # survival function (1-cumulative distribution function)
 
         hazardRate = 1e5 if sf <= 1e-5 else pdf / sf
