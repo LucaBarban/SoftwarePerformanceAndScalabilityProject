@@ -10,7 +10,7 @@ import os
 
 class JsonLogger(logging.Formatter):
     def format(self, record):
-        return record.getMessage()
+        return record.getMessage().replace("'", '"')
 
 
 def init_logging(filename):
