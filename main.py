@@ -60,7 +60,7 @@ class Server(Process):
 
             self.timing.value = time.time()
 
-            self.logger.info({
+            self.logger.warning({
                 "source": "server",
                 "event": "start",
                 "server_id": self.id,
@@ -69,7 +69,7 @@ class Server(Process):
 
             process_job(job)
 
-            self.logger.info({
+            self.logger.warning({
                 "source": "server",
                 "event": "end",
                 "server_id": self.id,
@@ -137,7 +137,7 @@ class Dispatcher:
 
         chosen = self.dispatch(job, servers)
 
-        self.logger.info({
+        self.logger.warning({
             "source": "dispatcher",
             "event": "dispatching",
             "job_id": job.id,
@@ -293,10 +293,10 @@ def simulate(dispatcher, load, jobs=100):
         handle.server.join()
 
     diff = time.time() - start
-    logger.info({"source": "dispatcher", "event": "summary", "processing": diff})
+    logger.warning({"source": "dispatcher", "event": "summary", "processing": diff})
 
     for handle in servers:
-        logger.info({
+        logger.warning({
             "source": "server",
             "event": "summary",
             "server_id": handle.id,
