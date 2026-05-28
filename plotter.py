@@ -1,4 +1,4 @@
-from typing import List, Dict, Tuple
+from typing import List, Dict, Tuple, Any
 import matplotlib.pyplot as plt
 import numpy as np
 import json, os
@@ -71,7 +71,7 @@ def deg_queued_jobs_number(points: List[Dict]) -> List[Dict]:
 
 def calculate_plot_times_utilization(
     queued_jobs: List[Dict], window_size: float
-) -> Tuple[List[float], Dict[List], List[str]]:
+) -> Tuple[List[float], Dict[Any, List], List[str]]:
     """
     queued_jobs: data returned by deg_queued_jobs_number
     window_size: size in seconds of the window of time that will
@@ -120,7 +120,7 @@ def calculate_plot_times_utilization(
 
 def plot_utilizations_sliding_window(
     plot_times: List[float],
-    utilizations: Dict[List],
+    utilizations: Dict[Any, List],
     server_ids: List[str],
     window_size: float,
 ):
@@ -211,4 +211,4 @@ def plot(file_path: str = "simulations/output.txt", bins:int = 20, window_size: 
     plot_utilizations_sliding_window(plot_times, utilizations, server_ids, window_size)
 
 
-plot()
+plot("./simulations/JIQ-0.2.txt")
