@@ -161,9 +161,9 @@ class Random(Dispatcher):
         return servers[id]
 
 
-class SQF(Dispatcher):  # shortest queue first
-    def __init__(self):
-        super().__init__()
+class JSQ(Dispatcher):  # join the shortest queue
+    def __init__(self, output: Queue):
+        super().__init__(output)
 
     def dispatch(self, job: Job, servers: list[Handle]) -> Handle:
         # Find the less value of pending
@@ -186,11 +186,17 @@ class JIQ(Dispatcher):
         super().__init__()
 
     def dispatch(self, job: Job, servers: list[Handle]) -> Handle:
+        idle_servers = []
         for s in servers:
             if s.pendings() == 0:
-                return s
+                idle_servers.append(s)
 
-        return servers[random.randint(0, len(servers) - 1)]
+        if len(idle_servers) > 0:
+            choose = random.choice(idle_servers)
+        else:
+            choose = random.choice(servers)
+
+        return choose
 
 
 class Silly(Dispatcher):
