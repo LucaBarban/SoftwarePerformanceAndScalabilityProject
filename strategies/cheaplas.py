@@ -1,6 +1,6 @@
 import random
 
-from .dispatcher import Dispatcher
+from utils.dispatcher import Dispatcher
 
 
 class CheapLAS(Dispatcher):

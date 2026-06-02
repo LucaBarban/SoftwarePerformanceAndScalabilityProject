@@ -1,8 +1,9 @@
+import time
 from multiprocessing import Queue, Value
 from typing import Optional
 
-from job import Job
-from server import Server
+from .job import Job
+from .server import Server
 
 
 class Handle:

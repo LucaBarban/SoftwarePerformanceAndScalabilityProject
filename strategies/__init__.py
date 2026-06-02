@@ -1,5 +1,5 @@
 from .cheaplas import CheapLAS
 from .jiq import JIQ
 from .jsq import JSQ
-from .random import Random
+from .rand import Rand
 from .silly import Silly

@@ -1,4 +1,4 @@
-from .dispatcher import Dispatcher
+from utils.dispatcher import Dispatcher
 
 
 class Silly(Dispatcher):

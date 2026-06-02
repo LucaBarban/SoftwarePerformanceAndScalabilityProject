@@ -1,9 +1,9 @@
+import logging
 import os
 import time
 from multiprocessing import Process, Queue
 
-from job import process_job
-from logger import logging
+from .job import process_job
 
 
 class Server(Process):

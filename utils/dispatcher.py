@@ -1,8 +1,8 @@
 import logging
 import time
 
-from handle import Handle
-from job import Job
+from .handle import Handle
+from .job import Job
 
 
 class Dispatcher:

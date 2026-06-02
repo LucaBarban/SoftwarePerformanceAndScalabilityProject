@@ -1,9 +1,8 @@
 import random
 
+from utils.dispatcher import Dispatcher
 from utils.handle import Handle
 from utils.job import Job
-
-from .dispatcher import Dispatcher
 
 
 class JIQ(Dispatcher):
