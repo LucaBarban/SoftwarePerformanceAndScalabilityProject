@@ -1,7 +1,7 @@
 from typing import List, Dict, Tuple, Any
 import matplotlib.pyplot as plt
 import numpy as np
-import json, os
+import json, os, sys
 
 
 def load_points(file_path: str = "simulations/output.txt") -> List[Dict]:
@@ -211,4 +211,8 @@ def plot(file_path: str = "simulations/output.txt", bins:int = 20, window_size: 
     plot_utilizations_sliding_window(plot_times, utilizations, server_ids, window_size)
 
 
-plot("./simulations/JIQ-0.2.txt")
+
+if len(sys.argv) != 2:
+    print(f"Usage: python3 {sys.argv[0]} <file>")
+    sys.exit(1)
+plot(sys.argv[1])

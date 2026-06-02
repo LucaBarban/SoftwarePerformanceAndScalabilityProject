@@ -17,8 +17,9 @@ def init_logging(filename):
     logger = logging.getLogger("logs")
     logger.setLevel(logging.INFO)
 
-    if logger.hasHandlers():
-        return logger
+    for handler in list(logger.handlers): # remove old handlers
+        handler.close()
+        logger.removeHandler(handler)
 
     fmt = JsonLogger()
 
@@ -29,11 +30,20 @@ def init_logging(filename):
     fh = logging.FileHandler(filename, "w")
     fh.setFormatter(fmt)
     logger.addHandler(fh)
+    
+    return logger
+
+def stop_logging():
+    logger = logging.getLogger("logs")
+    for handler in list(logger.handlers):
+        handler.close()
+        logger.removeHandler(handler)
 
 
 class Job:
-    def __init__(self, id: int, size: int):
+    def __init__(self, id: int, alpha: float, size: int):
         self.id = id
+        self.alpha = alpha
         self.size = size
 
 
@@ -106,13 +116,13 @@ class Handle:
         return time.time() - self.timing.value
 
 
-def process_job(job: Job, alpha=1.3, base_work=20_000):
+def process_job(job: Job, base_work=20_000):
     """
     Simulates a CPU-bound job with heavy-tailed processing time.
     job: job
     """
     # Heavy-tailed amplification
-    multiplier = random.paretovariate(alpha)
+    multiplier = random.paretovariate(job.alpha)
 
     # Total CPU work
     n = int(base_work * job.size * multiplier)
@@ -162,8 +172,8 @@ class Random(Dispatcher):
 
 
 class JSQ(Dispatcher):  # join the shortest queue
-    def __init__(self, output: Queue):
-        super().__init__(output)
+    def __init__(self):
+        super().__init__()
 
     def dispatch(self, job: Job, servers: list[Handle]) -> Handle:
         # Find the less value of pending
@@ -260,19 +270,11 @@ class CheapLAS(Dispatcher):
         return minServer
 
 
-def simulate(dispatcher, load, jobs=100):
+def simulate(dispatcher, load, SERVERS: int = 3, ALPHA: float = 1.0, jobs=100):
     os.sched_setaffinity(0, {0})
 
     init_logging(f"simulations/{type(dispatcher).__name__}-{load}.txt")
     logger = logging.getLogger("logs")
-
-
-    SERVERS = 3
-    ALPHA = 1.0  # Alpha parameter for job size extraction
-    XM = 1  # x_m parameter for Pareto distribution
-
-    # dist = pareto(b=ALPHA, scale=XM)
-    dist = randint(low=40, high=41)  # keep aligned with the fixed size set for the jobs
 
     servers = [Handle(i + 1) for i in range(SERVERS)]
 
@@ -281,7 +283,7 @@ def simulate(dispatcher, load, jobs=100):
     for id in range(jobs):
         time.sleep(random.expovariate(load) / 10)
 
-        req = Job(id, 40)
+        req = Job(id, ALPHA, 40)
         server = dispatcher.choose(req, servers)
         server.dispatch(req)
 
@@ -302,9 +304,23 @@ def simulate(dispatcher, load, jobs=100):
             "server_id": handle.id,
             "processing": handle.processing_time.value,
         })
+    
+    stop_logging()
 
 
 if __name__ == "__main__":
-    dispatcher = JIQ()
-    simulate(dispatcher, .2)
+    SERVERS = 3
+    ALPHA = 1.3  # Alpha parameter for job size extraction (pareto distribution)
+
+    dist = pareto(b=ALPHA, scale=1)
+    # dist = randint(low=40, high=41)  # keep aligned with the fixed size set for the jobs
+
+    for load in [0.2, 0.5, 0.8]:
+        for dispatcher in [Random(), JSQ(), JIQ(), Silly(), CheapLAS(dist)]:
+            random.seed(42)
+            simulate(dispatcher, load, SERVERS, ALPHA)
+
+    for dispatcher in [Random(), JSQ(), JIQ(), Silly(), CheapLAS(dist)]:
+        random.seed(42)
+        simulate(dispatcher, 0.5, SERVERS, 2)
 
