@@ -39,7 +39,9 @@ def deg_queued_jobs_number(points: List[Dict]) -> List[Dict]:
     for p in points:
         match p["source"]:
             case "dispatcher":
-                if p["event"] != "dispatching": # consider only dispatches (e.g. not summary)
+                if (
+                    p["event"] != "dispatching"
+                ):  # consider only dispatches (e.g. not summary)
                     continue
 
                 queued_jobs.append({"time": float(p["decision_time"])})
@@ -148,55 +150,88 @@ def plot_utilizations_sliding_window(
     plt.show()
 
 
-def plot_response_time_distribution(points: List[Dict], bins: int = 20):
+def plot_response_time_distribution(
+    datasets: Dict[str, List[Dict]],
+    bins: int = 20,
+    title_suffix: str = "",
+    log_scale: bool = False,
+    plot_type: str = "bar",
+):
     """
-    Process points returned by load_points and plots the distribution of
-    the seen response times
+    Process points from load_points and plots the distribution of the seen response times
+
+    datasets: data returned by load_points
+    bins: number of "slots" where to put jobs based on their response time
+    title_suffix: extra information in the plot's title
+    log_scale: plot in log-log scale
+    plot_type: the type of the plot (e.g. "bar" for a histogram or "line" for the same
+               but without the colored filling)
     """
-    response_times = [
-        p["resp_time"]
-        for p in points
-        if p.get("source") == "server" and "resp_time" in p
-    ]
-
-    mean_time = np.mean(response_times)
-    median_time = np.median(response_times)
-
     plt.figure(figsize=(10, 5))
-    plt.hist(
-        response_times,
-        bins=bins,
-        color="skyblue",
-        edgecolor="black",
-        alpha=0.7,
-        density=True,
-    )
 
-    plt.axvline(
-        mean_time,
-        color="red",
-        linestyle="--",
-        linewidth=2,
-        label=f"Mean: {mean_time:.3f}s",
-    )
-    plt.axvline(
-        median_time,
-        color="green",
-        linestyle="-.",
-        linewidth=2,
-        label=f"Median: {median_time:.3f}s",
-    )
+    for label, points in datasets.items():
+        response_times = [
+            p["resp_time"]
+            for p in points
+            if p.get("source") == "server" and "resp_time" in p
+        ]
 
-    plt.title("Distribution of Server Response Times", fontsize=14, fontweight="bold")
+        if not response_times:
+            continue
+
+        mean_time = np.mean(response_times)
+        median_time = np.median(response_times)
+
+        actual_bins = (
+            np.logspace(
+                np.log10(max(1e-5, min(response_times))),
+                np.log10(max(response_times)),
+                bins,
+            )
+            if log_scale
+            else bins
+        )
+
+        hist_kwargs = {"density": True}
+        if plot_type == "line":
+            hist_kwargs["histtype"] = "step"
+            hist_kwargs["linewidth"] = 2
+            hist_kwargs["alpha"] = 0.9
+        else:
+            hist_kwargs["histtype"] = "bar"
+            hist_kwargs["edgecolor"] = "black"
+            hist_kwargs["alpha"] = 0.5
+
+        plt.hist(
+            response_times,
+            bins=actual_bins,
+            label=f"{label} (Mean: {mean_time:.3f}s, Med: {median_time:.3f}s)",
+            **hist_kwargs,
+        )
+
+    if log_scale:
+        plt.xscale("log")
+        plt.yscale("log")
+
+    title = "Distribution of Server Response Times" + (
+        f" - {title_suffix}" if title_suffix else ""
+    )
+    plt.title(title, fontsize=14, fontweight="bold")
     plt.xlabel("Response Time (seconds)", fontsize=12)
     plt.ylabel("Density", fontsize=12)
-    plt.grid(True, linestyle="--", alpha=0.6)
+    plt.grid(True, linestyle="--", alpha=0.6, which="both")
     plt.legend(fontsize=11)
     plt.tight_layout()
     plt.show()
 
 
-def plot(file_path: str = "simulations/output.txt", bins:int = 20, window_size: float = 2.0):
+def plot(
+    file_path: str = "simulations/output.txt",
+    bins: int = 20,
+    window_size: float = 2.0,
+    log_scale: bool = False,
+    plot_type: str = "bar",
+):
     """
     file_path: path of the to load data from
     bins: number of bins used in the service time distribution graph
@@ -205,14 +240,69 @@ def plot(file_path: str = "simulations/output.txt", bins:int = 20, window_size: 
     """
     points = load_points(file_path)
     queued_jobs = deg_queued_jobs_number(points)
-    plot_times, utilizations, server_ids = calculate_plot_times_utilization(queued_jobs, window_size)
+    plot_times, utilizations, server_ids = calculate_plot_times_utilization(
+        queued_jobs, window_size
+    )
 
-    plot_response_time_distribution(points, bins)
+    plot_response_time_distribution(
+        {os.path.basename(file_path): points},
+        bins,
+        log_scale=log_scale,
+        plot_type=plot_type,
+    )
     plot_utilizations_sliding_window(plot_times, utilizations, server_ids, window_size)
 
 
+def plot_comparison(
+    files: List[str], bins: int = 20, log_scale: bool = False, plot_type: str = "bar"
+):
+    """
+    Automagically plot the data by grouping the dispatchers based on the specified load
+    in each filename (uses the format "dispatcherType-load.txt")
+    """
+    loads = {}
+    for file_path in files:
+        filename = os.path.basename(file_path).replace(".txt", "")
+        parts = filename.split("-")
+        dispatcher = parts[0] if len(parts) > 0 else "Unknown"
+        load = parts[1] if len(parts) > 1 else "Unknown"
 
-if len(sys.argv) != 2:
-    print(f"Usage: python3 {sys.argv[0]} <file>")
-    sys.exit(1)
-plot(sys.argv[1])
+        if load not in loads:
+            loads[load] = {}
+        loads[load][dispatcher] = load_points(file_path)
+
+    for load, datasets in sorted(loads.items()):
+        plot_response_time_distribution(
+            datasets,
+            bins,
+            title_suffix=f"Load: {load}",
+            log_scale=log_scale,
+            plot_type=plot_type,
+        )
+
+
+
+PLOT_TYPE = "line" # bar (with filling) or line (no filling)
+LOG_SCALE = False   # use log-log scale
+
+
+if __name__ == "__main__":
+    if len(sys.argv) == 2 and os.path.isfile(sys.argv[1]): # plot for a single file (filename passed)
+        plot(sys.argv[1], log_scale=LOG_SCALE, plot_type=PLOT_TYPE)
+
+    elif len(sys.argv) == 1 and os.path.isdir("simulations"): # no filename passed, plot everything (except for utilization graphs)
+        sim_files = [
+            os.path.join("simulations", f)
+            for f in os.listdir("simulations")
+            if f.endswith(".txt")
+        ]
+        if sim_files:
+            plot_comparison(sim_files, log_scale=LOG_SCALE, plot_type=PLOT_TYPE)
+        else:
+            print("No simulator .txt files found inside the 'simulations/' directory.")
+
+    else:
+        print(
+            f"Usage:\n  To plot all files:    python3 {sys.argv[0]}\n  To plot single file:  python3 {sys.argv[0]} <file_path>"
+        )
+        sys.exit(1)
