@@ -154,7 +154,7 @@ def plot_response_time_distribution(
     datasets: Dict[str, List[Dict]],
     bins: int = 20,
     title_suffix: str = "",
-    log_scale: bool = False,
+    log_mode: str = "off",
     plot_type: str = "bar",
 ):
     """
@@ -163,7 +163,8 @@ def plot_response_time_distribution(
     datasets: data returned by load_points
     bins: number of "slots" where to put jobs based on their response time
     title_suffix: extra information in the plot's title
-    log_scale: plot in log-log scale
+    log_mode: off for linear scales, y for log density, x for log response time, 
+              xy for log-log scale
     plot_type: the type of the plot (e.g. "bar" for a histogram or "line" for the same
                but without the colored filling)
     """
@@ -182,13 +183,14 @@ def plot_response_time_distribution(
         mean_time = np.mean(response_times)
         median_time = np.median(response_times)
 
+        # generate logarithmically spaced bins ONLY if the x-axis uses a log scale
         actual_bins = (
             np.logspace(
                 np.log10(max(1e-5, min(response_times))),
                 np.log10(max(response_times)),
                 bins,
             )
-            if log_scale
+            if "x" in log_mode
             else bins
         )
 
@@ -209,16 +211,18 @@ def plot_response_time_distribution(
             **hist_kwargs,
         )
 
-    if log_scale:
+    # set axis scales based on the mode
+    if "x" in log_mode:
         plt.xscale("log")
+    if "y" in log_mode:
         plt.yscale("log")
 
     title = "Distribution of Server Response Times" + (
         f" - {title_suffix}" if title_suffix else ""
     )
     plt.title(title, fontsize=14, fontweight="bold")
-    plt.xlabel("Response Time (seconds)", fontsize=12)
-    plt.ylabel("Density", fontsize=12)
+    plt.xlabel("Response Time (" + ("log " if "x" in log_mode else "") + "seconds)", fontsize=12)
+    plt.ylabel("Density" + (" (log scale)" if "y" in log_mode else ""), fontsize=12)
     plt.grid(True, linestyle="--", alpha=0.6, which="both")
     plt.legend(fontsize=11)
     plt.tight_layout()
@@ -229,7 +233,7 @@ def plot(
     file_path: str = "simulations/output.txt",
     bins: int = 20,
     window_size: float = 2.0,
-    log_scale: bool = False,
+    log_mode: str = "off",
     plot_type: str = "bar",
 ):
     """
@@ -247,14 +251,14 @@ def plot(
     plot_response_time_distribution(
         {os.path.basename(file_path): points},
         bins,
-        log_scale=log_scale,
+        log_mode=log_mode,
         plot_type=plot_type,
     )
     plot_utilizations_sliding_window(plot_times, utilizations, server_ids, window_size)
 
 
 def plot_comparison(
-    files: List[str], bins: int = 20, log_scale: bool = False, plot_type: str = "bar"
+    files: List[str], bins: int = 20, log_mode: str = "off", plot_type: str = "bar"
 ):
     """
     Automagically plot the data by grouping the dispatchers based on the specified load
@@ -276,19 +280,19 @@ def plot_comparison(
             datasets,
             bins,
             title_suffix=f"Load: {load}",
-            log_scale=log_scale,
+            log_mode=log_mode,
             plot_type=plot_type,
         )
 
 
 
 PLOT_TYPE = "line" # bar (with filling) or line (no filling)
-LOG_SCALE = False   # use log-log scale
+LOG_MODE = "y"     # off, x (response time, x axis), y (density, y axis), xy (both axis)
 
 
 if __name__ == "__main__":
     if len(sys.argv) == 2 and os.path.isfile(sys.argv[1]): # plot for a single file (filename passed)
-        plot(sys.argv[1], log_scale=LOG_SCALE, plot_type=PLOT_TYPE)
+        plot(sys.argv[1], log_mode=LOG_MODE, plot_type=PLOT_TYPE)
 
     elif len(sys.argv) == 1 and os.path.isdir("simulations"): # no filename passed, plot everything (except for utilization graphs)
         sim_files = [
@@ -297,7 +301,7 @@ if __name__ == "__main__":
             if f.endswith(".txt")
         ]
         if sim_files:
-            plot_comparison(sim_files, log_scale=LOG_SCALE, plot_type=PLOT_TYPE)
+            plot_comparison(sim_files, log_mode=LOG_MODE, plot_type=PLOT_TYPE)
         else:
             print("No simulator .txt files found inside the 'simulations/' directory.")
 
