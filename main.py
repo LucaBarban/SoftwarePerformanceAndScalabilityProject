@@ -59,9 +59,8 @@ if __name__ == "__main__":
     # dist = randint(low=40, high=41)  # keep aligned with the fixed size set for the jobs
 
     for load in [0.2, 0.5, 0.8]:
-        for dispatcher in [Rand(), JSQ(), JIQ(), Silly(), RoundRobin()]:
+        for dispatcher in [Rand(), JSQ(), JIQ(), Silly(), CheapLAS(dist), RoundRobin(), MultiDispatcher(), SharedRoundRobin()]:
             simulate(dispatcher, load, SERVERS, ALPHA)
 
-    # for dispatcher in [Rand(), JSQ(), JIQ(), Silly(), CheapLAS(dist)]:
-    #     random.seed(42)
-    #     simulate(dispatcher, 0.5, SERVERS, 2)
+    for dispatcher in [Rand(), JSQ(), JIQ(), Silly(), CheapLAS(dist), RoundRobin(), MultiDispatcher(), SharedRoundRobin()]:
+        simulate(dispatcher, 0.5, SERVERS, 2)

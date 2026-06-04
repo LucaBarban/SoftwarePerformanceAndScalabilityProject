@@ -69,7 +69,6 @@ def deg_queued_jobs_number(points: List[Dict]) -> List[Dict]:
 
             case "server":
                 queued_jobs.append(queued_jobs[-1].copy())
-                print(p)
                 queued_jobs[-1]["time"] = float(p["start_time"]) + float(p["resp_time"])
                 queued_jobs[-1][p["server_id"]] -= 1
 
