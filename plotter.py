@@ -1,7 +1,10 @@
-from typing import List, Dict, Tuple, Any
+import json
+import os
+import sys
+from typing import Any, Dict, List, Tuple
+
 import matplotlib.pyplot as plt
 import numpy as np
-import json, os, sys
 
 
 def load_points(file_path: str = "simulations/output.txt") -> List[Dict]:
@@ -39,7 +42,9 @@ def deg_queued_jobs_number(points: List[Dict]) -> List[Dict]:
     for p in points:
         match p["source"]:
             case "dispatcher":
-                if p["event"] != "dispatching": # consider only dispatches (e.g. not summary)
+                if (
+                    p["event"] != "dispatching"
+                ):  # consider only dispatches (e.g. not summary)
                     continue
 
                 queued_jobs.append({"time": float(p["decision_time"])})
@@ -135,7 +140,7 @@ def plot_utilizations_sliding_window(
         plt.plot(
             plot_times,
             utilizations[s],
-            label=f"Server {s} (Average Utilization: {total_avg*100:.2f}%)",
+            label=f"Server {s} (Average Utilization: {total_avg * 100:.2f}%)",
             linewidth=1.5,
         )
     plt.title(f"Sliding Window Server Utilization (Window Size = {window_size}s)")
@@ -196,7 +201,9 @@ def plot_response_time_distribution(points: List[Dict], bins: int = 20):
     plt.show()
 
 
-def plot(file_path: str = "simulations/output.txt", bins:int = 20, window_size: float = 2.0):
+def plot(
+    file_path: str = "simulations/output.txt", bins: int = 20, window_size: float = 2.0
+):
     """
     file_path: path of the to load data from
     bins: number of bins used in the service time distribution graph
@@ -205,14 +212,17 @@ def plot(file_path: str = "simulations/output.txt", bins:int = 20, window_size: 
     """
     points = load_points(file_path)
     queued_jobs = deg_queued_jobs_number(points)
-    plot_times, utilizations, server_ids = calculate_plot_times_utilization(queued_jobs, window_size)
+    plot_times, utilizations, server_ids = calculate_plot_times_utilization(
+        queued_jobs, window_size
+    )
 
     plot_response_time_distribution(points, bins)
     plot_utilizations_sliding_window(plot_times, utilizations, server_ids, window_size)
 
 
-
 if len(sys.argv) != 2:
     print(f"Usage: python3 {sys.argv[0]} <file>")
     sys.exit(1)
-plot(sys.argv[1])
+
+if __name__ == "__main__":
+    plot(sys.argv[1])
