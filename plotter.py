@@ -12,16 +12,28 @@ def load_points(file_path: str = "simulations/output.txt") -> List[Dict]:
         raise FileNotFoundError("Couldn't find the requested file to load from")
 
     points = []
+    dispatched = []
 
     with open(file_path, mode="r") as f:
         for line in f:
             point = json.loads(line)
 
             if (
-                point["source"] == "server" and "resp_time" not in point.keys()
-            ):  # skip logged serving start for each request
+                point["source"] == "dispatcher" and point["event"] == "dispatching"
+            ):
+                dispatched.append(point)
+
+            if (
+                point["source"] == "server" and point["event"] != "end"
+            ):
                 continue
 
+            if (
+                point["source"] == "server" and point["event"] == "end"
+            ):
+                starting = [p for p in dispatched if p["job_id"] == point["job_id"]]
+                starting = starting[0]
+                point["resp_time"] = point["end_time"] - starting["decision_time"]
             points.append(point)
 
     if len(points) == 0:
@@ -153,56 +165,103 @@ def plot_utilizations_sliding_window(
     plt.show()
 
 
-def plot_response_time_distribution(points: List[Dict], bins: int = 20):
+def plot_response_time_distribution(
+    datasets: Dict[str, List[Dict]],
+    bins: int = 20,
+    title_suffix: str = "",
+    log_mode: str = "off",
+    plot_type: str = "bar",
+    probability: bool = False,
+):
     """
-    Process points returned by load_points and plots the distribution of
-    the seen response times
+    Process points from load_points and plots the distribution of the seen response times
+
+    datasets: data returned by load_points
+    bins: number of "slots" where to put jobs based on their response time
+    title_suffix: extra information in the plot's title
+    log_mode: off for linear scales, y for log density, x for log response time,
+              xy for log-log scale
+    plot_type: the type of the plot ("bar" for a histogram or "line")
+    probability: true to scale heights to values between 0 and 1 (relative frequency)
     """
-    response_times = [
-        p["resp_time"]
-        for p in points
-        if p.get("source") == "server" and "resp_time" in p
-    ]
-
-    mean_time = np.mean(response_times)
-    median_time = np.median(response_times)
-
     plt.figure(figsize=(10, 5))
-    plt.hist(
-        response_times,
-        bins=bins,
-        color="skyblue",
-        edgecolor="black",
-        alpha=0.7,
-        density=True,
-    )
 
-    plt.axvline(
-        mean_time,
-        color="red",
-        linestyle="--",
-        linewidth=2,
-        label=f"Mean: {mean_time:.3f}s",
-    )
-    plt.axvline(
-        median_time,
-        color="green",
-        linestyle="-.",
-        linewidth=2,
-        label=f"Median: {median_time:.3f}s",
-    )
+    for label, points in datasets.items():
+        response_times = [
+            p["resp_time"]
+            for p in points
+            if p.get("source") == "server" and "resp_time" in p
+        ]
 
-    plt.title("Distribution of Server Response Times", fontsize=14, fontweight="bold")
-    plt.xlabel("Response Time (seconds)", fontsize=12)
-    plt.ylabel("Density", fontsize=12)
-    plt.grid(True, linestyle="--", alpha=0.6)
+        if not response_times:
+            continue
+
+        mean_time = np.mean(response_times)
+        median_time = np.median(response_times)
+
+        # generate logarithmically spaced bins ONLY if the x-axis uses a log scale
+        actual_bins = (
+            np.logspace(
+                np.log10(max(1e-5, min(response_times))),
+                np.log10(max(response_times)),
+                bins,
+            )
+            if "x" in log_mode
+            else bins
+        )
+
+        hist_kwargs = {"density": not probability}
+        if probability:
+            hist_kwargs["weights"] = np.ones_like(response_times) / len(response_times)
+
+        label_str = f"{label} (Mean: {mean_time:.3f}s, Med: {median_time:.3f}s)"
+
+        if plot_type == "line":
+            counts, edges = np.histogram(
+                response_times, bins=actual_bins, **hist_kwargs
+            )
+            bin_centers = (
+                np.sqrt(edges[:-1] * edges[1:])
+                if "x" in log_mode
+                else (edges[:-1] + edges[1:]) / 2
+            )
+            plt.plot(bin_centers, counts, label=label_str, linewidth=2, alpha=0.9)
+        else:
+            hist_kwargs.update({"histtype": "bar", "edgecolor": "black", "alpha": 0.5})
+            plt.hist(response_times, bins=actual_bins, label=label_str, **hist_kwargs)
+
+    # set axis scales based on the mode
+    if "x" in log_mode:
+        plt.xscale("log")
+    if "y" in log_mode:
+        plt.yscale("log")
+
+    title = "Distribution of Server Response Times" + (
+        f" - {title_suffix}" if title_suffix else ""
+    )
+    plt.title(title, fontsize=14, fontweight="bold")
+    plt.xlabel(
+        "Response Time (" + ("log " if "x" in log_mode else "") + "seconds)",
+        fontsize=12,
+    )
+    plt.ylabel(
+        ("Probability" if probability else "Density")
+        + (" (log scale)" if "y" in log_mode else ""),
+        fontsize=12,
+    )
+    plt.grid(True, linestyle="--", alpha=0.6, which="both")
     plt.legend(fontsize=11)
     plt.tight_layout()
     plt.show()
 
 
 def plot(
-    file_path: str = "simulations/output.txt", bins: int = 20, window_size: float = 2.0
+    file_path: str = "simulations/output.txt",
+    bins: int = 20,
+    window_size: float = 2.0,
+    log_mode: str = "off",
+    plot_type: str = "bar",
+    probability: bool = False,
 ):
     """
     file_path: path of the to load data from
@@ -216,13 +275,83 @@ def plot(
         queued_jobs, window_size
     )
 
-    plot_response_time_distribution(points, bins)
+    plot_response_time_distribution(
+        {os.path.basename(file_path): points},
+        bins,
+        log_mode=log_mode,
+        plot_type=plot_type,
+        probability=probability,
+    )
     plot_utilizations_sliding_window(plot_times, utilizations, server_ids, window_size)
 
 
-if len(sys.argv) != 2:
-    print(f"Usage: python3 {sys.argv[0]} <file>")
-    sys.exit(1)
+def plot_comparison(
+    files: List[str],
+    bins: int = 20,
+    log_mode: str = "off",
+    plot_type: str = "bar",
+    probability: bool = False,
+):
+    """
+    Automagically plot the data by grouping the dispatchers based on the specified load
+    in each filename (uses the format "dispatcherType-load.txt")
+    """
+    loads = {}
+    for file_path in files:
+        filename = os.path.basename(file_path).replace(".txt", "")
+        parts = filename.split("-")
+        dispatcher = parts[0] if len(parts) > 0 else "Unknown"
+        load = parts[1] if len(parts) > 1 else "Unknown"
+
+        if load not in loads:
+            loads[load] = {}
+        loads[load][dispatcher] = load_points(file_path)
+
+    for load, datasets in sorted(loads.items()):
+        plot_response_time_distribution(
+            datasets,
+            bins,
+            title_suffix=f"Load: {load}",
+            log_mode=log_mode,
+            plot_type=plot_type,
+            probability=probability,
+        )
+
+
+
+PLOT_TYPE = "line" # bar or line
+LOG_MODE = "x"     # off, x (response time, x axis), y (density, y axis), xy (both axis)
+PROBABILITY = True # False for standard density (area=1), True for relative frequency (sum of heights=1)
+
 
 if __name__ == "__main__":
-    plot(sys.argv[1])
+    if len(sys.argv) == 2 and os.path.isfile(
+        sys.argv[1]
+    ):  # plot for a single file (filename passed)
+        plot(
+            sys.argv[1], log_mode=LOG_MODE, plot_type=PLOT_TYPE, probability=PROBABILITY
+        )
+
+    elif len(sys.argv) == 1 and os.path.isdir(
+        "simulations"
+    ):  # no filename passed, plot everything (except for utilization graphs)
+        sim_files = [
+            os.path.join("simulations", f)
+            for f in os.listdir("simulations")
+            if f.endswith(".txt")
+        ]
+        if sim_files:
+            plot_comparison(
+                sim_files,
+                log_mode=LOG_MODE,
+                plot_type=PLOT_TYPE,
+                probability=PROBABILITY,
+            )
+        else:
+            print("No simulator .txt files found inside the 'simulations/' directory.")
+
+    else:
+        print(
+            f"Usage:\n  To plot all files:    python3 {sys.argv[0]}\n  To plot single file:  python3 {sys.argv[0]} <file_path>"
+        )
+        sys.exit(1)
