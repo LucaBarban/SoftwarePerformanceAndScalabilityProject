@@ -1,7 +1,10 @@
-from typing import List, Dict, Tuple, Any
+import json
+import os
+import sys
+from typing import Any, Dict, List, Tuple
+
 import matplotlib.pyplot as plt
 import numpy as np
-import json, os, sys
 
 
 def load_points(file_path: str = "simulations/output.txt") -> List[Dict]:
@@ -137,7 +140,7 @@ def plot_utilizations_sliding_window(
         plt.plot(
             plot_times,
             utilizations[s],
-            label=f"Server {s} (Average Utilization: {total_avg*100:.2f}%)",
+            label=f"Server {s} (Average Utilization: {total_avg * 100:.2f}%)",
             linewidth=1.5,
         )
     plt.title(f"Sliding Window Server Utilization (Window Size = {window_size}s)")
