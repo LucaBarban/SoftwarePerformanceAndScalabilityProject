@@ -1,15 +1,15 @@
 import logging
 import time
 
-from .handle import Handle
+from .hedged_handle import HedgedHandle
 from .job import Job
 
 
-class Dispatcher:
+class HedgedDispatcher:
     def __init__(self):
         self.logger = logging.getLogger("logs")
 
-    def choose(self, job: Job, servers: list[Handle]) -> Handle:
+    def choose(self, job: Job, servers: list[HedgedHandle]) -> HedgedHandle:
         servers_info = [
             {"id": s.id, "pendings": s.pendings(), "age": s.current_age()}
             for s in servers
@@ -30,5 +30,5 @@ class Dispatcher:
 
         return chosen
 
-    def dispatch(self, job: Job, servers: list[Handle]) -> Handle:
+    def dispatch(self, job: Job, servers: list[HedgedHandle]) -> HedgedHandle:
         raise Exception("NotImplementedException")

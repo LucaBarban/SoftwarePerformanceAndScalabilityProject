@@ -26,9 +26,48 @@ def simulate(dispatcher, load, SERVERS: int = 3, ALPHA: float = 1.0, jobs=100):
         server = dispatcher.choose(req, servers)
         server.dispatch(req)
 
+    # This is necessary to stop an infinite loop.
     for handle in servers:
         handle.dispatch(None)
 
+    for handle in servers:
+        handle.server.join()
+
+    diff = time.time() - start
+    logger.warning({"source": "dispatcher", "event": "summary", "processing": diff})
+
+    for handle in servers:
+        logger.warning(
+            {
+                "source": "server",
+                "event": "summary",
+                "server_id": handle.id,
+                "processing": handle.processing_time.value,
+            }
+        )
+
+    stop_logging()
+
+
+def simulate_hedged(dispatcher, load, SERVERS: int = 3, ALPHA: float = 1.0, jobs=100):
+    os.sched_setaffinity(0, {0})
+
+    init_logging(f"simulations/hedged/{type(dispatcher).__name__}-{load}.txt")
+    logger = logging.getLogger("logs")
+
+    servers = [Handle(i + 1) for i in range(SERVERS)]
+
+    start = time.time()
+
+    for id in range(jobs):
+        time.sleep(random.expovariate(load) / 10)
+
+        req = Job(id, ALPHA, 40)
+        # Dispatching the request to all servers
+        for server in servers:
+            server.dispatch(req)
+
+    # I probably have to edit here some stuff.
     for handle in servers:
         handle.server.join()
 
