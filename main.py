@@ -11,16 +11,19 @@ from utils import *
 
 def simulate(dispatcher, load, SERVERS: int = 3, ALPHA: float = 1.0, jobs=100):
     os.sched_setaffinity(0, {0})
+    random.seed(42)
 
     init_logging(f"simulations/{type(dispatcher).__name__}-{load}.txt")
     logger = logging.getLogger("logs")
+
+    interarrivals = [random.expovariate(load) / 10 for _ in range(jobs)]
 
     servers = [Handle(i + 1) for i in range(SERVERS)]
 
     start = time.time()
 
-    for id in range(jobs):
-        time.sleep(random.expovariate(load) / 10)
+    for (id, interarrival) in enumerate(interarrivals):
+        time.sleep(interarrival)
 
         req = Job(id, ALPHA, 40)
         server = dispatcher.choose(req, servers)
@@ -56,10 +59,9 @@ if __name__ == "__main__":
     # dist = randint(low=40, high=41)  # keep aligned with the fixed size set for the jobs
 
     for load in [0.2, 0.5, 0.8]:
-        for dispatcher in [Rand(), JSQ(), JIQ(), Silly(), CheapLAS(dist)]:
-            random.seed(42)
+        for dispatcher in [Rand(), JSQ(), JIQ(), Silly(), RoundRobin()]:
             simulate(dispatcher, load, SERVERS, ALPHA)
 
-    for dispatcher in [Rand(), JSQ(), JIQ(), Silly(), CheapLAS(dist)]:
-        random.seed(42)
-        simulate(dispatcher, 0.5, SERVERS, 2)
+    # for dispatcher in [Rand(), JSQ(), JIQ(), Silly(), CheapLAS(dist)]:
+    #     random.seed(42)
+    #     simulate(dispatcher, 0.5, SERVERS, 2)

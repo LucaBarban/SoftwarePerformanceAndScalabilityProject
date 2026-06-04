@@ -12,16 +12,28 @@ def load_points(file_path: str = "simulations/output.txt") -> List[Dict]:
         raise FileNotFoundError("Couldn't find the requested file to load from")
 
     points = []
+    dispatched = []
 
     with open(file_path, mode="r") as f:
         for line in f:
             point = json.loads(line)
 
             if (
-                point["source"] == "server" and "resp_time" not in point.keys()
-            ):  # skip logged serving start for each request
+                point["source"] == "dispatcher" and point["event"] == "dispatching"
+            ):
+                dispatched.append(point)
+
+            if (
+                point["source"] == "server" and point["event"] != "end"
+            ):
                 continue
 
+            if (
+                point["source"] == "server" and point["event"] == "end"
+            ):
+                starting = [p for p in dispatched if p["job_id"] == point["job_id"]]
+                starting = starting[0]
+                point["resp_time"] = point["end_time"] - starting["decision_time"]
             points.append(point)
 
     if len(points) == 0:
@@ -57,6 +69,7 @@ def deg_queued_jobs_number(points: List[Dict]) -> List[Dict]:
 
             case "server":
                 queued_jobs.append(queued_jobs[-1].copy())
+                print(p)
                 queued_jobs[-1]["time"] = float(p["start_time"]) + float(p["resp_time"])
                 queued_jobs[-1][p["server_id"]] -= 1
 

@@ -34,6 +34,7 @@ class Server(Process):
                     "event": "start",
                     "server_id": self.id,
                     "job_id": job.id,
+                    "start_time": time.time(),
                 }
             )
 
@@ -46,7 +47,7 @@ class Server(Process):
                     "server_id": self.id,
                     "job_id": job.id,
                     "start_time": self.timing.value,
-                    "resp_time": time.time() - self.timing.value,
+                    "end_time": time.time(),
                 }
             )
 
