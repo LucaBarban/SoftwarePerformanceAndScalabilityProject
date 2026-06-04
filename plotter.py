@@ -167,10 +167,9 @@ def plot_response_time_distribution(
     datasets: data returned by load_points
     bins: number of "slots" where to put jobs based on their response time
     title_suffix: extra information in the plot's title
-    log_mode: off for linear scales, y for log density, x for log response time, 
+    log_mode: off for linear scales, y for log density, x for log response time,
               xy for log-log scale
-    plot_type: the type of the plot (e.g. "bar" for a histogram or "line" for the same
-               but without the colored filling)
+    plot_type: the type of the plot ("bar" for a histogram or "line")
     probability: true to scale heights to values between 0 and 1 (relative frequency)
     """
     plt.figure(figsize=(10, 5))
@@ -203,21 +202,21 @@ def plot_response_time_distribution(
         if probability:
             hist_kwargs["weights"] = np.ones_like(response_times) / len(response_times)
 
-        if plot_type == "line":
-            hist_kwargs["histtype"] = "step"
-            hist_kwargs["linewidth"] = 2
-            hist_kwargs["alpha"] = 0.9
-        else:
-            hist_kwargs["histtype"] = "bar"
-            hist_kwargs["edgecolor"] = "black"
-            hist_kwargs["alpha"] = 0.5
+        label_str = f"{label} (Mean: {mean_time:.3f}s, Med: {median_time:.3f}s)"
 
-        plt.hist(
-            response_times,
-            bins=actual_bins,
-            label=f"{label} (Mean: {mean_time:.3f}s, Med: {median_time:.3f}s)",
-            **hist_kwargs,
-        )
+        if plot_type == "line":
+            counts, edges = np.histogram(
+                response_times, bins=actual_bins, **hist_kwargs
+            )
+            bin_centers = (
+                np.sqrt(edges[:-1] * edges[1:])
+                if "x" in log_mode
+                else (edges[:-1] + edges[1:]) / 2
+            )
+            plt.plot(bin_centers, counts, label=label_str, linewidth=2, alpha=0.9)
+        else:
+            hist_kwargs.update({"histtype": "bar", "edgecolor": "black", "alpha": 0.5})
+            plt.hist(response_times, bins=actual_bins, label=label_str, **hist_kwargs)
 
     # set axis scales based on the mode
     if "x" in log_mode:
@@ -229,8 +228,15 @@ def plot_response_time_distribution(
         f" - {title_suffix}" if title_suffix else ""
     )
     plt.title(title, fontsize=14, fontweight="bold")
-    plt.xlabel("Response Time (" + ("log " if "x" in log_mode else "") + "seconds)", fontsize=12)
-    plt.ylabel(("Probability" if probability else "Density") + (" (log scale)" if "y" in log_mode else ""), fontsize=12)
+    plt.xlabel(
+        "Response Time (" + ("log " if "x" in log_mode else "") + "seconds)",
+        fontsize=12,
+    )
+    plt.ylabel(
+        ("Probability" if probability else "Density")
+        + (" (log scale)" if "y" in log_mode else ""),
+        fontsize=12,
+    )
     plt.grid(True, linestyle="--", alpha=0.6, which="both")
     plt.legend(fontsize=11)
     plt.tight_layout()
@@ -268,7 +274,11 @@ def plot(
 
 
 def plot_comparison(
-    files: List[str], bins: int = 20, log_mode: str = "off", plot_type: str = "bar", probability: bool = False
+    files: List[str],
+    bins: int = 20,
+    log_mode: str = "off",
+    plot_type: str = "bar",
+    probability: bool = False,
 ):
     """
     Automagically plot the data by grouping the dispatchers based on the specified load
@@ -297,23 +307,34 @@ def plot_comparison(
 
 
 
-PLOT_TYPE = "line" # bar (with filling) or line (no filling)
+PLOT_TYPE = "line" # bar or line
 LOG_MODE = "x"     # off, x (response time, x axis), y (density, y axis), xy (both axis)
 PROBABILITY = True # False for standard density (area=1), True for relative frequency (sum of heights=1)
 
 
 if __name__ == "__main__":
-    if len(sys.argv) == 2 and os.path.isfile(sys.argv[1]): # plot for a single file (filename passed)
-        plot(sys.argv[1], log_mode=LOG_MODE, plot_type=PLOT_TYPE, probability=PROBABILITY)
+    if len(sys.argv) == 2 and os.path.isfile(
+        sys.argv[1]
+    ):  # plot for a single file (filename passed)
+        plot(
+            sys.argv[1], log_mode=LOG_MODE, plot_type=PLOT_TYPE, probability=PROBABILITY
+        )
 
-    elif len(sys.argv) == 1 and os.path.isdir("simulations"): # no filename passed, plot everything (except for utilization graphs)
+    elif len(sys.argv) == 1 and os.path.isdir(
+        "simulations"
+    ):  # no filename passed, plot everything (except for utilization graphs)
         sim_files = [
             os.path.join("simulations", f)
             for f in os.listdir("simulations")
             if f.endswith(".txt")
         ]
         if sim_files:
-            plot_comparison(sim_files, log_mode=LOG_MODE, plot_type=PLOT_TYPE, probability=PROBABILITY)
+            plot_comparison(
+                sim_files,
+                log_mode=LOG_MODE,
+                plot_type=PLOT_TYPE,
+                probability=PROBABILITY,
+            )
         else:
             print("No simulator .txt files found inside the 'simulations/' directory.")
 
