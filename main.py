@@ -17,6 +17,7 @@ def simulate(dispatcher, load, SERVERS: int = 3, ALPHA: float = 1.0, jobs=100):
     logger = logging.getLogger("logs")
 
     interarrivals = [random.expovariate(load) / 10 for _ in range(jobs)]
+    multipliers = [random.paretovariate(ALPHA) for _ in range(jobs)]
 
     servers = [Handle(i + 1) for i in range(SERVERS)]
 
@@ -25,7 +26,7 @@ def simulate(dispatcher, load, SERVERS: int = 3, ALPHA: float = 1.0, jobs=100):
     for (id, interarrival) in enumerate(interarrivals):
         time.sleep(interarrival)
 
-        req = Job(id, ALPHA, 40)
+        req = Job(id, multipliers[id], 40)
         server = dispatcher.choose(req, servers)
         server.dispatch(req)
 
