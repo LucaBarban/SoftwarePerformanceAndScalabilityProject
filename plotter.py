@@ -285,6 +285,110 @@ def plot(
     plot_utilizations_sliding_window(plot_times, utilizations, server_ids, window_size)
 
 
+def plot_multiplier_response_time_sorted(
+    files: List[str],
+):
+    loads = {}
+    for file_path in files:
+        filename = os.path.basename(file_path).replace(".txt", "")
+        parts = filename.split("-")
+        dispatcher = parts[0] if len(parts) > 0 else "Unknown"
+        load = parts[1] if len(parts) > 1 else "Unknown"
+
+        if load not in loads:
+            loads[load] = {}
+        loads[load][dispatcher] = load_points(file_path)
+
+    for load, datasets in sorted(loads.items()):
+        plt.figure(figsize=(10, 5))
+        plt.title(f"Response time (sorted) per Job size: load {load}", fontsize=14, fontweight="bold")
+
+
+        for label, points in datasets.items():
+            useful_points = [
+                p
+                for p in points
+                if p.get("source") == "server" and p.get("event") == "end"
+            ]
+
+            data = [
+                (p["multiplier"], p["resp_time"])
+                for p in useful_points
+            ]
+
+            data.sort(key = lambda p: p[0])
+            mult = [p[0] for p in data]
+            resp = [p[1] for p in data]
+
+            plt.plot(mult, resp, label=label)
+
+        plt.xscale("log")
+        plt.xlabel("Job size", fontsize=12)
+        plt.ylabel("Response time", fontsize=12)
+        plt.grid(True, linestyle="--", alpha=0.6, which="both")
+        plt.legend(fontsize=11)
+        plt.show()
+        
+
+def plot_summary(
+    files: List[str]
+):
+    data = {}
+
+    for file in files:
+        filename = os.path.basename(file).replace(".txt", "")
+        parts = filename.split("-")
+        dispatcher = parts[0] if len(parts) > 0 else "Unknown"
+        load = parts[1] if len(parts) > 1 else "Unknown"
+
+        summary = []
+        with open(file, mode="r") as f:
+            for line in f:
+                point = json.loads(line)
+                if point.get("source") == "server" and point.get("event") == "summary":
+                    summary.append(point)
+
+        if load not in data:
+            data[load] = {}
+        data[load][dispatcher] = summary
+
+
+    for load, datasets in sorted(data.items()):
+        plt.title(f"Utilization times with load {load}", fontsize=14, fontweight="bold")
+
+        labels = datasets.keys()
+        heights = [
+            [p["processing"] for p in d]
+            for d in datasets.values()
+        ]
+        heights = list(zip(*heights)) # swap
+        maximum = max(max(i) for i in heights)
+
+        heights = np.array(heights) / maximum
+
+        colors = ['tab:blue', 'tab:orange', 'tab:green']
+        bins = len(heights[0])
+        bar_width = 0.25
+        bin_centres = np.arange(bins)
+        offsets = np.array([-1, 0, 1]) * bar_width
+        
+        for (i, color) in enumerate(colors):
+            plt.bar(
+                bin_centres + offsets[i],
+                heights[i],
+                width=bar_width,
+                color=color,
+                label=f"Server {i + 1}",
+            )
+
+        plt.xticks(bin_centres, labels=labels)
+        plt.xlabel("Dispatcher", fontsize=12)
+        plt.ylabel("Utilization", fontsize=12)
+        plt.legend()
+
+        plt.show()
+
+
 def plot_comparison(
     files: List[str],
     bins: int = 20,
@@ -340,6 +444,7 @@ if __name__ == "__main__":
             for f in os.listdir("simulations")
             if f.endswith(".txt")
         ]
+
         if sim_files:
             plot_comparison(
                 sim_files,
@@ -347,6 +452,10 @@ if __name__ == "__main__":
                 plot_type=PLOT_TYPE,
                 probability=PROBABILITY,
             )
+
+            plot_multiplier_response_time_sorted(sim_files)
+
+            plot_summary(sim_files)
         else:
             print("No simulator .txt files found inside the 'simulations/' directory.")
 
