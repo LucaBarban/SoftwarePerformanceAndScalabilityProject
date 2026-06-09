@@ -140,6 +140,7 @@ def plot_utilizations_sliding_window(
     utilizations: Dict[Any, List],
     server_ids: List[str],
     window_size: float,
+    save_path: str = None,
 ):
     plt.figure(figsize=(12, 6))
     time_deltas = np.diff(plot_times, append=plot_times[-1])
@@ -162,7 +163,11 @@ def plot_utilizations_sliding_window(
     plt.legend()
     plt.grid(True, linestyle="--", alpha=0.7)
     plt.tight_layout()
-    plt.show()
+    if save_path:
+        plt.savefig(save_path)
+        plt.close()
+    else:
+        plt.show()
 
 
 def plot_response_time_distribution(
@@ -172,6 +177,7 @@ def plot_response_time_distribution(
     log_mode: str = "off",
     plot_type: str = "bar",
     probability: bool = False,
+    save_path: str = None,
 ):
     """
     Process points from load_points and plots the distribution of the seen response times
@@ -183,6 +189,7 @@ def plot_response_time_distribution(
               xy for log-log scale
     plot_type: the type of the plot ("bar" for a histogram or "line")
     probability: true to scale heights to values between 0 and 1 (relative frequency)
+    save_path: where to save the plot if specified
     """
     plt.figure(figsize=(10, 5))
 
@@ -252,7 +259,11 @@ def plot_response_time_distribution(
     plt.grid(True, linestyle="--", alpha=0.6, which="both")
     plt.legend(fontsize=11)
     plt.tight_layout()
-    plt.show()
+    if save_path:
+        plt.savefig(save_path)
+        plt.close()
+    else:
+        plt.show()
 
 
 def plot(
@@ -262,12 +273,14 @@ def plot(
     log_mode: str = "off",
     plot_type: str = "bar",
     probability: bool = False,
+    save: bool = False,
 ):
     """
     file_path: path of the to load data from
     bins: number of bins used in the service time distribution graph
     window_size: size in seconds of the window of time that will
                  be considered to calculate the utilization
+    save: whether to save the plot
     """
     points = load_points(file_path)
     queued_jobs = deg_queued_jobs_number(points)
@@ -275,14 +288,21 @@ def plot(
         queued_jobs, window_size
     )
 
+    base_name = os.path.splitext(os.path.basename(file_path))[0]
+    resp_save = f"{base_name}_response_time.png" if save else None
+    util_save = f"{base_name}_utilization.png" if save else None
+
     plot_response_time_distribution(
         {os.path.basename(file_path): points},
         bins,
         log_mode=log_mode,
         plot_type=plot_type,
         probability=probability,
+        save_path=resp_save,
     )
-    plot_utilizations_sliding_window(plot_times, utilizations, server_ids, window_size)
+    plot_utilizations_sliding_window(
+        plot_times, utilizations, server_ids, window_size, save_path=util_save
+    )
 
 
 def plot_comparison(
@@ -291,6 +311,7 @@ def plot_comparison(
     log_mode: str = "off",
     plot_type: str = "bar",
     probability: bool = False,
+    save: bool = False,
 ):
     """
     Automagically plot the data by grouping the dispatchers based on the specified load
@@ -308,6 +329,7 @@ def plot_comparison(
         loads[load][dispatcher] = load_points(file_path)
 
     for load, datasets in sorted(loads.items()):
+        resp_save = f"comparison_load_{load}_response_time.png" if save else None
         plot_response_time_distribution(
             datasets,
             bins,
@@ -315,6 +337,7 @@ def plot_comparison(
             log_mode=log_mode,
             plot_type=plot_type,
             probability=probability,
+            save_path=resp_save,
         )
 
 
@@ -325,11 +348,15 @@ PROBABILITY = True # False for standard density (area=1), True for relative freq
 
 
 if __name__ == "__main__":
+    should_save = "--save" in sys.argv
+    if should_save:
+        sys.argv.remove("--save")
+
     if len(sys.argv) == 2 and os.path.isfile(
         sys.argv[1]
     ):  # plot for a single file (filename passed)
         plot(
-            sys.argv[1], log_mode=LOG_MODE, plot_type=PLOT_TYPE, probability=PROBABILITY
+            sys.argv[1], log_mode=LOG_MODE, plot_type=PLOT_TYPE, probability=PROBABILITY, save=should_save
         )
 
     elif len(sys.argv) == 1 and os.path.isdir(
@@ -346,12 +373,13 @@ if __name__ == "__main__":
                 log_mode=LOG_MODE,
                 plot_type=PLOT_TYPE,
                 probability=PROBABILITY,
+                save=should_save,
             )
         else:
             print("No simulator .txt files found inside the 'simulations/' directory.")
 
     else:
         print(
-            f"Usage:\n  To plot all files:    python3 {sys.argv[0]}\n  To plot single file:  python3 {sys.argv[0]} <file_path>"
+            f"Usage:\n  To plot all files:    python3 {sys.argv[0]} [--save]\n  To plot single file:  python3 {sys.argv[0]} <file_path> [--save]"
         )
         sys.exit(1)
