@@ -273,14 +273,14 @@ def plot(
     log_mode: str = "off",
     plot_type: str = "bar",
     probability: bool = False,
-    save: bool = False,
+    save_dir: str = None,
 ):
     """
     file_path: path of the to load data from
     bins: number of bins used in the service time distribution graph
     window_size: size in seconds of the window of time that will
                  be considered to calculate the utilization
-    save: whether to save the plot
+    save_dir: were to save the plot
     """
     points = load_points(file_path)
     queued_jobs = deg_queued_jobs_number(points)
@@ -289,8 +289,16 @@ def plot(
     )
 
     base_name = os.path.splitext(os.path.basename(file_path))[0]
-    resp_save = f"{base_name}_response_time.png" if save else None
-    util_save = f"{base_name}_utilization.png" if save else None
+    resp_name = f"{base_name}_response_time.png"
+    util_name = f"{base_name}_utilization.png"
+    
+    if save_dir is not None:
+        os.makedirs(save_dir, exist_ok=True)
+        resp_save = os.path.join(save_dir, resp_name)
+        util_save = os.path.join(save_dir, util_name)
+    else:
+        resp_save = None
+        util_save = None
 
     plot_response_time_distribution(
         {os.path.basename(file_path): points},
@@ -311,7 +319,7 @@ def plot_comparison(
     log_mode: str = "off",
     plot_type: str = "bar",
     probability: bool = False,
-    save: bool = False,
+    save_dir: str = None,
 ):
     """
     Automagically plot the data by grouping the dispatchers based on the specified load
@@ -329,7 +337,12 @@ def plot_comparison(
         loads[load][dispatcher] = load_points(file_path)
 
     for load, datasets in sorted(loads.items()):
-        resp_save = f"comparison_load_{load}_response_time.png" if save else None
+        if save_dir is not None:
+            os.makedirs(save_dir, exist_ok=True)
+            resp_save = os.path.join(save_dir, f"comparison_load_{load}_response_time.png")
+        else:
+            resp_save = None
+
         plot_response_time_distribution(
             datasets,
             bins,
@@ -348,20 +361,30 @@ PROBABILITY = True # False for standard density (area=1), True for relative freq
 
 
 if __name__ == "__main__":
-    should_save = "--save" in sys.argv
-    if should_save:
-        sys.argv.remove("--save")
+    save_directory = None
+    if "--save" in sys.argv:
+        idx = sys.argv.index("--save")
+        if idx + 1 < len(sys.argv):
+            save_directory = sys.argv[idx + 1]
+            sys.argv.pop(idx + 1)
+        else:
+            save_directory = ""
+        sys.argv.pop(idx)
+
+    should_summary = "--summary" in sys.argv
+    if should_summary:
+        sys.argv.remove("--summary")
 
     if len(sys.argv) == 2 and os.path.isfile(
         sys.argv[1]
     ):  # plot for a single file (filename passed)
         plot(
-            sys.argv[1], log_mode=LOG_MODE, plot_type=PLOT_TYPE, probability=PROBABILITY, save=should_save
+            sys.argv[1], log_mode=LOG_MODE, plot_type=PLOT_TYPE, probability=PROBABILITY, save_dir=save_directory
         )
 
-    elif len(sys.argv) == 1 and os.path.isdir(
+    elif len(sys.argv) == 1 and should_summary and os.path.isdir(
         "simulations"
-    ):  # no filename passed, plot everything (except for utilization graphs)
+    ):  # summary mode explicitly requested, plot everything
         sim_files = [
             os.path.join("simulations", f)
             for f in os.listdir("simulations")
@@ -373,13 +396,18 @@ if __name__ == "__main__":
                 log_mode=LOG_MODE,
                 plot_type=PLOT_TYPE,
                 probability=PROBABILITY,
-                save=should_save,
+                save_dir=save_directory,
             )
         else:
             print("No simulator .txt files found inside the 'simulations/' directory.")
 
     else:
         print(
-            f"Usage:\n  To plot all files:    python3 {sys.argv[0]} [--save]\n  To plot single file:  python3 {sys.argv[0]} <file_path> [--save]"
+            f"Usage:  To plot all files (summary): python3 {sys.argv[0]} --summary [--save <save_path>]\n"
+            f"To plot single file:                 python3 {sys.argv[0]} <file_path> [--save <save_path>]\n\n"
+            f"Examples:\n"
+            f"    python3 {sys.argv[0]} --summary\n"
+            f"    python3 {sys.argv[0]} simulations/Silly-0.2.txt  \n"
+            f"    python3 {sys.argv[0]} simulations/Silly-0.2.txt --save export/"
         )
         sys.exit(1)
