@@ -7,6 +7,7 @@ from scipy.stats import pareto
 
 from strategies import *
 from utils import *
+from utils.randval_generators import gen_interarrivals, gen_multipliers
 
 
 def simulate(dispatcher, load, SERVERS: int = 3, ALPHA: float = 1.0, jobs=100):
@@ -16,16 +17,17 @@ def simulate(dispatcher, load, SERVERS: int = 3, ALPHA: float = 1.0, jobs=100):
     init_logging(f"simulations/{type(dispatcher).__name__}-{load}.txt")
     logger = logging.getLogger("logs")
 
-    interarrivals = [random.expovariate(load) / 10 for _ in range(jobs)]
+    interarrivals = gen_interarrivals(load, jobs)
+    multipliers = gen_multipliers(ALPHA, jobs)
 
     servers = [Handle(i + 1) for i in range(SERVERS)]
 
     start = time.time()
 
-    for (id, interarrival) in enumerate(interarrivals):
+    for id, (interarrival, multiplier) in enumerate(zip(interarrivals, multipliers)):
         time.sleep(interarrival)
 
-        req = Job(id, ALPHA, 40)
+        req = Job(id, ALPHA, 40, multiplier)
         server = dispatcher.choose(req, servers)
         server.dispatch(req)
 
