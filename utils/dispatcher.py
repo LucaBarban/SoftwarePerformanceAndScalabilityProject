@@ -22,6 +22,7 @@ class Dispatcher:
                 "source": "dispatcher",
                 "event": "dispatching",
                 "job_id": job.id,
+                "multiplier": job.multiplier,
                 "servers": servers_info,
                 "chosen": chosen.id,
                 "decision_time": time.time(),
