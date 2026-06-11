@@ -351,8 +351,8 @@ def plot_multiplier_response_time_sorted(
             plt.plot(mult, resp, label=label)
 
         plt.xscale("log")
-        plt.xlabel("Job size", fontsize=12)
-        plt.ylabel("Response time", fontsize=12)
+        plt.xlabel("Job size (log-scale)", fontsize=12)
+        plt.ylabel("Response time (seconds)", fontsize=12)
         plt.grid(True, linestyle="--", alpha=0.6, which="both")
         plt.legend(fontsize=11)
         plt.show()
@@ -409,11 +409,17 @@ def plot_summary(
                 label=f"Server {i + 1}",
             )
 
-        plt.xticks(bin_centres, labels=labels)
+        plt.xticks(
+            bin_centres,
+            labels=labels,
+            rotation=45,
+            ha="right"
+        )
         plt.xlabel("Dispatcher", fontsize=12)
         plt.ylabel("Utilization", fontsize=12)
         plt.legend()
 
+        plt.tight_layout()
         plt.show()
 
 
