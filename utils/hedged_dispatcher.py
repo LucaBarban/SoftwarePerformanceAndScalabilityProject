@@ -51,8 +51,8 @@ class HedgedDispatcher:
         while True:
             # Blocks until a completed job is added
             msg = self.completed.get()
-            job_id = msg["job_id"]
-            server_done = msg["winner_id"]
+            job_id = msg["id"]
+            server_done = msg["server"]
 
             with self.lock:
                 if job_id in self.working:
