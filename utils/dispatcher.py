@@ -1,5 +1,6 @@
 import logging
 import time
+import random
 
 from .handle import Handle
 from .job import Job
@@ -34,5 +35,19 @@ class Dispatcher:
     def dispatch(self, job: Job, servers: list[Handle]) -> Handle:
         raise Exception("NotImplementedException")
 
-    def hedged_dispatch(self, job: Job, servers: list[Handle]) -> Handle:
-        raise Exception("NotImplementedException")
+    def hedge(self, job: Job, servers: list[Handle]) -> list[Handle]:
+        chosen = self.dispatch(job, servers)
+        others = [s for s in servers if s != chosen]
+
+        other = random.choice(others)
+
+        self.logger.warning(
+            {
+                "source": "dispatcher",
+                "event": "hedge",
+                "job_id": job.id,
+                "other": other.id,
+            }
+        )
+
+        return [chosen, other]

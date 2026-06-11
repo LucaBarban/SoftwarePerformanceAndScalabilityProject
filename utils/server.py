@@ -1,19 +1,31 @@
+from typing import Optional, Any
 import logging
 import os
 import time
-from multiprocessing import Process, Queue
+from multiprocessing import Process, Queue, queues
+from multiprocessing.managers import ListProxy, ValueProxy
 
-from .job import process_job
+from .job import process_job, Job
 
 
 class Server(Process):
-    def __init__(self, id: int, queue: Queue, timing, processing):
+    def __init__(
+        self,
+        id: int,
+        jobs: ListProxy[Optional[Job]],
+        ping: queues.Queue[None],
+        output: queues.Queue[Optional[Job]],
+        timing: ValueProxy[float],
+        processing_time: ValueProxy[float],
+    ):
         super().__init__()
 
         self.id = id
-        self.queue = queue
+        self.jobs = jobs
+        self.ping = ping
+        self.output = output
         self.timing = timing
-        self.processing = processing
+        self.processing_time = processing_time
 
         self.logger = logging.getLogger("logs")
 
@@ -21,9 +33,11 @@ class Server(Process):
         os.sched_setaffinity(0, {self.id})
 
         while True:
-            job = self.queue.get()
+            _ = self.ping.get()
+            job = self.jobs.pop(0)
 
             if job is None:
+                self.output.put(None)
                 return
 
             self.timing.value = time.time()
@@ -53,6 +67,7 @@ class Server(Process):
                 }
             )
 
-            self.processing.value += time.time() - self.timing.value
-
+            self.processing_time.value += time.time() - self.timing.value
             self.timing.value = 0.0
+
+            self.output.put(job)
