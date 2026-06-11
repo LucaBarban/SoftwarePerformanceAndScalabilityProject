@@ -1,5 +1,4 @@
 import math
-import random
 
 
 class Job:
@@ -9,7 +8,7 @@ class Job:
         self.multiplier = multiplier
 
 
-def process_job(job: Job, base_work=20_000):
+def process_job(job: Job, base_work: int = 20_000):
     """
     Simulates a CPU-bound job with heavy-tailed processing time.
     job: job
