@@ -56,7 +56,7 @@ class HedgedDispatcher:
 
             with self.lock:
                 if job_id in self.working:
-                    # Find all the slower eplicas and kill them
+                    # Find all the slower replicas and kill them
                     handles = self.working[job_id]
                     for handle in handles:
                         if handle.id != server_done:
@@ -72,4 +72,4 @@ class HedgedDispatcher:
                                 os.kill(handle.pid, signal.SIGINT)
                             except ProcessLookupError:
                                 pass
-                    del self.active_jobs[job_id]
+                    del self.working[job_id]
