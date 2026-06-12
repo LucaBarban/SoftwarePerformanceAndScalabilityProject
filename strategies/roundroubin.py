@@ -1,5 +1,6 @@
 from utils.dispatcher import Dispatcher
 
+
 class RoundRobin(Dispatcher):
     def __init__(self):
         super().__init__()
@@ -10,4 +11,3 @@ class RoundRobin(Dispatcher):
         self.idx = (self.idx + 1) % len(servers)
 
         return out
-

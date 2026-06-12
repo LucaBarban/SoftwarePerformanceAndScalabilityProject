@@ -30,10 +30,12 @@ def simulate(
     SERVERS: int = 3,
     ALPHA: float = 1.0,
     concurrency: int = 1,
-    jobs=100
+    jobs=100,
 ):
     if concurrency > SERVERS:
-        raise Exception(f"concurrency must be less or equals to SERVERS: {concurrency} > {SERVERS}")
+        raise Exception(
+            f"concurrency must be less or equals to SERVERS: {concurrency} > {SERVERS}"
+        )
 
     os.sched_setaffinity(0, {0})
     random.seed(42)
@@ -45,7 +47,7 @@ def simulate(
     multipliers = [random.paretovariate(ALPHA) for _ in range(jobs)]
 
     input: Queue[Optional[Job]] = Queue()  # job spawn
-    output: Queue[Optional[Job]] = Queue() # job completed
+    output: Queue[Optional[Job]] = Queue()  # job completed
 
     producer = Process(target=spawn_jobs, args=(interarrivals, multipliers, input))
     servers = [Handle(i + 1, output) for i in range(SERVERS)]
@@ -63,7 +65,7 @@ def simulate(
             idx = fds.index(fd)
             job = queues[idx].get()
 
-            if idx == 0: # input queue -> dispatcher
+            if idx == 0:  # input queue -> dispatcher
                 if job is None:
                     # close all servers
                     for server in servers:
@@ -87,7 +89,6 @@ def simulate(
                     for server in servers:
                         server.remove(job)
 
-                
     diff = time.time() - start
     logger.warning({"source": "dispatcher", "event": "summary", "processing": diff})
 

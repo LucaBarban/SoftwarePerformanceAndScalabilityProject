@@ -24,10 +24,10 @@ class Handle:
         self.server = Server(
             id,
             self.jobs,
-            self.ping, # type: ignore # dumb type
+            self.ping,  # type: ignore # dumb type
             output,
             self.timing,
-            self.processing_time
+            self.processing_time,
         )
         self.server.start()
 

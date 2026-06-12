@@ -2,6 +2,7 @@ import random
 
 from utils import Dispatcher
 
+
 #    ┌─ λ / n
 # λ ─┤
 #    ┊
@@ -16,14 +17,15 @@ class MultiDispatcher(Dispatcher):
         idx = random.randint(0, len(self.dispatchers) - 1)
         dispatcher = self.dispatchers[idx]
 
-        self.logger.warning({
-            "source": "multi",
-            "event": "dispatching",
-            "job_id": job.id,
-            "dispatcher": idx,
-        })
-        
+        self.logger.warning(
+            {
+                "source": "multi",
+                "event": "dispatching",
+                "job_id": job.id,
+                "dispatcher": idx,
+            }
+        )
+
         output = dispatcher.dispatch(job, servers)
 
         return output
-

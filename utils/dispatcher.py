@@ -35,7 +35,9 @@ class Dispatcher:
     def dispatch(self, job: Job, servers: list[Handle]) -> Handle:
         raise Exception("NotImplementedException")
 
-    def hedge(self, job: Job, servers: list[Handle], concurrency: int = 2) -> list[Handle]:
+    def hedge(
+        self, job: Job, servers: list[Handle], concurrency: int = 2
+    ) -> list[Handle]:
         chosen = self.choose(job, servers)
         others = [s for s in servers if s != chosen]
 
