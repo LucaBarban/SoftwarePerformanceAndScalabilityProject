@@ -39,7 +39,7 @@ class HedgedServer(Process):
                 )
 
                 process_job(job)
-                self.completed.put({"id": job.id, "server": self.pid})
+                self.completed.put({"id": job.id, "server": self.id})
                 self.logger.warning(
                     {
                         "source": "server",
