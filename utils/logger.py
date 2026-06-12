@@ -6,7 +6,7 @@ class JsonLogger(logging.Formatter):
         return record.getMessage().replace("'", '"')
 
 
-def init_logging(filename):
+def init_logging(filename: str):
     logger = logging.getLogger("logs")
     logger.setLevel(logging.INFO)
 
