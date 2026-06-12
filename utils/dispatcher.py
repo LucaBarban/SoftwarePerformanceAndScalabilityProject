@@ -33,6 +33,3 @@ class Dispatcher:
 
     def dispatch(self, job: Job, servers: list[Handle]) -> Handle:
         raise Exception("NotImplementedException")
-
-    def hedged_dispatch(self, job: Job, servers: list[Handle]) -> Handle:
-        raise Exception("NotImplementedException")
