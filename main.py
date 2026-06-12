@@ -25,13 +25,16 @@ def spawn_jobs(interarrivals: list[float], multipliers: list[float], queue: Queu
 
 
 def simulate(
-        dispatcher: Dispatcher,
-        load: float,
-        SERVERS: int = 3,
-        ALPHA: float = 1.0,
-        hedge: bool = False,
-        jobs=100
-    ):
+    dispatcher: Dispatcher,
+    load: float,
+    SERVERS: int = 3,
+    ALPHA: float = 1.0,
+    concurrency: int = 1,
+    jobs=100
+):
+    if concurrency > SERVERS:
+        raise Exception(f"concurrency must be less or equals to SERVERS: {concurrency} > {SERVERS}")
+
     os.sched_setaffinity(0, {0})
     random.seed(42)
 
@@ -65,20 +68,22 @@ def simulate(
                     # close all servers
                     for server in servers:
                         server.dispatch(None)
-                elif hedge:
-                    chosen = dispatcher.hedge(job, servers)
+                elif concurrency > 1:
+                    chosen = dispatcher.hedge(job, servers, concurrency)
                     for server in chosen:
                         server.dispatch(job)
-                else:
+                elif concurrency == 1:
                     server = dispatcher.choose(job, servers)
                     server.dispatch(job)
+                else:
+                    raise Exception("Wrong parameters")
 
             elif idx == 1:
                 if job is None:
                     done += 1
                     continue
 
-                if hedge:
+                if concurrency > 1:
                     for server in servers:
                         server.remove(job)
 
@@ -106,7 +111,7 @@ if __name__ == "__main__":
     dist = pareto(b=ALPHA, scale=1)
     # dist = randint(low=40, high=41)  # keep aligned with the fixed size set for the jobs
 
-    simulate(Silly(), 0.5, SERVERS, ALPHA)
+    simulate(Silly(), 0.5, SERVERS, ALPHA, concurrency=2)
     # for load in [0.2, 0.5, 0.8]:
     #     for dispatcher in [Rand(), JSQ(), JIQ(), Silly(), CheapLAS(dist), RoundRobin(), MultiDispatcher(Rand(), Rand()), SharedRoundRobin()]:
     #         simulate(dispatcher, load, SERVERS, ALPHA)

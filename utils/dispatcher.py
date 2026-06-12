@@ -35,19 +35,19 @@ class Dispatcher:
     def dispatch(self, job: Job, servers: list[Handle]) -> Handle:
         raise Exception("NotImplementedException")
 
-    def hedge(self, job: Job, servers: list[Handle]) -> list[Handle]:
-        chosen = self.dispatch(job, servers)
+    def hedge(self, job: Job, servers: list[Handle], concurrency: int = 2) -> list[Handle]:
+        chosen = self.choose(job, servers)
         others = [s for s in servers if s != chosen]
 
-        other = random.choice(others)
+        extras = random.sample(others, concurrency - 1)
 
         self.logger.warning(
             {
                 "source": "dispatcher",
                 "event": "hedge",
                 "job_id": job.id,
-                "other": other.id,
+                "others": [o.id for o in extras],
             }
         )
 
-        return [chosen, other]
+        return [chosen, *extras]
