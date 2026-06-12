@@ -121,17 +121,17 @@ if __name__ == "__main__":
         ]:
             simulate(dispatcher, load, SERVERS, ALPHA)
 
-    k = 3
+    K = 3
     for load in [0.2, 0.5, 0.8]:
         for dispatcher in [
-            HedgedRand(k),
-            HedgedJSQ(k),
-            HedgedJIQ(k),
-            HedgedSilly(k),
-            HedgedCheapLAS(dist, k),
-            HedgedRoundRobin(k),
-            HedgedMultiDispatcher(Rand(k), Rand(k)),
-            HedgedSharedRoundRobin(k),
+            HedgedRand(K),
+            HedgedJSQ(K),
+            HedgedJIQ(K),
+            HedgedSilly(K),
+            HedgedCheapLAS(dist, K),
+            HedgedRoundRobin(K),
+            HedgedMultiDispatcher(Rand(K), Rand(K)),
+            HedgedSharedRoundRobin(K),
         ]:
             hedged_simulate(dispatcher, load, SERVERS, ALPHA)
 
