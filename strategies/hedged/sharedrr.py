@@ -1,13 +1,13 @@
 import random
 
-from strategies.roundroubin import RoundRobin
+from strategies.hedged.roundroubin import HedgedRoundRobin
 from utils.hedged_dispatcher import HedgedDispatcher
 
 
 class HedgedSharedRoundRobin(HedgedDispatcher):
     def __init__(self, k: int = 2):
         super().__init__()
-        self.dispatchers = [RoundRobin(k), RoundRobin(k)]
+        self.dispatchers = [HedgedRoundRobin(k), HedgedRoundRobin(k)]
 
     def dispatch(self, job, servers):
         idx = random.randint(0, len(self.dispatchers) - 1)

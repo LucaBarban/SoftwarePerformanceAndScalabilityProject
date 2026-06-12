@@ -108,18 +108,18 @@ if __name__ == "__main__":
     #     for dispatcher in [Rand(), JSQ(), JIQ(), Silly(), CheapLAS(dist), RoundRobin(), MultiDispatcher(Rand(), Rand()), SharedRoundRobin()]:
     #         simulate(dispatcher, load, SERVERS, ALPHA)
 
-    for load in [0.2, 0.5, 0.8]:
-        for dispatcher in [
-            Rand(),
-            JSQ(),
-            JIQ(),
-            Silly(),
-            CheapLAS(dist),
-            RoundRobin(),
-            MultiDispatcher(Rand(), Rand()),
-            SharedRoundRobin(),
-        ]:
-            simulate(dispatcher, load, SERVERS, ALPHA)
+    # for load in [0.2, 0.5, 0.8]:
+    #     for dispatcher in [
+    #         Rand(),
+    #         JSQ(),
+    #         JIQ(),
+    #         Silly(),
+    #         CheapLAS(dist),
+    #         RoundRobin(),
+    #         MultiDispatcher(Rand(), Rand()),
+    #         SharedRoundRobin(),
+    #     ]:
+    #         simulate(dispatcher, load, SERVERS, ALPHA)
 
     K = 3
     for load in [0.2, 0.5, 0.8]:
@@ -130,7 +130,7 @@ if __name__ == "__main__":
             HedgedSilly(K),
             HedgedCheapLAS(dist, K),
             HedgedRoundRobin(K),
-            HedgedMultiDispatcher(Rand(K), Rand(K)),
+            HedgedMultiDispatcher(HedgedRand(K), HedgedRand(K)),
             HedgedSharedRoundRobin(K),
         ]:
             hedged_simulate(dispatcher, load, SERVERS, ALPHA)

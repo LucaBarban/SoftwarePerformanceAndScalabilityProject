@@ -3,7 +3,7 @@ import os
 import signal
 import threading
 import time
-from multiprocessing.queues import Queue
+from multiprocessing import Queue
 
 from .hedged_handle import HedgedHandle
 from .job import Job
