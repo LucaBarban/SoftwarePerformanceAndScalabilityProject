@@ -3,7 +3,7 @@ from utils.hedged_dispatcher import HedgedDispatcher
 from utils.job import Job
 
 
-class JSQ(HedgedDispatcher):  # join the shortest queue
+class HedgedJSQ(HedgedDispatcher):  # join the shortest queue
     def __init__(self, k: int = 2):
         super().__init__()
         self.k = k

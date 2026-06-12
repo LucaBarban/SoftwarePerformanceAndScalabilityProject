@@ -3,7 +3,7 @@ import random
 from utils.hedged_dispatcher import HedgedDispatcher
 
 
-class CheapLAS(HedgedDispatcher):
+class HedgedCheapLAS(HedgedDispatcher):
     # By assuming to actually know the distribution of the service time,
     # we can exploit this fact to calculate the mean amount of time the
     # jobs in line will take to finish + the residual time that the job

@@ -1,7 +1,7 @@
 from utils.hedged_dispatcher import HedgedDispatcher
 
 
-class Silly(HedgedDispatcher):
+class HedgedSilly(HedgedDispatcher):
     def __init__(self, k: int = 2):
         super().__init__()
         self.k = k

@@ -1,11 +1,10 @@
 import random
 
 from strategies.roundroubin import RoundRobin
-
 from utils.hedged_dispatcher import HedgedDispatcher
 
 
-class SharedRoundRobin(HedgedDispatcher):
+class HedgedSharedRoundRobin(HedgedDispatcher):
     def __init__(self, k: int = 2):
         super().__init__()
         self.dispatchers = [RoundRobin(k), RoundRobin(k)]

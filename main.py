@@ -78,7 +78,6 @@ def hedged_simulate(
     for handle in servers:
         handle.dispatch(None)
 
-    # I probably have to edit here some stuff.
     for handle in servers:
         handle.server.join()
 
@@ -119,6 +118,20 @@ if __name__ == "__main__":
             RoundRobin(),
             MultiDispatcher(Rand(), Rand()),
             SharedRoundRobin(),
+        ]:
+            simulate(dispatcher, load, SERVERS, ALPHA)
+
+    k = 3
+    for load in [0.2, 0.5, 0.8]:
+        for dispatcher in [
+            HedgedRand(k),
+            HedgedJSQ(k),
+            HedgedJIQ(k),
+            HedgedSilly(k),
+            HedgedCheapLAS(dist, k),
+            HedgedRoundRobin(k),
+            HedgedMultiDispatcher(Rand(k), Rand(k)),
+            HedgedSharedRoundRobin(k),
         ]:
             hedged_simulate(dispatcher, load, SERVERS, ALPHA)
 

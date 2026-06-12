@@ -7,7 +7,7 @@ from utils.hedged_dispatcher import HedgedDispatcher
 # λ ─┤
 #    ┊
 #    └─ λ / n
-class MultiDispatcher(HedgedDispatcher):
+class HedgedMultiDispatcher(HedgedDispatcher):
     def __init__(self, *dispatchers: HedgedDispatcher):
         super().__init__()
 

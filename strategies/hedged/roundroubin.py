@@ -1,7 +1,7 @@
 from utils.hedged_dispatcher import HedgedDispatcher
 
 
-class RoundRobin(HedgedDispatcher):
+class HedgedRoundRobin(HedgedDispatcher):
     def __init__(self, k: int = 2):
         super().__init__()
         self.idx = 0

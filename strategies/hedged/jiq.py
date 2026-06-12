@@ -5,7 +5,7 @@ from utils.hedged_handle import HedgedHandle
 from utils.job import Job
 
 
-class JIQ(HedgedDispatcher):
+class HedgedJIQ(HedgedDispatcher):
     def __init__(self, k: int = 2):
         super().__init__()
         self.k = k
