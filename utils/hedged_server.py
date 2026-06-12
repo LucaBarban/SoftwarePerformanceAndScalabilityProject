@@ -1,5 +1,6 @@
 import logging
 import os
+import signal
 import time
 from multiprocessing import Process, Queue
 
@@ -22,6 +23,8 @@ class HedgedServer(Process):
 
         while True:
             try:
+                # Ignoring the signal when we try to listen
+                signal.signal(signal.SIGINT, signal.SIG_IGN)
                 job = self.queue.get()
 
                 if job is None:
@@ -37,8 +40,13 @@ class HedgedServer(Process):
                         "job_id": job.id,
                     }
                 )
-
+                # We can restore the signal to discard work
+                signal.signal(signal.SIGINT, signal.default_int_handler)
                 process_job(job)
+
+                # Ignoring kills for logging
+                signal.signal(signal.SIGINT, signal.SIG_IGN)
+
                 self.completed.put({"id": job.id, "server": self.id})
                 self.logger.warning(
                     {
@@ -54,5 +62,8 @@ class HedgedServer(Process):
                 self.processing.value += time.time() - self.timing.value
 
                 self.timing.value = 0.0
+
+                # Restoring initial
+                signal.signal(signal.SIGINT, signal.default_int_handler)
             except KeyboardInterrupt:  # SIGINT in python is coded as this
                 self.timing.value = 0.0
