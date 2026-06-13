@@ -33,6 +33,7 @@ class HedgedDispatcher:
                 "source": "dispatcher",
                 "event": "dispatching",
                 "job_id": job.id,
+                "multiplier": job.multiplier,
                 "servers": servers_info,
                 "chosen": [s.id for s in chosen],
                 "decision_time": time.time(),

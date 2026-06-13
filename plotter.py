@@ -65,7 +65,11 @@ def deg_queued_jobs_number(points: List[Dict]) -> List[Dict]:
                     n_jobs = int(server["pendings"])
                     n_jobs += 1 if float(server["age"]) != 0 else 0
                     queued_jobs[-1][server["id"]] = n_jobs
-                queued_jobs[-1][p["chosen"]] += 1
+                if isinstance(p["chosen"], list):
+                    for item in p["chosen"]:
+                        queued_jobs[-1][item] += 1
+                else:
+                    queued_jobs[-1][p["chosen"]] += 1
 
             case "server":
                 queued_jobs.append(queued_jobs[-1].copy())
@@ -493,11 +497,11 @@ if __name__ == "__main__":
         )
 
     elif len(sys.argv) == 1 and should_summary and os.path.isdir(
-        "simulations"
+        "simulations/hedged"
     ):  # summary mode explicitly requested, plot everything
         sim_files = [
-            os.path.join("simulations", f)
-            for f in os.listdir("simulations")
+            os.path.join("simulations/hedged", f)
+            for f in os.listdir("simulations/hedged")
             if f.endswith(".txt")
         ]
 

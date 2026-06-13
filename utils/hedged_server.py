@@ -38,6 +38,8 @@ class HedgedServer(Process):
                         "event": "start",
                         "server_id": self.id,
                         "job_id": job.id,
+                        "multiplier": job.multiplier,
+                        "start_time": time.time(),
                     }
                 )
                 # We can restore the signal to discard work
@@ -47,6 +49,8 @@ class HedgedServer(Process):
                 # Ignoring kills for logging
                 signal.signal(signal.SIGINT, signal.SIG_IGN)
 
+                end_time = time.time()
+
                 self.completed.put({"id": job.id, "server": self.id})
                 self.logger.warning(
                     {
@@ -55,11 +59,13 @@ class HedgedServer(Process):
                         "server_id": self.id,
                         "job_id": job.id,
                         "start_time": self.timing.value,
-                        "resp_time": time.time() - self.timing.value,
+                        "resp_time": end_time - self.timing.value,
+                        "multiplier": job.multiplier,
+                        "end_time": end_time,
                     }
                 )
 
-                self.processing.value += time.time() - self.timing.value
+                self.processing.value += end_time - self.timing.value
 
                 self.timing.value = 0.0
 

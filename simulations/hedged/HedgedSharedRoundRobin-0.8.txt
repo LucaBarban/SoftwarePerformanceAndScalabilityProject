@@ -1,814 +1,804 @@
-{"source": "multi", "event": "dispatching", "job_id": 0, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 0, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781275172.8664103}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 0}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 0}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 0}
-{"source": "multi", "event": "dispatching", "job_id": 1, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 1, "servers": [{"id": 1, "pendings": 0, "age": 0.03355693817138672}, {"id": 2, "pendings": 0, "age": 0.03344917297363281}, {"id": 3, "pendings": 0, "age": 0.0334477424621582}], "chosen": [1, 2, 3], "decision_time": 1781275172.900543}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 0, "start_time": 1781275172.867055, "resp_time": 0.0782477855682373}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 1}
-{"source": "server", "event": "end", "server_id": 1, "job_id": 0, "start_time": 1781275172.8669443, "resp_time": 0.07880568504333496}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 1}
+{"source": "multi", "event": "dispatching", "job_id": 0, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 0, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781297111.4661548}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 0, "multiplier": 1.3, "start_time": 1781297111.4669168}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 0, "multiplier": 1.3, "start_time": 1781297111.467116}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 0, "multiplier": 1.3, "start_time": 1781297111.4671009}
+{"source": "multi", "event": "dispatching", "job_id": 1, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 1, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.04290175437927246}, {"id": 2, "pendings": 0, "age": 0.04271507263183594}, {"id": 3, "pendings": 0, "age": 0.04270195960998535}], "chosen": [1, 2, 3], "decision_time": 1781297111.5099227}
+{"source": "multi", "event": "dispatching", "job_id": 2, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 2, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 1, "age": 0.08578348159790039}, {"id": 2, "pendings": 1, "age": 0.08559679985046387}, {"id": 3, "pendings": 1, "age": 0.08558392524719238}], "chosen": [1, 2, 3], "decision_time": 1781297111.552797}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 0, "start_time": 1781297111.4668815, "resp_time": 0.11384439468383789, "multiplier": 1.3, "end_time": 1781297111.580726}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 1, "multiplier": 1.3, "start_time": 1781297111.5811772}
+{"source": "multi", "event": "dispatching", "job_id": 3, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 3, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 1, "age": 0.004471540451049805}, {"id": 2, "pendings": 2, "age": 0.11857795715332031}, {"id": 3, "pendings": 2, "age": 0.11856484413146973}], "chosen": [1, 2, 3], "decision_time": 1781297111.585738}
 {"source": "dispatcher", "event": "kill", "job_id": 0, "server": 2}
 {"source": "dispatcher", "event": "kill", "job_id": 0, "server": 3}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 1}
-{"source": "server", "event": "end", "server_id": 1, "job_id": 1, "start_time": 1781275172.9459095, "resp_time": 0.07826733589172363}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 1, "multiplier": 1.3, "start_time": 1781297111.5897608}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 1, "multiplier": 1.3, "start_time": 1781297111.589776}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 1, "start_time": 1781297111.5811763, "resp_time": 0.11409735679626465, "multiplier": 1.3, "end_time": 1781297111.6952736}
 {"source": "dispatcher", "event": "kill", "job_id": 1, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 2, "multiplier": 1.3, "start_time": 1781297111.6955402}
 {"source": "dispatcher", "event": "kill", "job_id": 1, "server": 3}
-{"source": "multi", "event": "dispatching", "job_id": 2, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 2, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781275173.1038284}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 2}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 2}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 2, "start_time": 1781275173.103968, "resp_time": 0.0778188705444336}
-{"source": "dispatcher", "event": "kill", "job_id": 2, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 2, "multiplier": 1.3, "start_time": 1781297111.6956165}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 2, "multiplier": 1.3, "start_time": 1781297111.6956437}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 2, "start_time": 1781297111.6955395, "resp_time": 0.1131584644317627, "multiplier": 1.3, "end_time": 1781297111.808698}
 {"source": "dispatcher", "event": "kill", "job_id": 2, "server": 2}
-{"source": "multi", "event": "dispatching", "job_id": 3, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 3, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781275173.226478}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 3}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 3}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 3, "start_time": 1781275173.226565, "resp_time": 0.07628107070922852}
-{"source": "dispatcher", "event": "kill", "job_id": 3, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 3, "multiplier": 1.3, "start_time": 1781297111.8089364}
+{"source": "dispatcher", "event": "kill", "job_id": 2, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 3, "multiplier": 1.3, "start_time": 1781297111.8090312}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 3, "multiplier": 1.3, "start_time": 1781297111.8090498}
+{"source": "multi", "event": "dispatching", "job_id": 4, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 4, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.0294950008392334}, {"id": 2, "pendings": 0, "age": 0.029407739639282227}, {"id": 3, "pendings": 0, "age": 0.029394149780273438}], "chosen": [1, 2, 3], "decision_time": 1781297111.8386612}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 3, "start_time": 1781297111.8089354, "resp_time": 0.11613011360168457, "multiplier": 1.3, "end_time": 1781297111.9250655}
+{"source": "dispatcher", "event": "kill", "job_id": 3, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 4, "multiplier": 1.3, "start_time": 1781297111.9253235}
 {"source": "dispatcher", "event": "kill", "job_id": 3, "server": 3}
-{"source": "multi", "event": "dispatching", "job_id": 4, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 4, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781275173.332217}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 4}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 4}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 4}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 4, "start_time": 1781275173.3323581, "resp_time": 0.07687807083129883}
-{"source": "dispatcher", "event": "kill", "job_id": 4, "server": 1}
-{"source": "dispatcher", "event": "kill", "job_id": 4, "server": 2}
-{"source": "multi", "event": "dispatching", "job_id": 5, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 5, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781275173.5421064}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 5}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 5}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 5}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 5, "start_time": 1781275173.5422187, "resp_time": 0.07636332511901855}
-{"source": "dispatcher", "event": "kill", "job_id": 5, "server": 1}
-{"source": "dispatcher", "event": "kill", "job_id": 5, "server": 2}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 4, "multiplier": 1.3, "start_time": 1781297111.9253993}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 4, "multiplier": 1.3, "start_time": 1781297111.9254239}
+{"source": "multi", "event": "dispatching", "job_id": 5, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 5, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.00725865364074707}, {"id": 2, "pendings": 0, "age": 0.0071871280670166016}, {"id": 3, "pendings": 0, "age": 0.007165193557739258}], "chosen": [1, 2, 3], "decision_time": 1781297111.9326692}
 {"source": "multi", "event": "dispatching", "job_id": 6, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 6, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781275173.7023509}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 6}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 6}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 6}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 6, "start_time": 1781275173.7024703, "resp_time": 0.0760188102722168}
-{"source": "dispatcher", "event": "kill", "job_id": 6, "server": 1}
-{"source": "dispatcher", "event": "kill", "job_id": 6, "server": 3}
-{"source": "multi", "event": "dispatching", "job_id": 7, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 7, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781275173.8063252}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 7}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 7}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 7}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 7, "start_time": 1781275173.8064415, "resp_time": 0.07689905166625977}
-{"source": "dispatcher", "event": "kill", "job_id": 7, "server": 1}
-{"source": "dispatcher", "event": "kill", "job_id": 7, "server": 2}
-{"source": "multi", "event": "dispatching", "job_id": 8, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 8, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781275173.9978375}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 8}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 8}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 8}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 8, "start_time": 1781275173.9979568, "resp_time": 0.07676029205322266}
-{"source": "dispatcher", "event": "kill", "job_id": 8, "server": 1}
-{"source": "dispatcher", "event": "kill", "job_id": 8, "server": 2}
+{"source": "dispatcher", "event": "dispatching", "job_id": 6, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 1, "age": 0.05071377754211426}, {"id": 2, "pendings": 1, "age": 0.05064272880554199}, {"id": 3, "pendings": 1, "age": 0.050620317459106445}], "chosen": [1, 2, 3], "decision_time": 1781297111.9761603}
+{"source": "multi", "event": "dispatching", "job_id": 7, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 7, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 2, "age": 0.06334161758422852}, {"id": 2, "pendings": 2, "age": 0.06326913833618164}, {"id": 3, "pendings": 2, "age": 0.06324601173400879}], "chosen": [1, 2, 3], "decision_time": 1781297111.9887571}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 4, "start_time": 1781297111.9253225, "resp_time": 0.11427664756774902, "multiplier": 1.3, "end_time": 1781297112.0395992}
+{"source": "dispatcher", "event": "kill", "job_id": 4, "server": 2}
+{"source": "dispatcher", "event": "kill", "job_id": 4, "server": 3}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 5, "multiplier": 1.3, "start_time": 1781297112.039868}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 5, "multiplier": 1.3, "start_time": 1781297112.0399356}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 5, "multiplier": 1.3, "start_time": 1781297112.0399618}
+{"source": "multi", "event": "dispatching", "job_id": 8, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 8, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 2, "age": 0.027263879776000977}, {"id": 2, "pendings": 2, "age": 0.027199983596801758}, {"id": 3, "pendings": 2, "age": 0.0271756649017334}], "chosen": [1, 2, 3], "decision_time": 1781297112.0672328}
 {"source": "multi", "event": "dispatching", "job_id": 9, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 9, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781275174.0871117}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 9}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 9}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 9}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 9, "start_time": 1781275174.0872445, "resp_time": 0.07683253288269043}
-{"source": "dispatcher", "event": "kill", "job_id": 9, "server": 1}
-{"source": "dispatcher", "event": "kill", "job_id": 9, "server": 3}
+{"source": "dispatcher", "event": "dispatching", "job_id": 9, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 3, "age": 0.04500579833984375}, {"id": 2, "pendings": 3, "age": 0.044942378997802734}, {"id": 3, "pendings": 3, "age": 0.04491782188415527}], "chosen": [1, 2, 3], "decision_time": 1781297112.0849943}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 5, "start_time": 1781297112.0398667, "resp_time": 0.11444258689880371, "multiplier": 1.3, "end_time": 1781297112.1543093}
+{"source": "dispatcher", "event": "kill", "job_id": 5, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 6, "multiplier": 1.3, "start_time": 1781297112.1545703}
+{"source": "dispatcher", "event": "kill", "job_id": 5, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 6, "multiplier": 1.3, "start_time": 1781297112.1546502}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 6, "multiplier": 1.3, "start_time": 1781297112.1546779}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 6, "start_time": 1781297112.1545694, "resp_time": 0.11645865440368652, "multiplier": 1.3, "end_time": 1781297112.271028}
+{"source": "dispatcher", "event": "kill", "job_id": 6, "server": 2}
+{"source": "dispatcher", "event": "kill", "job_id": 6, "server": 3}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 7, "multiplier": 1.3, "start_time": 1781297112.271317}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 7, "multiplier": 1.3, "start_time": 1781297112.2713995}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 7, "multiplier": 1.3, "start_time": 1781297112.2714226}
 {"source": "multi", "event": "dispatching", "job_id": 10, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 10, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781275174.2288287}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 10}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 10}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 10}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 10, "start_time": 1781275174.2289543, "resp_time": 0.07697772979736328}
-{"source": "dispatcher", "event": "kill", "job_id": 10, "server": 1}
-{"source": "dispatcher", "event": "kill", "job_id": 10, "server": 2}
+{"source": "dispatcher", "event": "dispatching", "job_id": 10, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 2, "age": 0.020505905151367188}, {"id": 2, "pendings": 2, "age": 0.020426273345947266}, {"id": 3, "pendings": 2, "age": 0.020406484603881836}], "chosen": [1, 2, 3], "decision_time": 1781297112.291928}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 7, "start_time": 1781297112.271315, "resp_time": 0.11339378356933594, "multiplier": 1.3, "end_time": 1781297112.384709}
+{"source": "dispatcher", "event": "kill", "job_id": 7, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 8, "multiplier": 1.3, "start_time": 1781297112.3849502}
+{"source": "dispatcher", "event": "kill", "job_id": 7, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 8, "multiplier": 1.3, "start_time": 1781297112.3850317}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 8, "multiplier": 1.3, "start_time": 1781297112.3850536}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 8, "start_time": 1781297112.3849494, "resp_time": 0.11457586288452148, "multiplier": 1.3, "end_time": 1781297112.4995253}
+{"source": "dispatcher", "event": "kill", "job_id": 8, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 9, "multiplier": 1.3, "start_time": 1781297112.4997804}
+{"source": "dispatcher", "event": "kill", "job_id": 8, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 9, "multiplier": 1.3, "start_time": 1781297112.4998612}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 9, "multiplier": 1.3, "start_time": 1781297112.4998858}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 9, "start_time": 1781297112.4997797, "resp_time": 0.11776924133300781, "multiplier": 1.3, "end_time": 1781297112.617549}
+{"source": "dispatcher", "event": "kill", "job_id": 9, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 10, "multiplier": 1.3, "start_time": 1781297112.617789}
+{"source": "dispatcher", "event": "kill", "job_id": 9, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 10, "multiplier": 1.3, "start_time": 1781297112.6178753}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 10, "multiplier": 1.3, "start_time": 1781297112.617904}
 {"source": "multi", "event": "dispatching", "job_id": 11, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 11, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781275174.3181849}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 11}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 11}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 11}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 11, "start_time": 1781275174.3183336, "resp_time": 0.07820773124694824}
-{"source": "dispatcher", "event": "kill", "job_id": 11, "server": 1}
-{"source": "dispatcher", "event": "kill", "job_id": 11, "server": 3}
+{"source": "dispatcher", "event": "dispatching", "job_id": 11, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.01618361473083496}, {"id": 2, "pendings": 0, "age": 0.016102075576782227}, {"id": 3, "pendings": 0, "age": 0.01607537269592285}], "chosen": [1, 2, 3], "decision_time": 1781297112.6340919}
 {"source": "multi", "event": "dispatching", "job_id": 12, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 12, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781275174.561611}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 12}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 12}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 12}
-{"source": "multi", "event": "dispatching", "job_id": 13, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 13, "servers": [{"id": 1, "pendings": 0, "age": 0.023110628128051758}, {"id": 2, "pendings": 0, "age": 0.02382636070251465}, {"id": 3, "pendings": 0, "age": 0.023819923400878906}], "chosen": [1, 2, 3], "decision_time": 1781275174.5856705}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 12, "start_time": 1781275174.5617929, "resp_time": 0.07723093032836914}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 13}
-{"source": "dispatcher", "event": "kill", "job_id": 12, "server": 1}
-{"source": "dispatcher", "event": "kill", "job_id": 12, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 13}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 13}
+{"source": "dispatcher", "event": "dispatching", "job_id": 12, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 1, "age": 0.04641366004943848}, {"id": 2, "pendings": 1, "age": 0.04633593559265137}, {"id": 3, "pendings": 1, "age": 0.0463104248046875}], "chosen": [1, 2, 3], "decision_time": 1781297112.664421}
+{"source": "multi", "event": "dispatching", "job_id": 13, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 13, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 2, "age": 0.11256718635559082}, {"id": 2, "pendings": 2, "age": 0.11248564720153809}, {"id": 3, "pendings": 2, "age": 0.11245894432067871}], "chosen": [1, 2, 3], "decision_time": 1781297112.7304947}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 10, "start_time": 1781297112.6177878, "resp_time": 0.11445379257202148, "multiplier": 1.3, "end_time": 1781297112.7322416}
+{"source": "dispatcher", "event": "kill", "job_id": 10, "server": 2}
+{"source": "dispatcher", "event": "kill", "job_id": 10, "server": 3}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 11, "multiplier": 1.3, "start_time": 1781297112.7324426}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 11, "multiplier": 1.3, "start_time": 1781297112.7324872}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 11, "multiplier": 1.3, "start_time": 1781297112.7325094}
 {"source": "multi", "event": "dispatching", "job_id": 14, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 14, "servers": [{"id": 1, "pendings": 0, "age": 0.0657508373260498}, {"id": 2, "pendings": 0, "age": 0.0658106803894043}, {"id": 3, "pendings": 0, "age": 0.0657353401184082}], "chosen": [1, 2, 3], "decision_time": 1781275174.704954}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 13, "start_time": 1781275174.6390982, "resp_time": 0.07709074020385742}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 14}
-{"source": "dispatcher", "event": "kill", "job_id": 13, "server": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 14, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 2, "age": 0.09437012672424316}, {"id": 2, "pendings": 2, "age": 0.0943295955657959}, {"id": 3, "pendings": 2, "age": 0.09430980682373047}], "chosen": [1, 2, 3], "decision_time": 1781297112.826944}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 11, "start_time": 1781297112.7324414, "resp_time": 0.11403274536132812, "multiplier": 1.3, "end_time": 1781297112.8464742}
+{"source": "dispatcher", "event": "kill", "job_id": 11, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 12, "multiplier": 1.3, "start_time": 1781297112.846702}
+{"source": "dispatcher", "event": "kill", "job_id": 11, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 12, "multiplier": 1.3, "start_time": 1781297112.8467808}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 12, "multiplier": 1.3, "start_time": 1781297112.846804}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 12, "start_time": 1781297112.8467014, "resp_time": 0.11519241333007812, "multiplier": 1.3, "end_time": 1781297112.9618938}
+{"source": "dispatcher", "event": "kill", "job_id": 12, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 13, "multiplier": 1.3, "start_time": 1781297112.962261}
+{"source": "dispatcher", "event": "kill", "job_id": 12, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 13, "multiplier": 1.3, "start_time": 1781297112.9624133}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 13, "multiplier": 1.3, "start_time": 1781297112.962435}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 13, "start_time": 1781297112.96226, "resp_time": 0.11374545097351074, "multiplier": 1.3, "end_time": 1781297113.0760055}
+{"source": "dispatcher", "event": "kill", "job_id": 13, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 14, "multiplier": 1.3, "start_time": 1781297113.0762622}
 {"source": "dispatcher", "event": "kill", "job_id": 13, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 14}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 14}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 14, "start_time": 1781275174.7162375, "resp_time": 0.07753968238830566}
-{"source": "dispatcher", "event": "kill", "job_id": 14, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 14, "multiplier": 1.3, "start_time": 1781297113.076343}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 14, "multiplier": 1.3, "start_time": 1781297113.0763636}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 14, "start_time": 1781297113.0762613, "resp_time": 0.11397051811218262, "multiplier": 1.3, "end_time": 1781297113.1902318}
+{"source": "dispatcher", "event": "kill", "job_id": 14, "server": 2}
 {"source": "dispatcher", "event": "kill", "job_id": 14, "server": 3}
-{"source": "multi", "event": "dispatching", "job_id": 15, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 15, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781275174.9566112}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 15}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 15}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 15}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 15, "start_time": 1781275174.9568424, "resp_time": 0.07663941383361816}
-{"source": "dispatcher", "event": "kill", "job_id": 15, "server": 1}
-{"source": "dispatcher", "event": "kill", "job_id": 15, "server": 2}
+{"source": "multi", "event": "dispatching", "job_id": 15, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 15, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781297113.2080448}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 15, "multiplier": 1.3, "start_time": 1781297113.2084055}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 15, "multiplier": 1.3, "start_time": 1781297113.208389}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 15, "multiplier": 1.3, "start_time": 1781297113.208431}
 {"source": "multi", "event": "dispatching", "job_id": 16, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 16, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781275175.043046}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 16}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 16}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 16}
+{"source": "dispatcher", "event": "dispatching", "job_id": 16, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.07369875907897949}, {"id": 2, "pendings": 0, "age": 0.07372117042541504}, {"id": 3, "pendings": 0, "age": 0.07367968559265137}], "chosen": [1, 2, 3], "decision_time": 1781297113.2822287}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 15, "start_time": 1781297113.2084, "resp_time": 0.11456418037414551, "multiplier": 1.3, "end_time": 1781297113.3229642}
+{"source": "dispatcher", "event": "kill", "job_id": 15, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 16, "multiplier": 1.3, "start_time": 1781297113.323299}
+{"source": "dispatcher", "event": "kill", "job_id": 15, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 16, "multiplier": 1.3, "start_time": 1781297113.3234005}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 16, "multiplier": 1.3, "start_time": 1781297113.3234205}
 {"source": "multi", "event": "dispatching", "job_id": 17, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 17, "servers": [{"id": 1, "pendings": 0, "age": 0.020295143127441406}, {"id": 2, "pendings": 0, "age": 0.020978212356567383}, {"id": 3, "pendings": 0, "age": 0.020964622497558594}], "chosen": [1, 2, 3], "decision_time": 1781275175.0641882}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 16, "start_time": 1781275175.043179, "resp_time": 0.07662701606750488}
-{"source": "dispatcher", "event": "kill", "job_id": 16, "server": 1}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 17}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 16, "start_time": 1781275175.043193, "resp_time": 0.0766608715057373}
-{"source": "dispatcher", "event": "kill", "job_id": 16, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 17}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 17}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 17, "start_time": 1781275175.1198745, "resp_time": 0.07621622085571289}
-{"source": "dispatcher", "event": "kill", "job_id": 17, "server": 1}
-{"source": "dispatcher", "event": "kill", "job_id": 17, "server": 3}
+{"source": "dispatcher", "event": "dispatching", "job_id": 17, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.045174598693847656}, {"id": 2, "pendings": 0, "age": 0.04507780075073242}, {"id": 3, "pendings": 0, "age": 0.0450594425201416}], "chosen": [1, 2, 3], "decision_time": 1781297113.368588}
 {"source": "multi", "event": "dispatching", "job_id": 18, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 18, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781275175.2146297}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 18}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 18}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 18}
-{"source": "multi", "event": "dispatching", "job_id": 19, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 19, "servers": [{"id": 1, "pendings": 0, "age": 0.0205230712890625}, {"id": 2, "pendings": 0, "age": 0.020510435104370117}, {"id": 3, "pendings": 0, "age": 0.020498991012573242}], "chosen": [1, 2, 3], "decision_time": 1781275175.2353106}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 18, "start_time": 1781275175.2147598, "resp_time": 0.07744884490966797}
-{"source": "dispatcher", "event": "kill", "job_id": 18, "server": 1}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 19}
+{"source": "dispatcher", "event": "dispatching", "job_id": 18, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 1, "age": 0.09011197090148926}, {"id": 2, "pendings": 1, "age": 0.09001588821411133}, {"id": 3, "pendings": 1, "age": 0.0899972915649414}], "chosen": [1, 2, 3], "decision_time": 1781297113.413541}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 16, "start_time": 1781297113.3232977, "resp_time": 0.11365914344787598, "multiplier": 1.3, "end_time": 1781297113.436957}
+{"source": "dispatcher", "event": "kill", "job_id": 16, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 17, "multiplier": 1.3, "start_time": 1781297113.4371922}
+{"source": "dispatcher", "event": "kill", "job_id": 16, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 17, "multiplier": 1.3, "start_time": 1781297113.4372716}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 17, "multiplier": 1.3, "start_time": 1781297113.4372997}
+{"source": "multi", "event": "dispatching", "job_id": 19, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 19, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 1, "age": 0.046538352966308594}, {"id": 2, "pendings": 1, "age": 0.04646611213684082}, {"id": 3, "pendings": 1, "age": 0.04644131660461426}], "chosen": [1, 2, 3], "decision_time": 1781297113.4839134}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 17, "start_time": 1781297113.4371915, "resp_time": 0.11291790008544922, "multiplier": 1.3, "end_time": 1781297113.5501094}
+{"source": "dispatcher", "event": "kill", "job_id": 17, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 18, "multiplier": 1.3, "start_time": 1781297113.5503607}
+{"source": "dispatcher", "event": "kill", "job_id": 17, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 18, "multiplier": 1.3, "start_time": 1781297113.5504498}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 18, "multiplier": 1.3, "start_time": 1781297113.5504744}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 18, "start_time": 1781297113.5503595, "resp_time": 0.1154024600982666, "multiplier": 1.3, "end_time": 1781297113.665762}
 {"source": "dispatcher", "event": "kill", "job_id": 18, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 19}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 19}
-{"source": "multi", "event": "dispatching", "job_id": 20, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 20, "servers": [{"id": 1, "pendings": 0, "age": 0.010967493057250977}, {"id": 2, "pendings": 0, "age": 0.010951042175292969}, {"id": 3, "pendings": 0, "age": 0.01101231575012207}], "chosen": [1, 2, 3], "decision_time": 1781275175.303346}
-{"source": "multi", "event": "dispatching", "job_id": 21, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 21, "servers": [{"id": 1, "pendings": 1, "age": 0.0719149112701416}, {"id": 2, "pendings": 1, "age": 0.07189798355102539}, {"id": 3, "pendings": 1, "age": 0.07195925712585449}], "chosen": [1, 2, 3], "decision_time": 1781275175.3642912}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 19, "start_time": 1781275175.2922916, "resp_time": 0.07652163505554199}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 19, "start_time": 1781275175.2923524, "resp_time": 0.07646322250366211}
-{"source": "dispatcher", "event": "kill", "job_id": 19, "server": 1}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 20}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 19, "multiplier": 1.3, "start_time": 1781297113.6660242}
+{"source": "dispatcher", "event": "kill", "job_id": 18, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 19, "multiplier": 1.3, "start_time": 1781297113.666115}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 19, "multiplier": 1.3, "start_time": 1781297113.666136}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 19, "start_time": 1781297113.666023, "resp_time": 0.1126410961151123, "multiplier": 1.3, "end_time": 1781297113.778664}
 {"source": "dispatcher", "event": "kill", "job_id": 19, "server": 2}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 20}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 20}
-{"source": "multi", "event": "dispatching", "job_id": 22, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 22, "servers": [{"id": 1, "pendings": 1, "age": 0.05995750427246094}, {"id": 2, "pendings": 1, "age": 0.05996847152709961}, {"id": 3, "pendings": 1, "age": 0.0599825382232666}], "chosen": [1, 2, 3], "decision_time": 1781275175.4289227}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 20, "start_time": 1781275175.36889, "resp_time": 0.07665491104125977}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 21}
-{"source": "dispatcher", "event": "kill", "job_id": 20, "server": 1}
+{"source": "dispatcher", "event": "kill", "job_id": 19, "server": 3}
+{"source": "multi", "event": "dispatching", "job_id": 20, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 20, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781297113.802626}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 20, "multiplier": 1.3, "start_time": 1781297113.802998}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 20, "multiplier": 1.3, "start_time": 1781297113.8029845}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 20, "multiplier": 1.3, "start_time": 1781297113.8029845}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 20, "start_time": 1781297113.802991, "resp_time": 0.11248922348022461, "multiplier": 1.3, "end_time": 1781297113.9154801}
+{"source": "dispatcher", "event": "kill", "job_id": 20, "server": 2}
 {"source": "dispatcher", "event": "kill", "job_id": 20, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 21}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 21}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 21, "start_time": 1781275175.445679, "resp_time": 0.0773468017578125}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 22}
-{"source": "dispatcher", "event": "kill", "job_id": 21, "server": 1}
+{"source": "multi", "event": "dispatching", "job_id": 21, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 21, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781297114.158199}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 21, "multiplier": 1.3, "start_time": 1781297114.1584587}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 21, "multiplier": 1.3, "start_time": 1781297114.1585228}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 21, "multiplier": 1.3, "start_time": 1781297114.1585226}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 21, "start_time": 1781297114.158453, "resp_time": 0.11340546607971191, "multiplier": 1.3, "end_time": 1781297114.2718585}
 {"source": "dispatcher", "event": "kill", "job_id": 21, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 22}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 22}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 22, "start_time": 1781275175.5231822, "resp_time": 0.0773017406463623}
-{"source": "dispatcher", "event": "kill", "job_id": 22, "server": 1}
+{"source": "dispatcher", "event": "kill", "job_id": 21, "server": 3}
+{"source": "multi", "event": "dispatching", "job_id": 22, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 22, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781297114.3055983}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 22, "multiplier": 1.3, "start_time": 1781297114.3058858}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 22, "multiplier": 1.3, "start_time": 1781297114.305881}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 22, "multiplier": 1.3, "start_time": 1781297114.3058813}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 22, "start_time": 1781297114.30588, "resp_time": 0.1126852035522461, "multiplier": 1.3, "end_time": 1781297114.4185653}
+{"source": "dispatcher", "event": "kill", "job_id": 22, "server": 2}
 {"source": "dispatcher", "event": "kill", "job_id": 22, "server": 3}
 {"source": "multi", "event": "dispatching", "job_id": 23, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 23, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781275175.7241921}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 23}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 23}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 23}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 23, "start_time": 1781275175.7244263, "resp_time": 0.0767676830291748}
-{"source": "dispatcher", "event": "kill", "job_id": 23, "server": 1}
-{"source": "dispatcher", "event": "kill", "job_id": 23, "server": 3}
+{"source": "dispatcher", "event": "dispatching", "job_id": 23, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781297114.65965}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 23, "multiplier": 1.3, "start_time": 1781297114.6599073}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 23, "multiplier": 1.3, "start_time": 1781297114.6599634}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 23, "multiplier": 1.3, "start_time": 1781297114.6599631}
 {"source": "multi", "event": "dispatching", "job_id": 24, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 24, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781275175.9868135}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 24}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 24}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 24}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 24, "start_time": 1781275175.9870224, "resp_time": 0.07640981674194336}
-{"source": "dispatcher", "event": "kill", "job_id": 24, "server": 1}
-{"source": "dispatcher", "event": "kill", "job_id": 24, "server": 2}
-{"source": "multi", "event": "dispatching", "job_id": 25, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 25, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781275176.0720232}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 25}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 25}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 25}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 25, "start_time": 1781275176.0721645, "resp_time": 0.07715439796447754}
-{"source": "dispatcher", "event": "kill", "job_id": 25, "server": 1}
-{"source": "dispatcher", "event": "kill", "job_id": 25, "server": 3}
+{"source": "dispatcher", "event": "dispatching", "job_id": 24, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.004794120788574219}, {"id": 2, "pendings": 0, "age": 0.004739522933959961}, {"id": 3, "pendings": 0, "age": 0.004740476608276367}], "chosen": [1, 2, 3], "decision_time": 1781297114.6647468}
+{"source": "multi", "event": "dispatching", "job_id": 25, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 25, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 1, "age": 0.05067086219787598}, {"id": 2, "pendings": 1, "age": 0.05061912536621094}, {"id": 3, "pendings": 1, "age": 0.05062127113342285}], "chosen": [1, 2, 3], "decision_time": 1781297114.7107077}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 23, "start_time": 1781297114.6599016, "resp_time": 0.11227154731750488, "multiplier": 1.3, "end_time": 1781297114.7721732}
+{"source": "dispatcher", "event": "kill", "job_id": 23, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 24, "multiplier": 1.3, "start_time": 1781297114.7724216}
+{"source": "dispatcher", "event": "kill", "job_id": 23, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 24, "multiplier": 1.3, "start_time": 1781297114.7725108}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 24, "multiplier": 1.3, "start_time": 1781297114.772533}
 {"source": "multi", "event": "dispatching", "job_id": 26, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 26, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781275176.1863983}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 26}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 26}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 26}
-{"source": "multi", "event": "dispatching", "job_id": 27, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 27, "servers": [{"id": 1, "pendings": 0, "age": 0.05878925323486328}, {"id": 2, "pendings": 0, "age": 0.0588071346282959}, {"id": 3, "pendings": 0, "age": 0.0587770938873291}], "chosen": [1, 2, 3], "decision_time": 1781275176.2454}
-{"source": "multi", "event": "dispatching", "job_id": 28, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 28, "servers": [{"id": 1, "pendings": 1, "age": 0.06591486930847168}, {"id": 2, "pendings": 1, "age": 0.0659327507019043}, {"id": 3, "pendings": 1, "age": 0.0659027099609375}], "chosen": [1, 2, 3], "decision_time": 1781275176.2525082}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 26, "start_time": 1781275176.186538, "resp_time": 0.0770263671875}
-{"source": "dispatcher", "event": "kill", "job_id": 26, "server": 1}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 27}
+{"source": "dispatcher", "event": "dispatching", "job_id": 26, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 1, "age": 0.04250025749206543}, {"id": 2, "pendings": 1, "age": 0.04241585731506348}, {"id": 3, "pendings": 1, "age": 0.04239511489868164}], "chosen": [1, 2, 3], "decision_time": 1781297114.8150458}
+{"source": "multi", "event": "dispatching", "job_id": 27, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 27, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 2, "age": 0.08677983283996582}, {"id": 2, "pendings": 2, "age": 0.08669614791870117}, {"id": 3, "pendings": 2, "age": 0.08667540550231934}], "chosen": [1, 2, 3], "decision_time": 1781297114.859345}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 24, "start_time": 1781297114.7724204, "resp_time": 0.11487460136413574, "multiplier": 1.3, "end_time": 1781297114.887295}
+{"source": "dispatcher", "event": "kill", "job_id": 24, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 25, "multiplier": 1.3, "start_time": 1781297114.8875651}
+{"source": "dispatcher", "event": "kill", "job_id": 24, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 25, "multiplier": 1.3, "start_time": 1781297114.887649}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 25, "multiplier": 1.3, "start_time": 1781297114.8876734}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 25, "start_time": 1781297114.8875642, "resp_time": 0.11285781860351562, "multiplier": 1.3, "end_time": 1781297115.000422}
+{"source": "dispatcher", "event": "kill", "job_id": 25, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 26, "multiplier": 1.3, "start_time": 1781297115.0006738}
+{"source": "dispatcher", "event": "kill", "job_id": 25, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 26, "multiplier": 1.3, "start_time": 1781297115.000774}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 26, "multiplier": 1.3, "start_time": 1781297115.000796}
+{"source": "multi", "event": "dispatching", "job_id": 28, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 28, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 1, "age": 0.050637006759643555}, {"id": 2, "pendings": 1, "age": 0.05054283142089844}, {"id": 3, "pendings": 1, "age": 0.050521135330200195}], "chosen": [1, 2, 3], "decision_time": 1781297115.0514452}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 26, "start_time": 1781297115.0006726, "resp_time": 0.11358833312988281, "multiplier": 1.3, "end_time": 1781297115.114261}
+{"source": "dispatcher", "event": "kill", "job_id": 26, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 27, "multiplier": 1.3, "start_time": 1781297115.1145158}
 {"source": "dispatcher", "event": "kill", "job_id": 26, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 27}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 27}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 27, "start_time": 1781275176.2637002, "resp_time": 0.07740974426269531}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 28}
-{"source": "dispatcher", "event": "kill", "job_id": 27, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 27, "multiplier": 1.3, "start_time": 1781297115.114604}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 27, "multiplier": 1.3, "start_time": 1781297115.1146302}
+{"source": "multi", "event": "dispatching", "job_id": 29, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 29, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 1, "age": 0.0060155391693115234}, {"id": 2, "pendings": 1, "age": 0.005929708480834961}, {"id": 3, "pendings": 1, "age": 0.005905628204345703}], "chosen": [1, 2, 3], "decision_time": 1781297115.1205928}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 27, "start_time": 1781297115.1145146, "resp_time": 0.11473631858825684, "multiplier": 1.3, "end_time": 1781297115.229251}
 {"source": "dispatcher", "event": "kill", "job_id": 27, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 28}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 28}
-{"source": "multi", "event": "dispatching", "job_id": 29, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 29, "servers": [{"id": 1, "pendings": 0, "age": 0.007254362106323242}, {"id": 2, "pendings": 0, "age": 0.007235050201416016}, {"id": 3, "pendings": 0, "age": 0.0072956085205078125}], "chosen": [1, 2, 3], "decision_time": 1781275176.348524}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 28, "start_time": 1781275176.3412414, "resp_time": 0.07719135284423828}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 29}
-{"source": "dispatcher", "event": "kill", "job_id": 28, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 28, "multiplier": 1.3, "start_time": 1781297115.229619}
+{"source": "dispatcher", "event": "kill", "job_id": 27, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 28, "multiplier": 1.3, "start_time": 1781297115.2297552}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 28, "multiplier": 1.3, "start_time": 1781297115.22978}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 28, "start_time": 1781297115.2296178, "resp_time": 0.11291670799255371, "multiplier": 1.3, "end_time": 1781297115.3425345}
+{"source": "dispatcher", "event": "kill", "job_id": 28, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 29, "multiplier": 1.3, "start_time": 1781297115.3427668}
 {"source": "dispatcher", "event": "kill", "job_id": 28, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 29}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 28, "start_time": 1781275176.3411813, "resp_time": 0.07732677459716797}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 29}
-{"source": "multi", "event": "dispatching", "job_id": 30, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 30, "servers": [{"id": 1, "pendings": 0, "age": 0.05811643600463867}, {"id": 2, "pendings": 0, "age": 0.05816030502319336}, {"id": 3, "pendings": 0, "age": 0.05807852745056152}], "chosen": [1, 2, 3], "decision_time": 1781275176.4766948}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 29, "start_time": 1781275176.4184854, "resp_time": 0.07761859893798828}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 30}
-{"source": "dispatcher", "event": "kill", "job_id": 29, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 29, "multiplier": 1.3, "start_time": 1781297115.3428493}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 29, "multiplier": 1.3, "start_time": 1781297115.342869}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 29, "start_time": 1781297115.342766, "resp_time": 0.11310243606567383, "multiplier": 1.3, "end_time": 1781297115.4558685}
+{"source": "dispatcher", "event": "kill", "job_id": 29, "server": 2}
 {"source": "dispatcher", "event": "kill", "job_id": 29, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 30}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 30}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 30, "start_time": 1781275176.4962397, "resp_time": 0.07808375358581543}
-{"source": "dispatcher", "event": "kill", "job_id": 30, "server": 1}
+{"source": "multi", "event": "dispatching", "job_id": 30, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 30, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781297115.4900641}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 30, "multiplier": 1.3, "start_time": 1781297115.4904506}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 30, "multiplier": 1.3, "start_time": 1781297115.4904504}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 30, "multiplier": 1.3, "start_time": 1781297115.4904773}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 30, "start_time": 1781297115.490471, "resp_time": 0.11440086364746094, "multiplier": 1.3, "end_time": 1781297115.6048717}
 {"source": "dispatcher", "event": "kill", "job_id": 30, "server": 2}
-{"source": "multi", "event": "dispatching", "job_id": 31, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 31, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781275176.7430444}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 31}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 31}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 31}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 31, "start_time": 1781275176.7433355, "resp_time": 0.1546027660369873}
-{"source": "dispatcher", "event": "kill", "job_id": 31, "server": 1}
+{"source": "dispatcher", "event": "kill", "job_id": 30, "server": 3}
+{"source": "multi", "event": "dispatching", "job_id": 31, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 31, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781297115.77377}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 31, "multiplier": 1.3, "start_time": 1781297115.7740474}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 31, "multiplier": 1.3, "start_time": 1781297115.7741358}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 31, "multiplier": 1.3, "start_time": 1781297115.7741358}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 31, "start_time": 1781297115.7740412, "resp_time": 0.11271858215332031, "multiplier": 1.3, "end_time": 1781297115.8867598}
+{"source": "dispatcher", "event": "kill", "job_id": 31, "server": 2}
 {"source": "dispatcher", "event": "kill", "job_id": 31, "server": 3}
-{"source": "multi", "event": "dispatching", "job_id": 32, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 32, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781275176.9024386}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 32}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 32}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 32}
-{"source": "multi", "event": "dispatching", "job_id": 33, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 33, "servers": [{"id": 1, "pendings": 0, "age": 0.1344749927520752}, {"id": 2, "pendings": 0, "age": 0.1343076229095459}, {"id": 3, "pendings": 0, "age": 0.13439583778381348}], "chosen": [1, 2, 3], "decision_time": 1781275177.037233}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 32, "start_time": 1781275176.9028213, "resp_time": 0.15501189231872559}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 33}
-{"source": "dispatcher", "event": "kill", "job_id": 32, "server": 1}
+{"source": "multi", "event": "dispatching", "job_id": 32, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 32, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781297115.9233317}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 32, "multiplier": 1.3, "start_time": 1781297115.9236436}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 32, "multiplier": 1.3, "start_time": 1781297115.923624}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 32, "multiplier": 1.3, "start_time": 1781297115.923624}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 32, "start_time": 1781297115.9236374, "resp_time": 0.11212301254272461, "multiplier": 1.3, "end_time": 1781297116.0357604}
+{"source": "dispatcher", "event": "kill", "job_id": 32, "server": 2}
 {"source": "dispatcher", "event": "kill", "job_id": 32, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 33}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 33}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 33, "start_time": 1781275177.0580952, "resp_time": 0.15514540672302246}
-{"source": "dispatcher", "event": "kill", "job_id": 33, "server": 1}
+{"source": "multi", "event": "dispatching", "job_id": 33, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 33, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781297116.0699184}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 33, "multiplier": 1.3, "start_time": 1781297116.0701766}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 33, "multiplier": 1.3, "start_time": 1781297116.0702324}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 33, "multiplier": 1.3, "start_time": 1781297116.0702324}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 33, "start_time": 1781297116.0701706, "resp_time": 0.11425614356994629, "multiplier": 1.3, "end_time": 1781297116.1844268}
 {"source": "dispatcher", "event": "kill", "job_id": 33, "server": 2}
-{"source": "multi", "event": "dispatching", "job_id": 34, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 34, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781275177.2991085}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 34}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 34}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 34}
+{"source": "dispatcher", "event": "kill", "job_id": 33, "server": 3}
+{"source": "multi", "event": "dispatching", "job_id": 34, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 34, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781297116.2799418}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 34, "multiplier": 1.3, "start_time": 1781297116.2802365}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 34, "multiplier": 1.3, "start_time": 1781297116.2802317}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 34, "multiplier": 1.3, "start_time": 1781297116.2802515}
 {"source": "multi", "event": "dispatching", "job_id": 35, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 35, "servers": [{"id": 1, "pendings": 0, "age": 0.022464990615844727}, {"id": 2, "pendings": 0, "age": 0.02205944061279297}, {"id": 3, "pendings": 0, "age": 0.02248859405517578}], "chosen": [1, 2, 3], "decision_time": 1781275177.3220022}
-{"source": "multi", "event": "dispatching", "job_id": 36, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 36, "servers": [{"id": 1, "pendings": 1, "age": 0.11845612525939941}, {"id": 2, "pendings": 1, "age": 0.11805009841918945}, {"id": 3, "pendings": 1, "age": 0.11847949028015137}], "chosen": [1, 2, 3], "decision_time": 1781275177.4179752}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 34, "start_time": 1781275177.2998376, "resp_time": 0.15452909469604492}
-{"source": "dispatcher", "event": "kill", "job_id": 34, "server": 1}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 35}
+{"source": "dispatcher", "event": "dispatching", "job_id": 35, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.01932811737060547}, {"id": 2, "pendings": 0, "age": 0.019337177276611328}, {"id": 3, "pendings": 0, "age": 0.0193173885345459}], "chosen": [1, 2, 3], "decision_time": 1781297116.2996564}
+{"source": "multi", "event": "dispatching", "job_id": 36, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 36, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 1, "age": 0.060358524322509766}, {"id": 2, "pendings": 1, "age": 0.060369014739990234}, {"id": 3, "pendings": 1, "age": 0.060349464416503906}], "chosen": [1, 2, 3], "decision_time": 1781297116.3407202}
+{"source": "multi", "event": "dispatching", "job_id": 37, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 37, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 2, "age": 0.07680583000183105}, {"id": 2, "pendings": 2, "age": 0.07681512832641602}, {"id": 3, "pendings": 2, "age": 0.07679557800292969}], "chosen": [1, 2, 3], "decision_time": 1781297116.3571453}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 34, "start_time": 1781297116.2802308, "resp_time": 0.11174988746643066, "multiplier": 1.3, "end_time": 1781297116.3919806}
+{"source": "dispatcher", "event": "kill", "job_id": 34, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 35, "multiplier": 1.3, "start_time": 1781297116.3922374}
 {"source": "dispatcher", "event": "kill", "job_id": 34, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 35}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 35}
-{"source": "multi", "event": "dispatching", "job_id": 37, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 37, "servers": [{"id": 1, "pendings": 1, "age": 0.023892641067504883}, {"id": 2, "pendings": 1, "age": 0.02400946617126465}, {"id": 3, "pendings": 1, "age": 0.02386951446533203}], "chosen": [1, 2, 3], "decision_time": 1781275177.478609}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 35, "start_time": 1781275177.454523, "resp_time": 0.1544346809387207}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 36}
-{"source": "dispatcher", "event": "kill", "job_id": 35, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 35, "multiplier": 1.3, "start_time": 1781297116.3923218}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 35, "multiplier": 1.3, "start_time": 1781297116.392343}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 35, "start_time": 1781297116.3922362, "resp_time": 0.11346817016601562, "multiplier": 1.3, "end_time": 1781297116.5057044}
+{"source": "dispatcher", "event": "kill", "job_id": 35, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 36, "multiplier": 1.3, "start_time": 1781297116.5059805}
 {"source": "dispatcher", "event": "kill", "job_id": 35, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 36}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 36}
-{"source": "multi", "event": "dispatching", "job_id": 38, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 38, "servers": [{"id": 1, "pendings": 1, "age": 0.0999441146850586}, {"id": 2, "pendings": 1, "age": 0.1000521183013916}, {"id": 3, "pendings": 1, "age": 0.09991097450256348}], "chosen": [1, 2, 3], "decision_time": 1781275177.7092252}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 36, "start_time": 1781275177.6092026, "resp_time": 0.15522480010986328}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 37}
-{"source": "dispatcher", "event": "kill", "job_id": 36, "server": 1}
-{"source": "dispatcher", "event": "kill", "job_id": 36, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 37}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 37}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 36, "multiplier": 1.3, "start_time": 1781297116.5060668}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 36, "multiplier": 1.3, "start_time": 1781297116.506094}
+{"source": "multi", "event": "dispatching", "job_id": 38, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 38, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 1, "age": 0.047981977462768555}, {"id": 2, "pendings": 1, "age": 0.04790019989013672}, {"id": 3, "pendings": 1, "age": 0.04787564277648926}], "chosen": [1, 2, 3], "decision_time": 1781297116.5540903}
 {"source": "multi", "event": "dispatching", "job_id": 39, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 39, "servers": [{"id": 1, "pendings": 1, "age": 0.01999497413635254}, {"id": 2, "pendings": 1, "age": 0.019945621490478516}, {"id": 3, "pendings": 1, "age": 0.020082712173461914}], "chosen": [1, 2, 3], "decision_time": 1781275177.7847245}
-{"source": "multi", "event": "dispatching", "job_id": 40, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 40, "servers": [{"id": 1, "pendings": 2, "age": 0.05218052864074707}, {"id": 2, "pendings": 2, "age": 0.052130699157714844}, {"id": 3, "pendings": 2, "age": 0.05226778984069824}], "chosen": [1, 2, 3], "decision_time": 1781275177.8168998}
-{"source": "multi", "event": "dispatching", "job_id": 41, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 41, "servers": [{"id": 1, "pendings": 3, "age": 0.0890347957611084}, {"id": 2, "pendings": 3, "age": 0.08898496627807617}, {"id": 3, "pendings": 3, "age": 0.08912181854248047}], "chosen": [1, 2, 3], "decision_time": 1781275177.8537586}
-{"source": "multi", "event": "dispatching", "job_id": 42, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 42, "servers": [{"id": 1, "pendings": 4, "age": 0.1182098388671875}, {"id": 2, "pendings": 4, "age": 0.11816000938415527}, {"id": 3, "pendings": 4, "age": 0.11829686164855957}], "chosen": [1, 2, 3], "decision_time": 1781275177.8829377}
-{"source": "multi", "event": "dispatching", "job_id": 43, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 43, "servers": [{"id": 1, "pendings": 5, "age": 0.13069391250610352}, {"id": 2, "pendings": 5, "age": 0.1306440830230713}, {"id": 3, "pendings": 5, "age": 0.13078069686889648}], "chosen": [1, 2, 3], "decision_time": 1781275177.895412}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 37, "start_time": 1781275177.764565, "resp_time": 0.1550285816192627}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 38}
-{"source": "dispatcher", "event": "kill", "job_id": 37, "server": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 39, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 2, "age": 0.0862734317779541}, {"id": 2, "pendings": 2, "age": 0.08619213104248047}, {"id": 3, "pendings": 2, "age": 0.0861673355102539}], "chosen": [1, 2, 3], "decision_time": 1781297116.5923839}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 36, "start_time": 1781297116.5059793, "resp_time": 0.11468195915222168, "multiplier": 1.3, "end_time": 1781297116.6206613}
+{"source": "dispatcher", "event": "kill", "job_id": 36, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 37, "multiplier": 1.3, "start_time": 1781297116.6208944}
+{"source": "dispatcher", "event": "kill", "job_id": 36, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 37, "multiplier": 1.3, "start_time": 1781297116.6209893}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 37, "multiplier": 1.3, "start_time": 1781297116.6210105}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 37, "start_time": 1781297116.6208935, "resp_time": 0.11264348030090332, "multiplier": 1.3, "end_time": 1781297116.733537}
 {"source": "dispatcher", "event": "kill", "job_id": 37, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 38}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 38}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 38, "start_time": 1781275177.9198332, "resp_time": 0.1546154022216797}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 39}
-{"source": "dispatcher", "event": "kill", "job_id": 38, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 38, "multiplier": 1.3, "start_time": 1781297116.7337916}
+{"source": "dispatcher", "event": "kill", "job_id": 37, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 38, "multiplier": 1.3, "start_time": 1781297116.7338772}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 38, "multiplier": 1.3, "start_time": 1781297116.7339027}
+{"source": "multi", "event": "dispatching", "job_id": 40, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 40, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 1, "age": 0.06913328170776367}, {"id": 2, "pendings": 1, "age": 0.06905221939086914}, {"id": 3, "pendings": 1, "age": 0.06902909278869629}], "chosen": [1, 2, 3], "decision_time": 1781297116.8030457}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 38, "start_time": 1781297116.7337906, "resp_time": 0.11380195617675781, "multiplier": 1.3, "end_time": 1781297116.8475926}
+{"source": "dispatcher", "event": "kill", "job_id": 38, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 39, "multiplier": 1.3, "start_time": 1781297116.847846}
 {"source": "dispatcher", "event": "kill", "job_id": 38, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 39}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 39}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 39, "start_time": 1781275178.0745494, "resp_time": 0.15462636947631836}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 40}
-{"source": "dispatcher", "event": "kill", "job_id": 39, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 39, "multiplier": 1.3, "start_time": 1781297116.8479304}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 39, "multiplier": 1.3, "start_time": 1781297116.8479548}
+{"source": "multi", "event": "dispatching", "job_id": 41, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 41, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 1, "age": 0.0264279842376709}, {"id": 2, "pendings": 1, "age": 0.02634882926940918}, {"id": 3, "pendings": 1, "age": 0.026327133178710938}], "chosen": [1, 2, 3], "decision_time": 1781297116.8744185}
+{"source": "multi", "event": "dispatching", "job_id": 42, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 42, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 2, "age": 0.029569387435913086}, {"id": 2, "pendings": 2, "age": 0.02948904037475586}, {"id": 3, "pendings": 2, "age": 0.029467344284057617}], "chosen": [1, 2, 3], "decision_time": 1781297116.877502}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 39, "start_time": 1781297116.8478453, "resp_time": 0.11616277694702148, "multiplier": 1.3, "end_time": 1781297116.964008}
+{"source": "dispatcher", "event": "kill", "job_id": 39, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 40, "multiplier": 1.3, "start_time": 1781297116.9642527}
 {"source": "dispatcher", "event": "kill", "job_id": 39, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 40}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 40}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 40, "start_time": 1781275178.2294376, "resp_time": 0.15480589866638184}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 41}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 40, "start_time": 1781275178.2292647, "resp_time": 0.15509343147277832}
-{"source": "dispatcher", "event": "kill", "job_id": 40, "server": 1}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 41}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 40, "multiplier": 1.3, "start_time": 1781297116.9643435}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 40, "multiplier": 1.3, "start_time": 1781297116.9643662}
+{"source": "multi", "event": "dispatching", "job_id": 43, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 43, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 2, "age": 0.000347137451171875}, {"id": 2, "pendings": 2, "age": 0.0002582073211669922}, {"id": 3, "pendings": 2, "age": 0.0002377033233642578}], "chosen": [1, 2, 3], "decision_time": 1781297116.96465}
+{"source": "multi", "event": "dispatching", "job_id": 44, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 44, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 3, "age": 0.10471868515014648}, {"id": 2, "pendings": 3, "age": 0.10463643074035645}, {"id": 3, "pendings": 3, "age": 0.10461831092834473}], "chosen": [1, 2, 3], "decision_time": 1781297117.0691626}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 40, "start_time": 1781297116.9642513, "resp_time": 0.11354613304138184, "multiplier": 1.3, "end_time": 1781297117.0777974}
 {"source": "dispatcher", "event": "kill", "job_id": 40, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 41}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 42}
-{"source": "multi", "event": "dispatching", "job_id": 44, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 44, "servers": [{"id": 1, "pendings": 2, "age": 0.09716463088989258}, {"id": 2, "pendings": 1, "age": 0.09713435173034668}, {"id": 3, "pendings": 2, "age": 0.09727835655212402}], "chosen": [1, 2, 3], "decision_time": 1781275178.4817426}
-{"source": "multi", "event": "dispatching", "job_id": 45, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 45, "servers": [{"id": 1, "pendings": 3, "age": 0.10961437225341797}, {"id": 2, "pendings": 2, "age": 0.10958361625671387}, {"id": 3, "pendings": 3, "age": 0.10972714424133301}], "chosen": [1, 2, 3], "decision_time": 1781275178.4941776}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 42, "start_time": 1781275178.3845088, "resp_time": 0.15482497215270996}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 43}
-{"source": "dispatcher", "event": "kill", "job_id": 42, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 41, "multiplier": 1.3, "start_time": 1781297117.0779967}
+{"source": "dispatcher", "event": "kill", "job_id": 40, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 41, "multiplier": 1.3, "start_time": 1781297117.0780702}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 41, "multiplier": 1.3, "start_time": 1781297117.0780952}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 41, "start_time": 1781297117.0779958, "resp_time": 0.11418390274047852, "multiplier": 1.3, "end_time": 1781297117.1921797}
+{"source": "dispatcher", "event": "kill", "job_id": 41, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 42, "multiplier": 1.3, "start_time": 1781297117.1924276}
+{"source": "dispatcher", "event": "kill", "job_id": 41, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 42, "multiplier": 1.3, "start_time": 1781297117.1925137}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 42, "multiplier": 1.3, "start_time": 1781297117.1925437}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 42, "start_time": 1781297117.1924264, "resp_time": 0.11594533920288086, "multiplier": 1.3, "end_time": 1781297117.3083718}
+{"source": "dispatcher", "event": "kill", "job_id": 42, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 43, "multiplier": 1.3, "start_time": 1781297117.3086238}
 {"source": "dispatcher", "event": "kill", "job_id": 42, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 42}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 42}
-{"source": "multi", "event": "dispatching", "job_id": 46, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 46, "servers": [{"id": 1, "pendings": 3, "age": 0.03264427185058594}, {"id": 2, "pendings": 2, "age": 0.03273367881774902}, {"id": 3, "pendings": 3, "age": 0.03260350227355957}], "chosen": [1, 2, 3], "decision_time": 1781275178.5722551}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 42, "start_time": 1781275178.5395474, "resp_time": 0.15473055839538574}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 43}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 43, "start_time": 1781275178.5394151, "resp_time": 0.15562081336975098}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 44}
-{"source": "dispatcher", "event": "kill", "job_id": 43, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 43, "multiplier": 1.3, "start_time": 1781297117.308709}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 43, "multiplier": 1.3, "start_time": 1781297117.3087368}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 43, "start_time": 1781297117.3086228, "resp_time": 0.11381387710571289, "multiplier": 1.3, "end_time": 1781297117.4224367}
+{"source": "dispatcher", "event": "kill", "job_id": 43, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 44, "multiplier": 1.3, "start_time": 1781297117.4226878}
 {"source": "dispatcher", "event": "kill", "job_id": 43, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 43}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 44}
-{"source": "multi", "event": "dispatching", "job_id": 47, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 47, "servers": [{"id": 1, "pendings": 3, "age": 0.0015964508056640625}, {"id": 2, "pendings": 2, "age": 0.0016863346099853516}, {"id": 3, "pendings": 2, "age": 0.001569509506225586}], "chosen": [1, 2, 3], "decision_time": 1781275178.696887}
-{"source": "multi", "event": "dispatching", "job_id": 48, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 48, "servers": [{"id": 1, "pendings": 4, "age": 0.053449153900146484}, {"id": 2, "pendings": 3, "age": 0.05353879928588867}, {"id": 3, "pendings": 3, "age": 0.0534214973449707}], "chosen": [1, 2, 3], "decision_time": 1781275178.7487319}
-{"source": "multi", "event": "dispatching", "job_id": 49, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 49, "servers": [{"id": 1, "pendings": 5, "age": 0.07186770439147949}, {"id": 2, "pendings": 4, "age": 0.07195711135864258}, {"id": 3, "pendings": 4, "age": 0.07183980941772461}], "chosen": [1, 2, 3], "decision_time": 1781275178.767145}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 44, "start_time": 1781275178.6951194, "resp_time": 0.15442419052124023}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 45}
-{"source": "dispatcher", "event": "kill", "job_id": 44, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 44, "multiplier": 1.3, "start_time": 1781297117.4227703}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 44, "multiplier": 1.3, "start_time": 1781297117.4228055}
+{"source": "multi", "event": "dispatching", "job_id": 45, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 45, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.058920860290527344}, {"id": 2, "pendings": 0, "age": 0.058843374252319336}, {"id": 3, "pendings": 0, "age": 0.05880999565124512}], "chosen": [1, 2, 3], "decision_time": 1781297117.481741}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 44, "start_time": 1781297117.422687, "resp_time": 0.11468887329101562, "multiplier": 1.3, "end_time": 1781297117.537376}
+{"source": "dispatcher", "event": "kill", "job_id": 44, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 45, "multiplier": 1.3, "start_time": 1781297117.537639}
 {"source": "dispatcher", "event": "kill", "job_id": 44, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 44}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 45}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 45, "start_time": 1781275178.8496346, "resp_time": 0.15489983558654785}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 46}
-{"source": "dispatcher", "event": "kill", "job_id": 45, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 45, "multiplier": 1.3, "start_time": 1781297117.53772}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 45, "multiplier": 1.3, "start_time": 1781297117.5377438}
+{"source": "multi", "event": "dispatching", "job_id": 46, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 46, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.10135746002197266}, {"id": 2, "pendings": 0, "age": 0.10128116607666016}, {"id": 3, "pendings": 0, "age": 0.10125946998596191}], "chosen": [1, 2, 3], "decision_time": 1781297117.639128}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 45, "start_time": 1781297117.5376382, "resp_time": 0.11587977409362793, "multiplier": 1.3, "end_time": 1781297117.653518}
+{"source": "dispatcher", "event": "kill", "job_id": 45, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 46, "multiplier": 1.3, "start_time": 1781297117.6537776}
 {"source": "dispatcher", "event": "kill", "job_id": 45, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 45}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 46}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 46, "start_time": 1781275179.004654, "resp_time": 0.15462970733642578}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 47}
-{"source": "dispatcher", "event": "kill", "job_id": 46, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 46, "multiplier": 1.3, "start_time": 1781297117.653853}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 46, "multiplier": 1.3, "start_time": 1781297117.65388}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 46, "start_time": 1781297117.653777, "resp_time": 0.11378002166748047, "multiplier": 1.3, "end_time": 1781297117.767557}
+{"source": "dispatcher", "event": "kill", "job_id": 46, "server": 2}
 {"source": "dispatcher", "event": "kill", "job_id": 46, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 46}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 47}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 47, "start_time": 1781275179.1593719, "resp_time": 0.1558363437652588}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 48}
-{"source": "dispatcher", "event": "kill", "job_id": 47, "server": 1}
+{"source": "multi", "event": "dispatching", "job_id": 47, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 47, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781297117.805194}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 47, "multiplier": 1.3, "start_time": 1781297117.8054562}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 47, "multiplier": 1.3, "start_time": 1781297117.805501}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 47, "multiplier": 1.3, "start_time": 1781297117.8055084}
+{"source": "multi", "event": "dispatching", "job_id": 48, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 48, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.09572029113769531}, {"id": 2, "pendings": 0, "age": 0.09568047523498535}, {"id": 3, "pendings": 0, "age": 0.09567379951477051}], "chosen": [1, 2, 3], "decision_time": 1781297117.9012961}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 47, "start_time": 1781297117.8054504, "resp_time": 0.11341357231140137, "multiplier": 1.3, "end_time": 1781297117.918864}
+{"source": "dispatcher", "event": "kill", "job_id": 47, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 48, "multiplier": 1.3, "start_time": 1781297117.9191008}
 {"source": "dispatcher", "event": "kill", "job_id": 47, "server": 3}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 48}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 47}
-{"source": "multi", "event": "dispatching", "job_id": 50, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 50, "servers": [{"id": 1, "pendings": 2, "age": 0.0965871810913086}, {"id": 2, "pendings": 1, "age": 0.0975191593170166}, {"id": 3, "pendings": 1, "age": 0.09736037254333496}], "chosen": [1, 2, 3], "decision_time": 1781275179.4129112}
-{"source": "multi", "event": "dispatching", "job_id": 51, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 51, "servers": [{"id": 1, "pendings": 3, "age": 0.12382268905639648}, {"id": 2, "pendings": 2, "age": 0.12475419044494629}, {"id": 3, "pendings": 2, "age": 0.12459516525268555}], "chosen": [1, 2, 3], "decision_time": 1781275179.440149}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 48, "start_time": 1781275179.3152962, "resp_time": 0.15497756004333496}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 49}
-{"source": "dispatcher", "event": "kill", "job_id": 48, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 48, "multiplier": 1.3, "start_time": 1781297117.9191878}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 48, "multiplier": 1.3, "start_time": 1781297117.9192126}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 48, "start_time": 1781297117.9190996, "resp_time": 0.11501812934875488, "multiplier": 1.3, "end_time": 1781297118.0341177}
+{"source": "dispatcher", "event": "kill", "job_id": 48, "server": 2}
 {"source": "dispatcher", "event": "kill", "job_id": 48, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 48}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 49}
-{"source": "multi", "event": "dispatching", "job_id": 52, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 52, "servers": [{"id": 1, "pendings": 3, "age": 0.004733085632324219}, {"id": 2, "pendings": 2, "age": 0.004834175109863281}, {"id": 3, "pendings": 2, "age": 0.004706144332885742}], "chosen": [1, 2, 3], "decision_time": 1781275179.4752493}
-{"source": "multi", "event": "dispatching", "job_id": 53, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 53, "servers": [{"id": 1, "pendings": 4, "age": 0.05376172065734863}, {"id": 2, "pendings": 3, "age": 0.0538637638092041}, {"id": 3, "pendings": 3, "age": 0.05373644828796387}], "chosen": [1, 2, 3], "decision_time": 1781275179.5243223}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 49, "start_time": 1781275179.4703526, "resp_time": 0.15478754043579102}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 50}
-{"source": "dispatcher", "event": "kill", "job_id": 49, "server": 1}
+{"source": "multi", "event": "dispatching", "job_id": 49, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 49, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781297118.148962}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 49, "multiplier": 1.3, "start_time": 1781297118.1492097}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 49, "multiplier": 1.3, "start_time": 1781297118.1492703}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 49, "multiplier": 1.3, "start_time": 1781297118.1492703}
+{"source": "multi", "event": "dispatching", "job_id": 50, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 50, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.04569220542907715}, {"id": 2, "pendings": 0, "age": 0.04563593864440918}, {"id": 3, "pendings": 0, "age": 0.0456387996673584}], "chosen": [1, 2, 3], "decision_time": 1781297118.1950216}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 49, "start_time": 1781297118.1492038, "resp_time": 0.11187624931335449, "multiplier": 1.3, "end_time": 1781297118.26108}
+{"source": "dispatcher", "event": "kill", "job_id": 49, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 50, "multiplier": 1.3, "start_time": 1781297118.2613404}
 {"source": "dispatcher", "event": "kill", "job_id": 49, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 49}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 50}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 50, "start_time": 1781275179.6252193, "resp_time": 0.15459060668945312}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 51}
-{"source": "dispatcher", "event": "kill", "job_id": 50, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 50, "multiplier": 1.3, "start_time": 1781297118.2614224}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 50, "multiplier": 1.3, "start_time": 1781297118.2614424}
+{"source": "multi", "event": "dispatching", "job_id": 51, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 51, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.07702875137329102}, {"id": 2, "pendings": 0, "age": 0.07695126533508301}, {"id": 3, "pendings": 0, "age": 0.0769338607788086}], "chosen": [1, 2, 3], "decision_time": 1781297118.3384988}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 50, "start_time": 1781297118.2613394, "resp_time": 0.11315035820007324, "multiplier": 1.3, "end_time": 1781297118.3744898}
+{"source": "dispatcher", "event": "kill", "job_id": 50, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 51, "multiplier": 1.3, "start_time": 1781297118.3747497}
 {"source": "dispatcher", "event": "kill", "job_id": 50, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 50}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 51}
-{"source": "multi", "event": "dispatching", "job_id": 54, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 54, "servers": [{"id": 1, "pendings": 3, "age": 0.0583653450012207}, {"id": 2, "pendings": 2, "age": 0.0584712028503418}, {"id": 3, "pendings": 2, "age": 0.058327674865722656}], "chosen": [1, 2, 3], "decision_time": 1781275179.8384638}
-{"source": "multi", "event": "dispatching", "job_id": 55, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 55, "servers": [{"id": 1, "pendings": 4, "age": 0.09186148643493652}, {"id": 2, "pendings": 3, "age": 0.09196710586547852}, {"id": 3, "pendings": 3, "age": 0.09182286262512207}], "chosen": [1, 2, 3], "decision_time": 1781275179.8719444}
-{"source": "multi", "event": "dispatching", "job_id": 56, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 56, "servers": [{"id": 1, "pendings": 5, "age": 0.09333944320678711}, {"id": 2, "pendings": 4, "age": 0.0934443473815918}, {"id": 3, "pendings": 4, "age": 0.09329986572265625}], "chosen": [1, 2, 3], "decision_time": 1781275179.873407}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 51, "start_time": 1781275179.7798927, "resp_time": 0.1557319164276123}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 52}
-{"source": "dispatcher", "event": "kill", "job_id": 51, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 51, "multiplier": 1.3, "start_time": 1781297118.3748393}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 51, "multiplier": 1.3, "start_time": 1781297118.3748617}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 51, "start_time": 1781297118.3747487, "resp_time": 0.11626267433166504, "multiplier": 1.3, "end_time": 1781297118.4910114}
+{"source": "dispatcher", "event": "kill", "job_id": 51, "server": 2}
 {"source": "dispatcher", "event": "kill", "job_id": 51, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 51}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 51, "start_time": 1781275179.7800384, "resp_time": 0.15582013130187988}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 52}
-{"source": "multi", "event": "dispatching", "job_id": 57, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 57, "servers": [{"id": 1, "pendings": 5, "age": 0.007017374038696289}, {"id": 2, "pendings": 4, "age": 0.007146358489990234}, {"id": 3, "pendings": 4, "age": 0.006887674331665039}], "chosen": [1, 2, 3], "decision_time": 1781275179.9429705}
-{"source": "multi", "event": "dispatching", "job_id": 58, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 58, "servers": [{"id": 1, "pendings": 6, "age": 0.1196584701538086}, {"id": 2, "pendings": 5, "age": 0.11978745460510254}, {"id": 3, "pendings": 5, "age": 0.11952900886535645}], "chosen": [1, 2, 3], "decision_time": 1781275180.0556245}
-{"source": "multi", "event": "dispatching", "job_id": 59, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 59, "servers": [{"id": 1, "pendings": 7, "age": 0.14466452598571777}, {"id": 2, "pendings": 6, "age": 0.14479279518127441}, {"id": 3, "pendings": 6, "age": 0.14453363418579102}], "chosen": [1, 2, 3], "decision_time": 1781275180.0805967}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 52, "start_time": 1781275179.935726, "resp_time": 0.15435791015625}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 53}
-{"source": "dispatcher", "event": "kill", "job_id": 52, "server": 1}
+{"source": "multi", "event": "dispatching", "job_id": 52, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 52, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781297118.685056}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 52, "multiplier": 1.3, "start_time": 1781297118.685354}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 52, "multiplier": 1.3, "start_time": 1781297118.6853485}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 52, "multiplier": 1.3, "start_time": 1781297118.685373}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 52, "start_time": 1781297118.6853478, "resp_time": 0.11191701889038086, "multiplier": 1.3, "end_time": 1781297118.7972648}
+{"source": "dispatcher", "event": "kill", "job_id": 52, "server": 2}
 {"source": "dispatcher", "event": "kill", "job_id": 52, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 52}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 53}
-{"source": "multi", "event": "dispatching", "job_id": 60, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 60, "servers": [{"id": 1, "pendings": 7, "age": 0.11385512351989746}, {"id": 2, "pendings": 6, "age": 0.11394476890563965}, {"id": 3, "pendings": 6, "age": 0.11381244659423828}], "chosen": [1, 2, 3], "decision_time": 1781275180.2042105}
-{"source": "multi", "event": "dispatching", "job_id": 61, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 61, "servers": [{"id": 1, "pendings": 8, "age": 0.14044713973999023}, {"id": 2, "pendings": 7, "age": 0.14053630828857422}, {"id": 3, "pendings": 7, "age": 0.14040398597717285}], "chosen": [1, 2, 3], "decision_time": 1781275180.2307963}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 53, "start_time": 1781275180.0903058, "resp_time": 0.15467619895935059}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 54}
-{"source": "dispatcher", "event": "kill", "job_id": 53, "server": 1}
+{"source": "multi", "event": "dispatching", "job_id": 53, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 53, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781297118.8625998}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 53, "multiplier": 1.3, "start_time": 1781297118.862852}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 53, "multiplier": 1.3, "start_time": 1781297118.8629105}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 53, "multiplier": 1.3, "start_time": 1781297118.8629105}
+{"source": "multi", "event": "dispatching", "job_id": 54, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 54, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.009725093841552734}, {"id": 2, "pendings": 0, "age": 0.00966787338256836}, {"id": 3, "pendings": 0, "age": 0.009668827056884766}], "chosen": [1, 2, 3], "decision_time": 1781297118.8726265}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 53, "start_time": 1781297118.862846, "resp_time": 0.11204361915588379, "multiplier": 1.3, "end_time": 1781297118.9748895}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 54, "multiplier": 1.3, "start_time": 1781297118.9750798}
+{"source": "multi", "event": "dispatching", "job_id": 55, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 55, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.0048024654388427734}, {"id": 2, "pendings": 1, "age": 0.11698055267333984}, {"id": 3, "pendings": 1, "age": 0.11698293685913086}], "chosen": [1, 2, 3], "decision_time": 1781297118.979978}
 {"source": "dispatcher", "event": "kill", "job_id": 53, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 53}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 53, "start_time": 1781275180.0901718, "resp_time": 0.15497422218322754}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 54}
-{"source": "multi", "event": "dispatching", "job_id": 62, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 62, "servers": [{"id": 1, "pendings": 8, "age": 0.04268646240234375}, {"id": 2, "pendings": 7, "age": 0.04263710975646973}, {"id": 3, "pendings": 7, "age": 0.04276680946350098}], "chosen": [1, 2, 3], "decision_time": 1781275180.287973}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 54, "start_time": 1781275180.2452247, "resp_time": 0.15450000762939453}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 55}
-{"source": "dispatcher", "event": "kill", "job_id": 54, "server": 1}
+{"source": "dispatcher", "event": "kill", "job_id": 53, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 54, "multiplier": 1.3, "start_time": 1781297118.9806201}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 54, "multiplier": 1.3, "start_time": 1781297118.980638}
+{"source": "multi", "event": "dispatching", "job_id": 56, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 56, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 1, "age": 0.029052019119262695}, {"id": 2, "pendings": 1, "age": 0.023515939712524414}, {"id": 3, "pendings": 1, "age": 0.023500919342041016}], "chosen": [1, 2, 3], "decision_time": 1781297119.0042176}
+{"source": "multi", "event": "dispatching", "job_id": 57, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 57, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 2, "age": 0.061982154846191406}, {"id": 2, "pendings": 2, "age": 0.05644702911376953}, {"id": 3, "pendings": 2, "age": 0.056432247161865234}], "chosen": [1, 2, 3], "decision_time": 1781297119.0371945}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 54, "start_time": 1781297118.975079, "resp_time": 0.11504220962524414, "multiplier": 1.3, "end_time": 1781297119.0901213}
+{"source": "dispatcher", "event": "kill", "job_id": 54, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 55, "multiplier": 1.3, "start_time": 1781297119.0903754}
 {"source": "dispatcher", "event": "kill", "job_id": 54, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 54}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 55}
-{"source": "multi", "event": "dispatching", "job_id": 63, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 63, "servers": [{"id": 1, "pendings": 8, "age": 0.11714792251586914}, {"id": 2, "pendings": 7, "age": 0.11722421646118164}, {"id": 3, "pendings": 7, "age": 0.11710715293884277}], "chosen": [1, 2, 3], "decision_time": 1781275180.5171292}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 55, "start_time": 1781275180.3999465, "resp_time": 0.1548142433166504}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 56}
-{"source": "dispatcher", "event": "kill", "job_id": 55, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 55, "multiplier": 1.3, "start_time": 1781297119.0904758}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 55, "multiplier": 1.3, "start_time": 1781297119.0905054}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 55, "start_time": 1781297119.0903747, "resp_time": 0.11347365379333496, "multiplier": 1.3, "end_time": 1781297119.2038484}
 {"source": "dispatcher", "event": "kill", "job_id": 55, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 55}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 56}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 56, "start_time": 1781275180.5549812, "resp_time": 0.15471839904785156}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 57}
-{"source": "dispatcher", "event": "kill", "job_id": 56, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 56, "multiplier": 1.3, "start_time": 1781297119.2040844}
+{"source": "dispatcher", "event": "kill", "job_id": 55, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 56, "multiplier": 1.3, "start_time": 1781297119.2041767}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 56, "multiplier": 1.3, "start_time": 1781297119.2041998}
+{"source": "multi", "event": "dispatching", "job_id": 58, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 58, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 1, "age": 0.07563662528991699}, {"id": 2, "pendings": 1, "age": 0.07554936408996582}, {"id": 3, "pendings": 1, "age": 0.07552909851074219}], "chosen": [1, 2, 3], "decision_time": 1781297119.2798557}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 56, "start_time": 1781297119.2040837, "resp_time": 0.11513876914978027, "multiplier": 1.3, "end_time": 1781297119.3192225}
+{"source": "dispatcher", "event": "kill", "job_id": 56, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 57, "multiplier": 1.3, "start_time": 1781297119.3194764}
 {"source": "dispatcher", "event": "kill", "job_id": 56, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 56}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 57}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 57, "start_time": 1781275180.7097802, "resp_time": 0.15457963943481445}
-{"source": "dispatcher", "event": "kill", "job_id": 57, "server": 1}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 58}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 57, "multiplier": 1.3, "start_time": 1781297119.3195627}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 57, "multiplier": 1.3, "start_time": 1781297119.319602}
+{"source": "multi", "event": "dispatching", "job_id": 59, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 59, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 1, "age": 0.0272977352142334}, {"id": 2, "pendings": 1, "age": 0.027216672897338867}, {"id": 3, "pendings": 1, "age": 0.027179956436157227}], "chosen": [1, 2, 3], "decision_time": 1781297119.3468997}
+{"source": "multi", "event": "dispatching", "job_id": 60, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 60, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 2, "age": 0.1035614013671875}, {"id": 2, "pendings": 2, "age": 0.10347962379455566}, {"id": 3, "pendings": 2, "age": 0.10344266891479492}], "chosen": [1, 2, 3], "decision_time": 1781297119.423161}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 57, "start_time": 1781297119.3194754, "resp_time": 0.11732316017150879, "multiplier": 1.3, "end_time": 1781297119.4367986}
+{"source": "dispatcher", "event": "kill", "job_id": 57, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 58, "multiplier": 1.3, "start_time": 1781297119.4370615}
 {"source": "dispatcher", "event": "kill", "job_id": 57, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 57}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 58}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 58, "start_time": 1781275180.864585, "resp_time": 0.15571951866149902}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 59}
-{"source": "dispatcher", "event": "kill", "job_id": 58, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 58, "multiplier": 1.3, "start_time": 1781297119.4371407}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 58, "multiplier": 1.3, "start_time": 1781297119.4371681}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 58, "start_time": 1781297119.4370606, "resp_time": 0.11503267288208008, "multiplier": 1.3, "end_time": 1781297119.5520933}
 {"source": "dispatcher", "event": "kill", "job_id": 58, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 58}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 59}
-{"source": "multi", "event": "dispatching", "job_id": 64, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 64, "servers": [{"id": 1, "pendings": 5, "age": 0.05892062187194824}, {"id": 2, "pendings": 4, "age": 0.05888223648071289}, {"id": 3, "pendings": 4, "age": 0.05900740623474121}], "chosen": [1, 2, 3], "decision_time": 1781275181.0795143}
-{"source": "multi", "event": "dispatching", "job_id": 65, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 65, "servers": [{"id": 1, "pendings": 6, "age": 0.15026354789733887}, {"id": 2, "pendings": 5, "age": 0.1502246856689453}, {"id": 3, "pendings": 5, "age": 0.15034961700439453}], "chosen": [1, 2, 3], "decision_time": 1781275181.1708734}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 59, "start_time": 1781275181.0205503, "resp_time": 0.15454339981079102}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 60}
-{"source": "dispatcher", "event": "kill", "job_id": 59, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 59, "multiplier": 1.3, "start_time": 1781297119.5523305}
+{"source": "dispatcher", "event": "kill", "job_id": 58, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 59, "multiplier": 1.3, "start_time": 1781297119.5524325}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 59, "multiplier": 1.3, "start_time": 1781297119.552451}
+{"source": "multi", "event": "dispatching", "job_id": 61, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 61, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 1, "age": 0.026095151901245117}, {"id": 2, "pendings": 1, "age": 0.025997638702392578}, {"id": 3, "pendings": 1, "age": 0.025982141494750977}], "chosen": [1, 2, 3], "decision_time": 1781297119.5785625}
+{"source": "multi", "event": "dispatching", "job_id": 62, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 62, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 2, "age": 0.048992156982421875}, {"id": 2, "pendings": 2, "age": 0.048894405364990234}, {"id": 3, "pendings": 2, "age": 0.04887866973876953}], "chosen": [1, 2, 3], "decision_time": 1781297119.601441}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 59, "start_time": 1781297119.5523298, "resp_time": 0.11542201042175293, "multiplier": 1.3, "end_time": 1781297119.6677518}
+{"source": "dispatcher", "event": "kill", "job_id": 59, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 60, "multiplier": 1.3, "start_time": 1781297119.6680038}
 {"source": "dispatcher", "event": "kill", "job_id": 59, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 59}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 60}
-{"source": "multi", "event": "dispatching", "job_id": 66, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 66, "servers": [{"id": 1, "pendings": 6, "age": 0.06493282318115234}, {"id": 2, "pendings": 5, "age": 0.06502962112426758}, {"id": 3, "pendings": 5, "age": 0.06488609313964844}], "chosen": [1, 2, 3], "decision_time": 1781275181.2402954}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 60, "start_time": 1781275181.1751902, "resp_time": 0.15464019775390625}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 61}
-{"source": "dispatcher", "event": "kill", "job_id": 60, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 60, "multiplier": 1.3, "start_time": 1781297119.6680844}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 60, "multiplier": 1.3, "start_time": 1781297119.6681163}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 60, "start_time": 1781297119.6680028, "resp_time": 0.11641359329223633, "multiplier": 1.3, "end_time": 1781297119.7844164}
+{"source": "dispatcher", "event": "kill", "job_id": 60, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 61, "multiplier": 1.3, "start_time": 1781297119.7846704}
 {"source": "dispatcher", "event": "kill", "job_id": 60, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 60}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 61}
-{"source": "multi", "event": "dispatching", "job_id": 67, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 67, "servers": [{"id": 1, "pendings": 6, "age": 0.007668018341064453}, {"id": 2, "pendings": 5, "age": 0.007774829864501953}, {"id": 3, "pendings": 5, "age": 0.0076296329498291016}], "chosen": [1, 2, 3], "decision_time": 1781275181.3377767}
-{"source": "multi", "event": "dispatching", "job_id": 68, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 68, "servers": [{"id": 1, "pendings": 7, "age": 0.046025991439819336}, {"id": 2, "pendings": 6, "age": 0.046132564544677734}, {"id": 3, "pendings": 6, "age": 0.04598736763000488}], "chosen": [1, 2, 3], "decision_time": 1781275181.376142}
-{"source": "multi", "event": "dispatching", "job_id": 69, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 69, "servers": [{"id": 1, "pendings": 8, "age": 0.11848068237304688}, {"id": 2, "pendings": 7, "age": 0.11858725547790527}, {"id": 3, "pendings": 7, "age": 0.11844158172607422}], "chosen": [1, 2, 3], "decision_time": 1781275181.448595}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 61, "start_time": 1781275181.3300781, "resp_time": 0.15579724311828613}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 62}
-{"source": "dispatcher", "event": "kill", "job_id": 61, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 61, "multiplier": 1.3, "start_time": 1781297119.784759}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 61, "multiplier": 1.3, "start_time": 1781297119.7847884}
+{"source": "multi", "event": "dispatching", "job_id": 63, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 63, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 1, "age": 0.08335065841674805}, {"id": 2, "pendings": 1, "age": 0.0832674503326416}, {"id": 3, "pendings": 1, "age": 0.08324027061462402}], "chosen": [1, 2, 3], "decision_time": 1781297119.8681624}
+{"source": "multi", "event": "dispatching", "job_id": 64, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 64, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 2, "age": 0.10677027702331543}, {"id": 2, "pendings": 2, "age": 0.10668587684631348}, {"id": 3, "pendings": 2, "age": 0.1066586971282959}], "chosen": [1, 2, 3], "decision_time": 1781297119.8915582}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 61, "start_time": 1781297119.7846694, "resp_time": 0.11377310752868652, "multiplier": 1.3, "end_time": 1781297119.8984425}
 {"source": "dispatcher", "event": "kill", "job_id": 61, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 61}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 61, "start_time": 1781275181.3299315, "resp_time": 0.1561126708984375}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 62}
-{"source": "multi", "event": "dispatching", "job_id": 70, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 70, "servers": [{"id": 1, "pendings": 8, "age": 0.050588369369506836}, {"id": 2, "pendings": 7, "age": 0.0505218505859375}, {"id": 3, "pendings": 7, "age": 0.0506589412689209}], "chosen": [1, 2, 3], "decision_time": 1781275181.5367146}
-{"source": "multi", "event": "dispatching", "job_id": 71, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 71, "servers": [{"id": 1, "pendings": 9, "age": 0.05130147933959961}, {"id": 2, "pendings": 8, "age": 0.05123424530029297}, {"id": 3, "pendings": 8, "age": 0.051370859146118164}], "chosen": [1, 2, 3], "decision_time": 1781275181.537409}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 62, "start_time": 1781275181.4861226, "resp_time": 0.15451550483703613}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 63}
-{"source": "dispatcher", "event": "kill", "job_id": 62, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 62, "multiplier": 1.3, "start_time": 1781297119.898658}
+{"source": "dispatcher", "event": "kill", "job_id": 61, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 62, "multiplier": 1.3, "start_time": 1781297119.8987389}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 62, "multiplier": 1.3, "start_time": 1781297119.89876}
+{"source": "multi", "event": "dispatching", "job_id": 65, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 65, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 2, "age": 0.09607601165771484}, {"id": 2, "pendings": 2, "age": 0.09600019454956055}, {"id": 3, "pendings": 2, "age": 0.09598135948181152}], "chosen": [1, 2, 3], "decision_time": 1781297119.9948616}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 62, "start_time": 1781297119.8986573, "resp_time": 0.11603426933288574, "multiplier": 1.3, "end_time": 1781297120.0146916}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 63, "multiplier": 1.3, "start_time": 1781297120.0148787}
+{"source": "dispatcher", "event": "kill", "job_id": 62, "server": 2}
 {"source": "dispatcher", "event": "kill", "job_id": 62, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 62}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 63}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 63, "start_time": 1781275181.640713, "resp_time": 0.15442585945129395}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 64}
-{"source": "dispatcher", "event": "kill", "job_id": 63, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 63, "multiplier": 1.3, "start_time": 1781297120.0206354}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 63, "multiplier": 1.3, "start_time": 1781297120.0206537}
+{"source": "multi", "event": "dispatching", "job_id": 66, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 66, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 2, "age": 0.046524763107299805}, {"id": 2, "pendings": 2, "age": 0.040773630142211914}, {"id": 3, "pendings": 2, "age": 0.04075813293457031}], "chosen": [1, 2, 3], "decision_time": 1781297120.061538}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 63, "start_time": 1781297120.014878, "resp_time": 0.11677694320678711, "multiplier": 1.3, "end_time": 1781297120.131655}
+{"source": "dispatcher", "event": "kill", "job_id": 63, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 64, "multiplier": 1.3, "start_time": 1781297120.1319013}
 {"source": "dispatcher", "event": "kill", "job_id": 63, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 63}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 64}
-{"source": "multi", "event": "dispatching", "job_id": 72, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 72, "servers": [{"id": 1, "pendings": 8, "age": 0.1250143051147461}, {"id": 2, "pendings": 7, "age": 0.12509369850158691}, {"id": 3, "pendings": 7, "age": 0.12497854232788086}], "chosen": [1, 2, 3], "decision_time": 1781275181.920424}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 64, "start_time": 1781275181.7952135, "resp_time": 0.15462541580200195}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 65}
-{"source": "dispatcher", "event": "kill", "job_id": 64, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 64, "multiplier": 1.3, "start_time": 1781297120.1319768}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 64, "multiplier": 1.3, "start_time": 1781297120.1320002}
+{"source": "multi", "event": "dispatching", "job_id": 67, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 67, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 2, "age": 0.08907556533813477}, {"id": 2, "pendings": 2, "age": 0.0890040397644043}, {"id": 3, "pendings": 2, "age": 0.08898377418518066}], "chosen": [1, 2, 3], "decision_time": 1781297120.221104}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 64, "start_time": 1781297120.1319, "resp_time": 0.11430239677429199, "multiplier": 1.3, "end_time": 1781297120.2462025}
+{"source": "dispatcher", "event": "kill", "job_id": 64, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 65, "multiplier": 1.3, "start_time": 1781297120.246515}
 {"source": "dispatcher", "event": "kill", "job_id": 64, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 64}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 65}
-{"source": "multi", "event": "dispatching", "job_id": 73, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 73, "servers": [{"id": 1, "pendings": 8, "age": 0.09539103507995605}, {"id": 2, "pendings": 7, "age": 0.09549927711486816}, {"id": 3, "pendings": 7, "age": 0.09535431861877441}], "chosen": [1, 2, 3], "decision_time": 1781275182.045519}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 65, "start_time": 1781275181.9500706, "resp_time": 0.15508651733398438}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 66}
-{"source": "dispatcher", "event": "kill", "job_id": 65, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 65, "multiplier": 1.3, "start_time": 1781297120.2466564}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 65, "multiplier": 1.3, "start_time": 1781297120.2466702}
+{"source": "multi", "event": "dispatching", "job_id": 68, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 68, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 2, "age": 0.09399604797363281}, {"id": 2, "pendings": 2, "age": 0.09385919570922852}, {"id": 3, "pendings": 2, "age": 0.09384799003601074}], "chosen": [1, 2, 3], "decision_time": 1781297120.3406334}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 65, "start_time": 1781297120.246514, "resp_time": 0.11358785629272461, "multiplier": 1.3, "end_time": 1781297120.360102}
 {"source": "dispatcher", "event": "kill", "job_id": 65, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 65}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 66}
-{"source": "multi", "event": "dispatching", "job_id": 74, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 74, "servers": [{"id": 1, "pendings": 8, "age": 0.006286144256591797}, {"id": 2, "pendings": 7, "age": 0.00624847412109375}, {"id": 3, "pendings": 7, "age": 0.006383657455444336}], "chosen": [1, 2, 3], "decision_time": 1781275182.1117177}
-{"source": "multi", "event": "dispatching", "job_id": 75, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 75, "servers": [{"id": 1, "pendings": 9, "age": 0.08871698379516602}, {"id": 2, "pendings": 8, "age": 0.08867907524108887}, {"id": 3, "pendings": 8, "age": 0.08881449699401855}], "chosen": [1, 2, 3], "decision_time": 1781275182.1941636}
-{"source": "multi", "event": "dispatching", "job_id": 76, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 76, "servers": [{"id": 1, "pendings": 10, "age": 0.14394426345825195}, {"id": 2, "pendings": 9, "age": 0.1439065933227539}, {"id": 3, "pendings": 9, "age": 0.1440417766571045}], "chosen": [1, 2, 3], "decision_time": 1781275182.2493901}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 66, "start_time": 1781275182.1054075, "resp_time": 0.1547389030456543}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 67}
-{"source": "dispatcher", "event": "kill", "job_id": 66, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 66, "multiplier": 1.3, "start_time": 1781297120.3603384}
+{"source": "dispatcher", "event": "kill", "job_id": 65, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 66, "multiplier": 1.3, "start_time": 1781297120.360428}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 66, "multiplier": 1.3, "start_time": 1781297120.3604581}
+{"source": "multi", "event": "dispatching", "job_id": 69, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 69, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 2, "age": 0.021718978881835938}, {"id": 2, "pendings": 2, "age": 0.021634817123413086}, {"id": 3, "pendings": 2, "age": 0.0216062068939209}], "chosen": [1, 2, 3], "decision_time": 1781297120.3821735}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 66, "start_time": 1781297120.3603375, "resp_time": 0.11633086204528809, "multiplier": 1.3, "end_time": 1781297120.4766684}
+{"source": "dispatcher", "event": "kill", "job_id": 66, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 67, "multiplier": 1.3, "start_time": 1781297120.4769301}
 {"source": "dispatcher", "event": "kill", "job_id": 66, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 66}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 67}
-{"source": "multi", "event": "dispatching", "job_id": 77, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 77, "servers": [{"id": 1, "pendings": 10, "age": 0.06653690338134766}, {"id": 2, "pendings": 9, "age": 0.0666203498840332}, {"id": 3, "pendings": 9, "age": 0.0664985179901123}], "chosen": [1, 2, 3], "decision_time": 1781275182.3269336}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 67, "start_time": 1781275182.2603607, "resp_time": 0.15536952018737793}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 68}
-{"source": "dispatcher", "event": "kill", "job_id": 67, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 67, "multiplier": 1.3, "start_time": 1781297120.4770093}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 67, "multiplier": 1.3, "start_time": 1781297120.477033}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 67, "start_time": 1781297120.476929, "resp_time": 0.11400818824768066, "multiplier": 1.3, "end_time": 1781297120.5909371}
 {"source": "dispatcher", "event": "kill", "job_id": 67, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 67}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 68}
-{"source": "multi", "event": "dispatching", "job_id": 78, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 78, "servers": [{"id": 1, "pendings": 10, "age": 0.04784893989562988}, {"id": 2, "pendings": 9, "age": 0.04780912399291992}, {"id": 3, "pendings": 9, "age": 0.04795408248901367}], "chosen": [1, 2, 3], "decision_time": 1781275182.4638996}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 68, "start_time": 1781275182.4158556, "resp_time": 0.15511846542358398}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 69}
-{"source": "dispatcher", "event": "kill", "job_id": 68, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 68, "multiplier": 1.3, "start_time": 1781297120.5911975}
+{"source": "dispatcher", "event": "kill", "job_id": 67, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 68, "multiplier": 1.3, "start_time": 1781297120.5912788}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 68, "multiplier": 1.3, "start_time": 1781297120.5913098}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 68, "start_time": 1781297120.5911968, "resp_time": 0.11450409889221191, "multiplier": 1.3, "end_time": 1781297120.7057009}
 {"source": "dispatcher", "event": "kill", "job_id": 68, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 68}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 69}
-{"source": "multi", "event": "dispatching", "job_id": 79, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 79, "servers": [{"id": 1, "pendings": 10, "age": 0.03828096389770508}, {"id": 2, "pendings": 9, "age": 0.03824305534362793}, {"id": 3, "pendings": 9, "age": 0.03835797309875488}], "chosen": [1, 2, 3], "decision_time": 1781275182.6095123}
-{"source": "multi", "event": "dispatching", "job_id": 80, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 80, "servers": [{"id": 1, "pendings": 11, "age": 0.054117441177368164}, {"id": 2, "pendings": 10, "age": 0.054079532623291016}, {"id": 3, "pendings": 10, "age": 0.054193973541259766}], "chosen": [1, 2, 3], "decision_time": 1781275182.6253521}
-{"source": "multi", "event": "dispatching", "job_id": 81, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 81, "servers": [{"id": 1, "pendings": 12, "age": 0.12183570861816406}, {"id": 2, "pendings": 11, "age": 0.12179732322692871}, {"id": 3, "pendings": 11, "age": 0.12191152572631836}], "chosen": [1, 2, 3], "decision_time": 1781275182.693059}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 69, "start_time": 1781275182.5711923, "resp_time": 0.1563706398010254}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 70}
-{"source": "dispatcher", "event": "kill", "job_id": 69, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 69, "multiplier": 1.3, "start_time": 1781297120.7059565}
+{"source": "dispatcher", "event": "kill", "job_id": 68, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 69, "multiplier": 1.3, "start_time": 1781297120.7060404}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 69, "multiplier": 1.3, "start_time": 1781297120.7060719}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 69, "start_time": 1781297120.7059553, "resp_time": 0.11603784561157227, "multiplier": 1.3, "end_time": 1781297120.821993}
+{"source": "dispatcher", "event": "kill", "job_id": 69, "server": 2}
 {"source": "dispatcher", "event": "kill", "job_id": 69, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 69}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 69, "start_time": 1781275182.571079, "resp_time": 0.15666675567626953}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 70}
-{"source": "multi", "event": "dispatching", "job_id": 82, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 82, "servers": [{"id": 1, "pendings": 12, "age": 0.012714624404907227}, {"id": 2, "pendings": 11, "age": 0.012826919555664062}, {"id": 3, "pendings": 11, "age": 0.012639522552490234}], "chosen": [1, 2, 3], "decision_time": 1781275182.7406034}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 70, "start_time": 1781275182.7278593, "resp_time": 0.1547086238861084}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 71}
-{"source": "dispatcher", "event": "kill", "job_id": 70, "server": 1}
+{"source": "multi", "event": "dispatching", "job_id": 70, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 70, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781297121.1028087}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 70, "multiplier": 1.3, "start_time": 1781297121.1030412}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 70, "multiplier": 1.3, "start_time": 1781297121.103076}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 70, "multiplier": 1.3, "start_time": 1781297121.1030877}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 70, "start_time": 1781297121.1030352, "resp_time": 0.11226677894592285, "multiplier": 1.3, "end_time": 1781297121.215302}
 {"source": "dispatcher", "event": "kill", "job_id": 70, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 70}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 71}
-{"source": "multi", "event": "dispatching", "job_id": 83, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 83, "servers": [{"id": 1, "pendings": 12, "age": 0.12165164947509766}, {"id": 2, "pendings": 11, "age": 0.12160849571228027}, {"id": 3, "pendings": 11, "age": 0.1217498779296875}], "chosen": [1, 2, 3], "decision_time": 1781275183.00452}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 71, "start_time": 1781275182.8826761, "resp_time": 0.15517044067382812}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 72}
-{"source": "dispatcher", "event": "kill", "job_id": 71, "server": 1}
+{"source": "dispatcher", "event": "kill", "job_id": 70, "server": 3}
+{"source": "multi", "event": "dispatching", "job_id": 71, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 71, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781297121.360908}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 71, "multiplier": 1.3, "start_time": 1781297121.3612072}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 71, "multiplier": 1.3, "start_time": 1781297121.361207}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 71, "multiplier": 1.3, "start_time": 1781297121.3612268}
+{"source": "multi", "event": "dispatching", "job_id": 72, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 72, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.09988641738891602}, {"id": 2, "pendings": 0, "age": 0.09991288185119629}, {"id": 3, "pendings": 0, "age": 0.0999150276184082}], "chosen": [1, 2, 3], "decision_time": 1781297121.4612582}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 71, "start_time": 1781297121.3612213, "resp_time": 0.11171650886535645, "multiplier": 1.3, "end_time": 1781297121.4729378}
 {"source": "dispatcher", "event": "kill", "job_id": 71, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 71}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 72}
-{"source": "multi", "event": "dispatching", "job_id": 84, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 84, "servers": [{"id": 1, "pendings": 12, "age": 0.0694119930267334}, {"id": 2, "pendings": 11, "age": 0.06936931610107422}, {"id": 3, "pendings": 11, "age": 0.06951212882995605}], "chosen": [1, 2, 3], "decision_time": 1781275183.1075444}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 72, "start_time": 1781275183.037948, "resp_time": 0.15511512756347656}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 73}
-{"source": "dispatcher", "event": "kill", "job_id": 72, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 72, "multiplier": 1.3, "start_time": 1781297121.4731617}
+{"source": "dispatcher", "event": "kill", "job_id": 71, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 72, "multiplier": 1.3, "start_time": 1781297121.473253}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 72, "multiplier": 1.3, "start_time": 1781297121.4732735}
+{"source": "multi", "event": "dispatching", "job_id": 73, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 73, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.03008294105529785}, {"id": 2, "pendings": 0, "age": 0.029996633529663086}, {"id": 3, "pendings": 0, "age": 0.029978275299072266}], "chosen": [1, 2, 3], "decision_time": 1781297121.5033684}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 72, "start_time": 1781297121.473161, "resp_time": 0.11542701721191406, "multiplier": 1.3, "end_time": 1781297121.588588}
 {"source": "dispatcher", "event": "kill", "job_id": 72, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 72}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 73}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 73, "start_time": 1781275183.1936462, "resp_time": 0.1560370922088623}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 74}
-{"source": "dispatcher", "event": "kill", "job_id": 73, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 73, "multiplier": 1.3, "start_time": 1781297121.5889623}
+{"source": "dispatcher", "event": "kill", "job_id": 72, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 73, "multiplier": 1.3, "start_time": 1781297121.5890808}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 73, "multiplier": 1.3, "start_time": 1781297121.5891023}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 73, "start_time": 1781297121.5889616, "resp_time": 0.11274862289428711, "multiplier": 1.3, "end_time": 1781297121.7017102}
+{"source": "dispatcher", "event": "kill", "job_id": 73, "server": 2}
 {"source": "dispatcher", "event": "kill", "job_id": 73, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 73}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 74}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 74, "start_time": 1781275183.3499649, "resp_time": 0.15488028526306152}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 75}
-{"source": "dispatcher", "event": "kill", "job_id": 74, "server": 1}
+{"source": "multi", "event": "dispatching", "job_id": 74, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 74, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781297121.784678}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 74, "multiplier": 1.3, "start_time": 1781297121.7849324}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 74, "multiplier": 1.3, "start_time": 1781297121.7849324}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 74, "multiplier": 1.3, "start_time": 1781297121.7849507}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 74, "start_time": 1781297121.784926, "resp_time": 0.11234211921691895, "multiplier": 1.3, "end_time": 1781297121.897268}
 {"source": "dispatcher", "event": "kill", "job_id": 74, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 74}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 75}
-{"source": "multi", "event": "dispatching", "job_id": 85, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 85, "servers": [{"id": 1, "pendings": 10, "age": 0.012203454971313477}, {"id": 2, "pendings": 9, "age": 0.01217198371887207}, {"id": 3, "pendings": 9, "age": 0.01234126091003418}], "chosen": [1, 2, 3], "decision_time": 1781275183.517373}
-{"source": "multi", "event": "dispatching", "job_id": 86, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 86, "servers": [{"id": 1, "pendings": 11, "age": 0.016785383224487305}, {"id": 2, "pendings": 10, "age": 0.01675271987915039}, {"id": 3, "pendings": 10, "age": 0.016921043395996094}], "chosen": [1, 2, 3], "decision_time": 1781275183.5219314}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 75, "start_time": 1781275183.5049572, "resp_time": 0.1551651954650879}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 76}
-{"source": "dispatcher", "event": "kill", "job_id": 75, "server": 1}
+{"source": "dispatcher", "event": "kill", "job_id": 74, "server": 3}
+{"source": "multi", "event": "dispatching", "job_id": 75, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 75, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781297121.9553654}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 75, "multiplier": 1.3, "start_time": 1781297121.9556344}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 75, "multiplier": 1.3, "start_time": 1781297121.955695}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 75, "multiplier": 1.3, "start_time": 1781297121.955695}
+{"source": "multi", "event": "dispatching", "job_id": 76, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 76, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.04660844802856445}, {"id": 2, "pendings": 0, "age": 0.046552419662475586}, {"id": 3, "pendings": 0, "age": 0.0465545654296875}], "chosen": [1, 2, 3], "decision_time": 1781297122.0023587}
+{"source": "multi", "event": "dispatching", "job_id": 77, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 77, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 1, "age": 0.1086263656616211}, {"id": 2, "pendings": 1, "age": 0.10857057571411133}, {"id": 3, "pendings": 1, "age": 0.10857295989990234}], "chosen": [1, 2, 3], "decision_time": 1781297122.0643895}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 75, "start_time": 1781297121.9556286, "resp_time": 0.1147005558013916, "multiplier": 1.3, "end_time": 1781297122.0703292}
 {"source": "dispatcher", "event": "kill", "job_id": 75, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 75}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 76}
-{"source": "multi", "event": "dispatching", "job_id": 87, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 87, "servers": [{"id": 1, "pendings": 11, "age": 0.06540417671203613}, {"id": 2, "pendings": 10, "age": 0.06537103652954102}, {"id": 3, "pendings": 10, "age": 0.06551909446716309}], "chosen": [1, 2, 3], "decision_time": 1781275183.7258487}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 76, "start_time": 1781275183.6602309, "resp_time": 0.1562495231628418}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 77}
-{"source": "dispatcher", "event": "kill", "job_id": 76, "server": 1}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 76, "start_time": 1781275183.660377, "resp_time": 0.15622615814208984}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 77}
+{"source": "dispatcher", "event": "kill", "job_id": 75, "server": 3}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 76, "multiplier": 1.3, "start_time": 1781297122.0705206}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 76, "multiplier": 1.3, "start_time": 1781297122.0705774}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 76, "multiplier": 1.3, "start_time": 1781297122.070599}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 76, "start_time": 1781297122.0705194, "resp_time": 0.1155850887298584, "multiplier": 1.3, "end_time": 1781297122.1861045}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 77, "multiplier": 1.3, "start_time": 1781297122.1863775}
 {"source": "dispatcher", "event": "kill", "job_id": 76, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 76}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 78}
-{"source": "multi", "event": "dispatching", "job_id": 88, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 88, "servers": [{"id": 1, "pendings": 11, "age": 0.0862283706665039}, {"id": 2, "pendings": 9, "age": 0.08617281913757324}, {"id": 3, "pendings": 10, "age": 0.08634114265441895}], "chosen": [1, 2, 3], "decision_time": 1781275183.9030282}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 77, "start_time": 1781275183.8165963, "resp_time": 0.15492582321166992}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 78}
-{"source": "dispatcher", "event": "kill", "job_id": 77, "server": 1}
+{"source": "dispatcher", "event": "kill", "job_id": 76, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 77, "multiplier": 1.3, "start_time": 1781297122.186761}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 77, "multiplier": 1.3, "start_time": 1781297122.1867776}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 77, "start_time": 1781297122.186377, "resp_time": 0.11359357833862305, "multiplier": 1.3, "end_time": 1781297122.2999706}
 {"source": "dispatcher", "event": "kill", "job_id": 77, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 77}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 79}
-{"source": "multi", "event": "dispatching", "job_id": 89, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 89, "servers": [{"id": 1, "pendings": 11, "age": 0.05386948585510254}, {"id": 2, "pendings": 9, "age": 0.053839921951293945}, {"id": 3, "pendings": 10, "age": 0.053972721099853516}], "chosen": [1, 2, 3], "decision_time": 1781275184.025701}
-{"source": "multi", "event": "dispatching", "job_id": 90, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 90, "servers": [{"id": 1, "pendings": 12, "age": 0.10493302345275879}, {"id": 2, "pendings": 10, "age": 0.10490298271179199}, {"id": 3, "pendings": 11, "age": 0.10503554344177246}], "chosen": [1, 2, 3], "decision_time": 1781275184.0767577}
-{"source": "multi", "event": "dispatching", "job_id": 91, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 91, "servers": [{"id": 1, "pendings": 13, "age": 0.14497613906860352}, {"id": 2, "pendings": 11, "age": 0.14494585990905762}, {"id": 3, "pendings": 12, "age": 0.1450786590576172}], "chosen": [1, 2, 3], "decision_time": 1781275184.1168106}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 78, "start_time": 1781275183.9716349, "resp_time": 0.1548013687133789}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 79}
-{"source": "dispatcher", "event": "kill", "job_id": 78, "server": 1}
+{"source": "dispatcher", "event": "kill", "job_id": 77, "server": 3}
+{"source": "multi", "event": "dispatching", "job_id": 78, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 78, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.0}, {"id": 2, "pendings": 0, "age": 0.0}, {"id": 3, "pendings": 0, "age": 0.0}], "chosen": [1, 2, 3], "decision_time": 1781297122.5997283}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 78, "multiplier": 1.3, "start_time": 1781297122.6000016}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 78, "multiplier": 1.3, "start_time": 1781297122.6000016}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 78, "multiplier": 1.3, "start_time": 1781297122.600018}
+{"source": "multi", "event": "dispatching", "job_id": 79, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 79, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 0, "age": 0.021647930145263672}, {"id": 2, "pendings": 0, "age": 0.021651506423950195}, {"id": 3, "pendings": 0, "age": 0.021636486053466797}], "chosen": [1, 2, 3], "decision_time": 1781297122.6217442}
+{"source": "multi", "event": "dispatching", "job_id": 80, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 80, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 1, "age": 0.03623557090759277}, {"id": 2, "pendings": 1, "age": 0.0362393856048584}, {"id": 3, "pendings": 1, "age": 0.036224365234375}], "chosen": [1, 2, 3], "decision_time": 1781297122.6363556}
+{"source": "multi", "event": "dispatching", "job_id": 81, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 81, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 2, "age": 0.04658937454223633}, {"id": 2, "pendings": 2, "age": 0.046593666076660156}, {"id": 3, "pendings": 2, "age": 0.04657888412475586}], "chosen": [1, 2, 3], "decision_time": 1781297122.6467044}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 78, "start_time": 1781297122.5999954, "resp_time": 0.11526751518249512, "multiplier": 1.3, "end_time": 1781297122.715263}
 {"source": "dispatcher", "event": "kill", "job_id": 78, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 78}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 80}
-{"source": "multi", "event": "dispatching", "job_id": 92, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 92, "servers": [{"id": 1, "pendings": 13, "age": 0.04966592788696289}, {"id": 2, "pendings": 11, "age": 0.049634456634521484}, {"id": 3, "pendings": 12, "age": 0.049755096435546875}], "chosen": [1, 2, 3], "decision_time": 1781275184.1763737}
-{"source": "multi", "event": "dispatching", "job_id": 93, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 93, "servers": [{"id": 1, "pendings": 14, "age": 0.06904840469360352}, {"id": 2, "pendings": 12, "age": 0.0690164566040039}, {"id": 3, "pendings": 13, "age": 0.0691366195678711}], "chosen": [1, 2, 3], "decision_time": 1781275184.195755}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 79, "start_time": 1781275184.1265461, "resp_time": 0.15521955490112305}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 80}
-{"source": "dispatcher", "event": "kill", "job_id": 79, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 79, "multiplier": 1.3, "start_time": 1781297122.7155178}
+{"source": "dispatcher", "event": "kill", "job_id": 78, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 79, "multiplier": 1.3, "start_time": 1781297122.715606}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 79, "multiplier": 1.3, "start_time": 1781297122.715626}
+{"source": "multi", "event": "dispatching", "job_id": 82, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 82, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 2, "age": 0.010846614837646484}, {"id": 2, "pendings": 2, "age": 0.010762453079223633}, {"id": 3, "pendings": 2, "age": 0.01074528694152832}], "chosen": [1, 2, 3], "decision_time": 1781297122.726478}
+{"source": "multi", "event": "dispatching", "job_id": 83, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 83, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 3, "age": 0.061997413635253906}, {"id": 2, "pendings": 3, "age": 0.06191420555114746}, {"id": 3, "pendings": 3, "age": 0.061896562576293945}], "chosen": [1, 2, 3], "decision_time": 1781297122.7776632}
+{"source": "multi", "event": "dispatching", "job_id": 84, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 84, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 4, "age": 0.09846615791320801}, {"id": 2, "pendings": 4, "age": 0.09838342666625977}, {"id": 3, "pendings": 4, "age": 0.09836554527282715}], "chosen": [1, 2, 3], "decision_time": 1781297122.8141313}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 79, "start_time": 1781297122.715517, "resp_time": 0.11320853233337402, "multiplier": 1.3, "end_time": 1781297122.8287256}
 {"source": "dispatcher", "event": "kill", "job_id": 79, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 79}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 81}
-{"source": "multi", "event": "dispatching", "job_id": 94, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 94, "servers": [{"id": 1, "pendings": 14, "age": 0.08426403999328613}, {"id": 2, "pendings": 12, "age": 0.08423471450805664}, {"id": 3, "pendings": 13, "age": 0.08437919616699219}], "chosen": [1, 2, 3], "decision_time": 1781275184.366357}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 80, "start_time": 1781275184.2818885, "resp_time": 0.15613055229187012}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 81}
-{"source": "dispatcher", "event": "kill", "job_id": 80, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 80, "multiplier": 1.3, "start_time": 1781297122.8289318}
+{"source": "dispatcher", "event": "kill", "job_id": 79, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 80, "multiplier": 1.3, "start_time": 1781297122.8290138}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 80, "multiplier": 1.3, "start_time": 1781297122.829041}
+{"source": "multi", "event": "dispatching", "job_id": 85, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 85, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 4, "age": 0.025371551513671875}, {"id": 2, "pendings": 4, "age": 0.025295257568359375}, {"id": 3, "pendings": 4, "age": 0.025270462036132812}], "chosen": [1, 2, 3], "decision_time": 1781297122.8544614}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 80, "start_time": 1781297122.828931, "resp_time": 0.11337089538574219, "multiplier": 1.3, "end_time": 1781297122.942302}
 {"source": "dispatcher", "event": "kill", "job_id": 80, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 80}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 82}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 81, "start_time": 1781275184.4381397, "resp_time": 0.1550309658050537}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 82}
-{"source": "dispatcher", "event": "kill", "job_id": 81, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 81, "multiplier": 1.3, "start_time": 1781297122.9425519}
+{"source": "dispatcher", "event": "kill", "job_id": 80, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 81, "multiplier": 1.3, "start_time": 1781297122.9426343}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 81, "multiplier": 1.3, "start_time": 1781297122.9426644}
+{"source": "multi", "event": "dispatching", "job_id": 86, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 86, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 4, "age": 0.0037720203399658203}, {"id": 2, "pendings": 4, "age": 0.003692150115966797}, {"id": 3, "pendings": 4, "age": 0.003663778305053711}], "chosen": [1, 2, 3], "decision_time": 1781297122.9463806}
+{"source": "multi", "event": "dispatching", "job_id": 87, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 87, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 5, "age": 0.06803154945373535}, {"id": 2, "pendings": 5, "age": 0.06795382499694824}, {"id": 3, "pendings": 5, "age": 0.06792593002319336}], "chosen": [1, 2, 3], "decision_time": 1781297123.0107098}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 81, "start_time": 1781297122.942551, "resp_time": 0.11563682556152344, "multiplier": 1.3, "end_time": 1781297123.0581877}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 82, "multiplier": 1.3, "start_time": 1781297123.0583768}
 {"source": "dispatcher", "event": "kill", "job_id": 81, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 81}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 83}
-{"source": "multi", "event": "dispatching", "job_id": 95, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 95, "servers": [{"id": 1, "pendings": 13, "age": 0.018544435501098633}, {"id": 2, "pendings": 11, "age": 0.018516063690185547}, {"id": 3, "pendings": 12, "age": 0.018656015396118164}], "chosen": [1, 2, 3], "decision_time": 1781275184.6120133}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 82, "start_time": 1781275184.5932825, "resp_time": 0.15492892265319824}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 83}
-{"source": "dispatcher", "event": "kill", "job_id": 82, "server": 1}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 82}
+{"source": "dispatcher", "event": "kill", "job_id": 81, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 82, "multiplier": 1.3, "start_time": 1781297123.0586345}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 82, "multiplier": 1.3, "start_time": 1781297123.0586514}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 82, "start_time": 1781297123.0583758, "resp_time": 0.11311221122741699, "multiplier": 1.3, "end_time": 1781297123.171488}
 {"source": "dispatcher", "event": "kill", "job_id": 82, "server": 2}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 84}
-{"source": "multi", "event": "dispatching", "job_id": 96, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 96, "servers": [{"id": 1, "pendings": 13, "age": 0.04802536964416504}, {"id": 2, "pendings": 11, "age": 0.04792976379394531}, {"id": 3, "pendings": 12, "age": 0.04814600944519043}], "chosen": [1, 2, 3], "decision_time": 1781275184.796619}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 83, "start_time": 1781275184.748352, "resp_time": 0.1552121639251709}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 84}
-{"source": "dispatcher", "event": "kill", "job_id": 83, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 83, "multiplier": 1.3, "start_time": 1781297123.1717346}
+{"source": "dispatcher", "event": "kill", "job_id": 82, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 83, "multiplier": 1.3, "start_time": 1781297123.1718066}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 83, "multiplier": 1.3, "start_time": 1781297123.17183}
+{"source": "multi", "event": "dispatching", "job_id": 88, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 88, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 4, "age": 0.09200072288513184}, {"id": 2, "pendings": 4, "age": 0.0919339656829834}, {"id": 3, "pendings": 4, "age": 0.09191298484802246}], "chosen": [1, 2, 3], "decision_time": 1781297123.2638667}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 83, "start_time": 1781297123.1717339, "resp_time": 0.11386561393737793, "multiplier": 1.3, "end_time": 1781297123.2855995}
 {"source": "dispatcher", "event": "kill", "job_id": 83, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 83}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 85}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 84, "start_time": 1781275184.9036672, "resp_time": 0.1564626693725586}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 85}
-{"source": "dispatcher", "event": "kill", "job_id": 84, "server": 1}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 85, "start_time": 1781275184.90378, "resp_time": 0.15648674964904785}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 84, "multiplier": 1.3, "start_time": 1781297123.285836}
+{"source": "dispatcher", "event": "kill", "job_id": 83, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 84, "multiplier": 1.3, "start_time": 1781297123.285914}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 84, "multiplier": 1.3, "start_time": 1781297123.2859385}
+{"source": "multi", "event": "dispatching", "job_id": 89, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 89, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 4, "age": 0.02062511444091797}, {"id": 2, "pendings": 4, "age": 0.020551204681396484}, {"id": 3, "pendings": 4, "age": 0.02052903175354004}], "chosen": [1, 2, 3], "decision_time": 1781297123.30657}
+{"source": "multi", "event": "dispatching", "job_id": 90, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 90, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 5, "age": 0.04004168510437012}, {"id": 2, "pendings": 5, "age": 0.039968013763427734}, {"id": 3, "pendings": 5, "age": 0.03994607925415039}], "chosen": [1, 2, 3], "decision_time": 1781297123.325996}
+{"source": "multi", "event": "dispatching", "job_id": 91, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 91, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 6, "age": 0.1049356460571289}, {"id": 2, "pendings": 6, "age": 0.10486245155334473}, {"id": 3, "pendings": 6, "age": 0.10484051704406738}], "chosen": [1, 2, 3], "decision_time": 1781297123.390914}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 84, "start_time": 1781297123.285835, "resp_time": 0.1159827709197998, "multiplier": 1.3, "end_time": 1781297123.4018178}
 {"source": "dispatcher", "event": "kill", "job_id": 84, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 84}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 86}
-{"source": "dispatcher", "event": "kill", "job_id": 85, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 85, "multiplier": 1.3, "start_time": 1781297123.4020658}
+{"source": "dispatcher", "event": "kill", "job_id": 84, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 85, "multiplier": 1.3, "start_time": 1781297123.4021573}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 85, "multiplier": 1.3, "start_time": 1781297123.4021761}
+{"source": "multi", "event": "dispatching", "job_id": 92, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 92, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 6, "age": 0.051262855529785156}, {"id": 2, "pendings": 6, "age": 0.051178693771362305}, {"id": 3, "pendings": 6, "age": 0.051163673400878906}], "chosen": [1, 2, 3], "decision_time": 1781297123.4535248}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 85, "start_time": 1781297123.4020646, "resp_time": 0.11495161056518555, "multiplier": 1.3, "end_time": 1781297123.5170162}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 86, "multiplier": 1.3, "start_time": 1781297123.5171998}
+{"source": "dispatcher", "event": "kill", "job_id": 85, "server": 2}
 {"source": "dispatcher", "event": "kill", "job_id": 85, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 85}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 86}
-{"source": "multi", "event": "dispatching", "job_id": 97, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 97, "servers": [{"id": 1, "pendings": 11, "age": 0.026087045669555664}, {"id": 2, "pendings": 10, "age": 0.02614140510559082}, {"id": 3, "pendings": 10, "age": 0.026057958602905273}], "chosen": [1, 2, 3], "decision_time": 1781275185.0866125}
-{"source": "multi", "event": "dispatching", "job_id": 98, "dispatcher": 1}
-{"source": "dispatcher", "event": "dispatching", "job_id": 98, "servers": [{"id": 1, "pendings": 12, "age": 0.041379690170288086}, {"id": 2, "pendings": 11, "age": 0.04143381118774414}, {"id": 3, "pendings": 11, "age": 0.04134941101074219}], "chosen": [1, 2, 3], "decision_time": 1781275185.101881}
-{"source": "multi", "event": "dispatching", "job_id": 99, "dispatcher": 0}
-{"source": "dispatcher", "event": "dispatching", "job_id": 99, "servers": [{"id": 1, "pendings": 13, "age": 0.10664129257202148}, {"id": 2, "pendings": 12, "age": 0.10669541358947754}, {"id": 3, "pendings": 12, "age": 0.10661101341247559}], "chosen": [1, 2, 3], "decision_time": 1781275185.1671338}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 86, "start_time": 1781275185.0604513, "resp_time": 0.15546226501464844}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 87}
-{"source": "dispatcher", "event": "kill", "job_id": 86, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 86, "multiplier": 1.3, "start_time": 1781297123.5236785}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 86, "multiplier": 1.3, "start_time": 1781297123.5237036}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 86, "start_time": 1781297123.5171993, "resp_time": 0.11293983459472656, "multiplier": 1.3, "end_time": 1781297123.630139}
 {"source": "dispatcher", "event": "kill", "job_id": 86, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 86}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 87}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 87, "start_time": 1781275185.216011, "resp_time": 0.1549844741821289}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 88}
-{"source": "dispatcher", "event": "kill", "job_id": 87, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 87, "multiplier": 1.3, "start_time": 1781297123.630452}
+{"source": "dispatcher", "event": "kill", "job_id": 86, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 87, "multiplier": 1.3, "start_time": 1781297123.63056}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 87, "multiplier": 1.3, "start_time": 1781297123.6305819}
+{"source": "multi", "event": "dispatching", "job_id": 93, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 93, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 5, "age": 0.01919245719909668}, {"id": 2, "pendings": 5, "age": 0.0190889835357666}, {"id": 3, "pendings": 5, "age": 0.019069194793701172}], "chosen": [1, 2, 3], "decision_time": 1781297123.6497693}
+{"source": "multi", "event": "dispatching", "job_id": 94, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 94, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 6, "age": 0.06254887580871582}, {"id": 2, "pendings": 6, "age": 0.06244635581970215}, {"id": 3, "pendings": 6, "age": 0.06242704391479492}], "chosen": [1, 2, 3], "decision_time": 1781297123.6931365}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 87, "start_time": 1781297123.630451, "resp_time": 0.11570620536804199, "multiplier": 1.3, "end_time": 1781297123.7461572}
 {"source": "dispatcher", "event": "kill", "job_id": 87, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 87}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 88}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 88, "start_time": 1781275185.371091, "resp_time": 0.1554872989654541}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 89}
-{"source": "dispatcher", "event": "kill", "job_id": 88, "server": 1}
+{"source": "dispatcher", "event": "kill", "job_id": 87, "server": 3}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 88, "multiplier": 1.3, "start_time": 1781297123.7464688}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 88, "multiplier": 1.3, "start_time": 1781297123.7465453}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 88, "multiplier": 1.3, "start_time": 1781297123.7465668}
+{"source": "multi", "event": "dispatching", "job_id": 95, "dispatcher": 1}
+{"source": "dispatcher", "event": "dispatching", "job_id": 95, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 6, "age": 0.07182621955871582}, {"id": 2, "pendings": 6, "age": 0.07175517082214355}, {"id": 3, "pendings": 6, "age": 0.07173609733581543}], "chosen": [1, 2, 3], "decision_time": 1781297123.8184342}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 88, "start_time": 1781297123.746468, "resp_time": 0.1136322021484375, "multiplier": 1.3, "end_time": 1781297123.8601003}
 {"source": "dispatcher", "event": "kill", "job_id": 88, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 88}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 89}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 89, "start_time": 1781275185.526669, "resp_time": 0.15617156028747559}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 90}
-{"source": "dispatcher", "event": "kill", "job_id": 89, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 89, "multiplier": 1.3, "start_time": 1781297123.8603666}
+{"source": "dispatcher", "event": "kill", "job_id": 88, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 89, "multiplier": 1.3, "start_time": 1781297123.8604527}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 89, "multiplier": 1.3, "start_time": 1781297123.8604894}
+{"source": "multi", "event": "dispatching", "job_id": 96, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 96, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 6, "age": 0.01636052131652832}, {"id": 2, "pendings": 6, "age": 0.016278982162475586}, {"id": 3, "pendings": 6, "age": 0.016243934631347656}], "chosen": [1, 2, 3], "decision_time": 1781297123.8768232}
+{"source": "multi", "event": "dispatching", "job_id": 97, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 97, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 7, "age": 0.04918646812438965}, {"id": 2, "pendings": 7, "age": 0.04910612106323242}, {"id": 3, "pendings": 7, "age": 0.049071311950683594}], "chosen": [1, 2, 3], "decision_time": 1781297123.9096897}
+{"source": "multi", "event": "dispatching", "job_id": 98, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 98, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 8, "age": 0.06020760536193848}, {"id": 2, "pendings": 8, "age": 0.06012606620788574}, {"id": 3, "pendings": 8, "age": 0.060091495513916016}], "chosen": [1, 2, 3], "decision_time": 1781297123.9207058}
+{"source": "multi", "event": "dispatching", "job_id": 99, "dispatcher": 0}
+{"source": "dispatcher", "event": "dispatching", "job_id": 99, "multiplier": 1.3, "servers": [{"id": 1, "pendings": 9, "age": 0.0833437442779541}, {"id": 2, "pendings": 9, "age": 0.08326387405395508}, {"id": 3, "pendings": 9, "age": 0.08322954177856445}], "chosen": [1, 2, 3], "decision_time": 1781297123.9438457}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 89, "start_time": 1781297123.8603659, "resp_time": 0.11372232437133789, "multiplier": 1.3, "end_time": 1781297123.9740882}
 {"source": "dispatcher", "event": "kill", "job_id": 89, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 89}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 90}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 90, "start_time": 1781275185.683125, "resp_time": 0.15572047233581543}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 91}
-{"source": "dispatcher", "event": "kill", "job_id": 90, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 90, "multiplier": 1.3, "start_time": 1781297123.9743462}
+{"source": "dispatcher", "event": "kill", "job_id": 89, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 90, "multiplier": 1.3, "start_time": 1781297123.9744377}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 90, "multiplier": 1.3, "start_time": 1781297123.9744594}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 90, "start_time": 1781297123.9743454, "resp_time": 0.11525774002075195, "multiplier": 1.3, "end_time": 1781297124.0896032}
+{"source": "dispatcher", "event": "kill", "job_id": 90, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 91, "multiplier": 1.3, "start_time": 1781297124.0898519}
 {"source": "dispatcher", "event": "kill", "job_id": 90, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 90}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 90, "start_time": 1781275185.6829538, "resp_time": 0.15613532066345215}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 91}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 91, "start_time": 1781275185.839196, "resp_time": 0.15456771850585938}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 92}
-{"source": "dispatcher", "event": "kill", "job_id": 91, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 91, "multiplier": 1.3, "start_time": 1781297124.0899465}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 91, "multiplier": 1.3, "start_time": 1781297124.0899673}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 91, "start_time": 1781297124.0898511, "resp_time": 0.11341023445129395, "multiplier": 1.3, "end_time": 1781297124.2032614}
 {"source": "dispatcher", "event": "kill", "job_id": 91, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 91}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 92}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 92, "start_time": 1781275185.9938715, "resp_time": 0.155120849609375}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 93}
-{"source": "dispatcher", "event": "kill", "job_id": 92, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 92, "multiplier": 1.3, "start_time": 1781297124.2035172}
+{"source": "dispatcher", "event": "kill", "job_id": 91, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 92, "multiplier": 1.3, "start_time": 1781297124.203607}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 92, "multiplier": 1.3, "start_time": 1781297124.203633}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 92, "start_time": 1781297124.2035165, "resp_time": 0.11295700073242188, "multiplier": 1.3, "end_time": 1781297124.3164735}
 {"source": "dispatcher", "event": "kill", "job_id": 92, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 92}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 93}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 93, "start_time": 1781275186.1492121, "resp_time": 0.15620660781860352}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 93, "start_time": 1781275186.1490824, "resp_time": 0.15635466575622559}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 94}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 94}
-{"source": "dispatcher", "event": "kill", "job_id": 93, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 93, "multiplier": 1.3, "start_time": 1781297124.3167183}
+{"source": "dispatcher", "event": "kill", "job_id": 92, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 93, "multiplier": 1.3, "start_time": 1781297124.3168106}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 93, "multiplier": 1.3, "start_time": 1781297124.3168373}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 93, "start_time": 1781297124.3167174, "resp_time": 0.11536741256713867, "multiplier": 1.3, "end_time": 1781297124.4320848}
+{"source": "dispatcher", "event": "kill", "job_id": 93, "server": 2}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 94, "multiplier": 1.3, "start_time": 1781297124.432352}
 {"source": "dispatcher", "event": "kill", "job_id": 93, "server": 3}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 93}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 95}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 95, "start_time": 1781275186.3056574, "resp_time": 0.1549851894378662}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 96}
-{"source": "dispatcher", "event": "kill", "job_id": 95, "server": 1}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 94, "multiplier": 1.3, "start_time": 1781297124.4324408}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 94, "multiplier": 1.3, "start_time": 1781297124.4324687}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 94, "start_time": 1781297124.4323514, "resp_time": 0.11451840400695801, "multiplier": 1.3, "end_time": 1781297124.5468698}
+{"source": "dispatcher", "event": "kill", "job_id": 94, "server": 2}
+{"source": "dispatcher", "event": "kill", "job_id": 94, "server": 3}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 95, "multiplier": 1.3, "start_time": 1781297124.547195}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 95, "multiplier": 1.3, "start_time": 1781297124.5472536}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 95, "multiplier": 1.3, "start_time": 1781297124.547287}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 95, "start_time": 1781297124.5471935, "resp_time": 0.11693572998046875, "multiplier": 1.3, "end_time": 1781297124.6641293}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 96, "multiplier": 1.3, "start_time": 1781297124.664455}
 {"source": "dispatcher", "event": "kill", "job_id": 95, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 94}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 95}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 96, "start_time": 1781275186.460736, "resp_time": 0.15561771392822266}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 97}
-{"source": "dispatcher", "event": "kill", "job_id": 96, "server": 1}
+{"source": "dispatcher", "event": "kill", "job_id": 95, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 96, "multiplier": 1.3, "start_time": 1781297124.6646285}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 96, "multiplier": 1.3, "start_time": 1781297124.6646523}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 96, "start_time": 1781297124.664454, "resp_time": 0.1175837516784668, "multiplier": 1.3, "end_time": 1781297124.7820377}
 {"source": "dispatcher", "event": "kill", "job_id": 96, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 95}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 96}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 97, "start_time": 1781275186.6164427, "resp_time": 0.15512490272521973}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 98}
-{"source": "dispatcher", "event": "kill", "job_id": 97, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 97, "multiplier": 1.3, "start_time": 1781297124.782285}
+{"source": "dispatcher", "event": "kill", "job_id": 96, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 97, "multiplier": 1.3, "start_time": 1781297124.782372}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 97, "multiplier": 1.3, "start_time": 1781297124.7824}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 97, "start_time": 1781297124.7822843, "resp_time": 0.11601400375366211, "multiplier": 1.3, "end_time": 1781297124.8982983}
 {"source": "dispatcher", "event": "kill", "job_id": 97, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 96}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 97}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 98, "start_time": 1781275186.7716687, "resp_time": 0.15671610832214355}
-{"source": "server", "event": "start", "server_id": 3, "job_id": 99}
-{"source": "dispatcher", "event": "kill", "job_id": 98, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 98, "multiplier": 1.3, "start_time": 1781297124.898563}
+{"source": "dispatcher", "event": "kill", "job_id": 97, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 98, "multiplier": 1.3, "start_time": 1781297124.898654}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 98, "multiplier": 1.3, "start_time": 1781297124.8986726}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 98, "start_time": 1781297124.8985617, "resp_time": 0.11487603187561035, "multiplier": 1.3, "end_time": 1781297125.0134377}
 {"source": "dispatcher", "event": "kill", "job_id": 98, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 97}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 98}
-{"source": "server", "event": "end", "server_id": 3, "job_id": 99, "start_time": 1781275186.9284925, "resp_time": 0.15456080436706543}
-{"source": "dispatcher", "event": "kill", "job_id": 99, "server": 1}
+{"source": "server", "event": "start", "server_id": 1, "job_id": 99, "multiplier": 1.3, "start_time": 1781297125.0136843}
+{"source": "dispatcher", "event": "kill", "job_id": 98, "server": 3}
+{"source": "server", "event": "start", "server_id": 2, "job_id": 99, "multiplier": 1.3, "start_time": 1781297125.013765}
+{"source": "server", "event": "start", "server_id": 3, "job_id": 99, "multiplier": 1.3, "start_time": 1781297125.0137913}
+{"source": "server", "event": "end", "server_id": 1, "job_id": 99, "start_time": 1781297125.0136836, "resp_time": 0.11671566963195801, "multiplier": 1.3, "end_time": 1781297125.1303992}
 {"source": "dispatcher", "event": "kill", "job_id": 99, "server": 2}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 98}
-{"source": "server", "event": "start", "server_id": 2, "job_id": 99}
-{"source": "server", "event": "end", "server_id": 2, "job_id": 99, "start_time": 1781275187.083318, "resp_time": 0.15590882301330566}
-{"source": "server", "event": "end", "server_id": 1, "job_id": 98, "start_time": 1781275187.083284, "resp_time": 0.1589369773864746}
-{"source": "server", "event": "start", "server_id": 1, "job_id": 99}
-{"source": "server", "event": "end", "server_id": 1, "job_id": 99, "start_time": 1781275187.2423475, "resp_time": 0.18845295906066895}
-{"source": "dispatcher", "event": "summary", "processing": 14.635711431503296}
-{"source": "server", "event": "summary", "server_id": 1, "processing": 0.5047457218170166}
-{"source": "server", "event": "summary", "server_id": 2, "processing": 6.8948845863342285}
-{"source": "server", "event": "summary", "server_id": 3, "processing": 7.607682943344116}
+{"source": "dispatcher", "event": "kill", "job_id": 99, "server": 3}
+{"source": "dispatcher", "event": "summary", "processing": 13.697946071624756}
+{"source": "server", "event": "summary", "server_id": 1, "processing": 11.429795265197754}
+{"source": "server", "event": "summary", "server_id": 2, "processing": 0.0}
+{"source": "server", "event": "summary", "server_id": 3, "processing": 0.0}
