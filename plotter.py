@@ -18,19 +18,13 @@ def load_points(file_path: str = "simulations/output.txt") -> List[Dict]:
         for line in f:
             point = json.loads(line)
 
-            if (
-                point["source"] == "dispatcher" and point["event"] == "dispatching"
-            ):
+            if point["source"] == "dispatcher" and point["event"] == "dispatching":
                 dispatched.append(point)
 
-            if (
-                point["source"] == "server" and point["event"] != "end"
-            ):
+            if point["source"] == "server" and point["event"] != "end":
                 continue
 
-            if (
-                point["source"] == "server" and point["event"] == "end"
-            ):
+            if point["source"] == "server" and point["event"] == "end":
                 starting = [p for p in dispatched if p["job_id"] == point["job_id"]]
                 starting = starting[0]
                 point["resp_time"] = point["end_time"] - starting["decision_time"]
@@ -295,7 +289,7 @@ def plot(
     base_name = os.path.splitext(os.path.basename(file_path))[0]
     resp_name = f"{base_name}_response_time.png"
     util_name = f"{base_name}_utilization.png"
-    
+
     if save_dir is not None:
         os.makedirs(save_dir, exist_ok=True)
         resp_save = os.path.join(save_dir, resp_name)
@@ -333,8 +327,11 @@ def plot_multiplier_response_time_sorted(
 
     for load, datasets in sorted(loads.items()):
         plt.figure(figsize=(10, 5))
-        plt.title(f"Response time (sorted) per Job size: load {load}", fontsize=14, fontweight="bold")
-
+        plt.title(
+            f"Response time (sorted) per Job size: load {load}",
+            fontsize=14,
+            fontweight="bold",
+        )
 
         for label, points in datasets.items():
             useful_points = [
@@ -343,12 +340,9 @@ def plot_multiplier_response_time_sorted(
                 if p.get("source") == "server" and p.get("event") == "end"
             ]
 
-            data = [
-                (p["multiplier"], p["resp_time"])
-                for p in useful_points
-            ]
+            data = [(p["multiplier"], p["resp_time"]) for p in useful_points]
 
-            data.sort(key = lambda p: p[0])
+            data.sort(key=lambda p: p[0])
             mult = [p[0] for p in data]
             resp = [p[1] for p in data]
 
@@ -360,11 +354,9 @@ def plot_multiplier_response_time_sorted(
         plt.grid(True, linestyle="--", alpha=0.6, which="both")
         plt.legend(fontsize=11)
         plt.show()
-        
 
-def plot_summary(
-    files: List[str]
-):
+
+def plot_summary(files: List[str]):
     data = {}
 
     for file in files:
@@ -374,53 +366,68 @@ def plot_summary(
         load = parts[1] if len(parts) > 1 else "Unknown"
 
         summary = []
+        total_time = 1.0  # Fallback to prevent division by zero
+
         with open(file, mode="r") as f:
             for line in f:
                 point = json.loads(line)
                 if point.get("source") == "server" and point.get("event") == "summary":
                     summary.append(point)
+                elif (
+                    point.get("source") == "dispatcher"
+                    and point.get("event") == "summary"
+                ):
+                    # Grab the total simulation duration recorded by the dispatcher
+                    total_time = point.get("processing", 1.0)
 
         if load not in data:
             data[load] = {}
-        data[load][dispatcher] = summary
 
+        data[load][dispatcher] = {"servers": summary, "total_time": total_time}
 
     for load, datasets in sorted(data.items()):
+        plt.figure(figsize=(10, 6))  # Good practice to initialize a fresh figure
         plt.title(f"Utilization times with load {load}", fontsize=14, fontweight="bold")
 
-        labels = datasets.keys()
+        labels = list(datasets.keys())
+
+        # Calculate true utilization: server_processing / total_simulation_time
         heights = [
-            [p["processing"] for p in d]
+            [p["processing"] / d["total_time"] for p in d["servers"]]
             for d in datasets.values()
         ]
-        heights = list(zip(*heights)) # swap
-        maximum = max(max(i) for i in heights)
 
-        heights = np.array(heights) / maximum
+        # Transpose so that each list corresponds to one server across all dispatchers
+        heights = list(zip(*heights))
 
-        colors = ['tab:blue', 'tab:orange', 'tab:green']
-        bins = len(heights[0])
-        bar_width = 0.25
-        bin_centres = np.arange(bins)
-        offsets = np.array([-1, 0, 1]) * bar_width
-        
-        for (i, color) in enumerate(colors):
+        num_dispatchers = len(labels)
+        num_servers = len(heights)
+
+        bin_centres = np.arange(num_dispatchers)
+        bar_width = 0.8 / num_servers  # Dynamically adjust bar width
+
+        # Calculate offsets so bars are centered perfectly around each tick
+        offsets = np.linspace(
+            -bar_width * (num_servers - 1) / 2,
+            bar_width * (num_servers - 1) / 2,
+            num_servers,
+        )
+
+        cmap = plt.get_cmap("tab10")
+
+        for i in range(num_servers):
             plt.bar(
                 bin_centres + offsets[i],
                 heights[i],
                 width=bar_width,
-                color=color,
+                color=cmap(i % 10),
                 label=f"Server {i + 1}",
             )
 
-        plt.xticks(
-            bin_centres,
-            labels=labels,
-            rotation=45,
-            ha="right"
-        )
+        plt.xticks(bin_centres, labels=labels, rotation=45, ha="right")
         plt.xlabel("Dispatcher", fontsize=12)
         plt.ylabel("Utilization", fontsize=12)
+        plt.ylim(0, 1.05)  # utilization shouldn't exceed 1.0 (100%), add small padding
         plt.legend()
 
         plt.tight_layout()
@@ -453,7 +460,9 @@ def plot_comparison(
     for load, datasets in sorted(loads.items()):
         if save_dir is not None:
             os.makedirs(save_dir, exist_ok=True)
-            resp_save = os.path.join(save_dir, f"comparison_load_{load}_response_time.png")
+            resp_save = os.path.join(
+                save_dir, f"comparison_load_{load}_response_time.png"
+            )
         else:
             resp_save = None
 
@@ -468,10 +477,9 @@ def plot_comparison(
         )
 
 
-
-PLOT_TYPE = "line" # bar or line
-LOG_MODE = "x"     # off, x (response time, x axis), y (density, y axis), xy (both axis)
-PROBABILITY = True # False for standard density (area=1), True for relative frequency (sum of heights=1)
+PLOT_TYPE = "line"  # bar or line
+LOG_MODE = "x"  # off, x (response time, x axis), y (density, y axis), xy (both axis)
+PROBABILITY = True  # False for standard density (area=1), True for relative frequency (sum of heights=1)
 
 
 if __name__ == "__main__":
@@ -493,11 +501,15 @@ if __name__ == "__main__":
         sys.argv[1]
     ):  # plot for a single file (filename passed)
         plot(
-            sys.argv[1], log_mode=LOG_MODE, plot_type=PLOT_TYPE, probability=PROBABILITY, save_dir=save_directory
+            sys.argv[1],
+            log_mode=LOG_MODE,
+            plot_type=PLOT_TYPE,
+            probability=PROBABILITY,
+            save_dir=save_directory,
         )
 
-    elif len(sys.argv) == 1 and should_summary and os.path.isdir(
-        "simulations/hedged"
+    elif (
+        len(sys.argv) == 1 and should_summary and os.path.isdir("simulations/hedged")
     ):  # summary mode explicitly requested, plot everything
         sim_files = [
             os.path.join("simulations/hedged", f)
