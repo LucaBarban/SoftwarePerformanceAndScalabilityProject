@@ -72,4 +72,9 @@ class HedgedServer(Process):
                 # Restoring initial
                 signal.signal(signal.SIGINT, signal.default_int_handler)
             except KeyboardInterrupt:  # SIGINT in python is coded as this
+                # If the server actually computed something and was killed,
+                # we update the processing time
+                # this fixes the utlization > 1 skyrocket bug.
+                if self.timing.value > 0:
+                    self.processing.value += time.time() - self.timing.value
                 self.timing.value = 0.0
