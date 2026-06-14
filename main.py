@@ -57,18 +57,19 @@ def hedged_simulate(
     dispatcher: HedgedDispatcher, load, SERVERS: int = 3, ALPHA: float = 1.0, jobs=100
 ):
     os.sched_setaffinity(0, {0})
-
+    random.seed(42)
     init_logging(f"simulations/hedged/{type(dispatcher).__name__}-{load}.txt")
     logger = logging.getLogger("logs")
 
     servers = [HedgedHandle(i + 1, dispatcher.completed) for i in range(SERVERS)]
-
+    interarrivals = [random.expovariate(load) / 10 for _ in range(jobs)]
+    multipliers = [random.paretovariate(ALPHA) for _ in range(jobs)]
     start = time.time()
 
-    for id in range(jobs):
-        time.sleep(random.expovariate(load) / 10)
+    for id, interarrival in enumerate(interarrivals):
+        time.sleep(interarrival)
+        req = Job(id, multipliers[id], 40)
 
-        req = Job(id, ALPHA, 40)
         # Dispatching the request to all servers, if we edit the for-loop
         # we can choose a subset.
         chosen_servers = dispatcher.choose(req, servers)

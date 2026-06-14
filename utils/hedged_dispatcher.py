@@ -45,7 +45,7 @@ class HedgedDispatcher:
 
         return chosen
 
-    def dispatch(self, job: Job, servers: list[HedgedHandle]) -> HedgedHandle:
+    def dispatch(self, job: Job, servers: list[HedgedHandle]) -> list[HedgedHandle]:
         raise Exception("NotImplementedException")
 
     def __completion_listener__(self):
